@@ -57,7 +57,7 @@
                               <li style="margin:0 auto;">
                                   <a href="javascript:loginForm.submit()" class="button" style="width:125px;">로그인</a>&nbsp;&nbsp;
                                  <!-- <input type="submit" value="로그인" class="primary" id="login" onClick="location.href='javascript:formSubmit()'"/> -->
-                                 <a  class="button">학생 회원가입</a>
+                                 <a href="/main/joinStudentForm" class="button">학생 회원가입</a>
                               </li>
                      </ul>
                   </div>
@@ -83,7 +83,7 @@
                               <li style="margin:0 auto;">
                                   <a href="javascript:loginForm.submit()" class="button" style="width:125px;">로그인</a>&nbsp;&nbsp;
                                  <!-- <input type="submit" value="로그인" class="primary" id="login" onClick="location.href='javascript:formSubmit()'"/> -->
-                                 <a  class="button">학원 회원가입</a>
+                                 <a href="/main/joinAcademyForm" class="button">학원 회원가입</a>
                               </li>
                      </ul>
                   </section>

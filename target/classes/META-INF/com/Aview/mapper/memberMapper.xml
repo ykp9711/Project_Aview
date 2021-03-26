@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Aview.mapper.MemberMapper">
+	<insert id="stuJoin">
+		INSERT INTO TBL_STUDENT
+(U_ID, U_PWD, U_PWD_Q, U_PWD_A, U_LAST_NAME, U_FIRST_NAME, U_EMAIL, U_BIRTH, U_PHONE, U_ZIPCODE, U_ADDRESS, U_ADDRESS_DETAIL)
+VALUES(#{u_id}, #{u_pwd}, #{u_pwd_q}, #{u_pwd_a}, #{u_last_name}, #{u_first_name}, #{u_email}, #{u_birth},
+#{u_phone}, #{u_zipcode}, #{u_address}, #{u_address_detail})
+	</insert>
+	
+	<select id="checkId" resultType="_int">
+	SELECT COUNT(*) FROM TBL_STUDENT WHERE U_ID = #{u_id}	
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
