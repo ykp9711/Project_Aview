@@ -4,15 +4,19 @@ import lombok.Data;
 
 @Data
 public class StudentVO {
-	private Long bno;
-	private String s_id;
-	private String s_pwd;
-	private String s_pwd_q;
-	private String s_pwd_a;
-	private String s_last_name;
-	private String s_first_name;
-	private String s_gender;
-	private String s_email;
-	private String s_phone;
-	private String s_residence;
+	private String u_id;
+	private String u_pwd;
+	private String u_pwd_q;
+	private String u_pwd_a;
+	private String u_last_name;
+	private String u_first_name;
+	private String u_birth;
+	private String year;
+	private String month;
+	private String date;	
+	private String u_email;
+	private String u_phone;
+	private String u_zipcode;
+	private String u_address;
+	private String u_address_detail;
 }

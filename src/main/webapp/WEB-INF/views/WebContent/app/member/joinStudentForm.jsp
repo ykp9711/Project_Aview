@@ -11,10 +11,10 @@
 <%@ include file = "../../header.jsp" %>
 
 	<head>
-		<title>ReturnCycle Join</title>
+		<title>학생 회원가입</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+		<link rel="stylesheet" href="../../../../../resources/assets/css/main.css" />
 	</head>
 		<!-- Main -->
 	<section id="main" class="wrapper style1">
@@ -25,12 +25,13 @@
 
 		<!-- Join -->
 			<article id = "join">
-				<form name="joinForm" action="${pageContext.request.contextPath}/member/MemberJoinOk.me" method="post">	
+				<form name="joinForm" action="/join/stujoin" method="post">	
 					<div class="row gtr-uniform">
 							<div class="col-6 col-12-small" style="margin:0 auto;">
 								<label>아이디</label>
-									<input type="text" maxlength="12" name="u_id" value="" required>
-									<p id="idCheck_text"></p>
+									<input type="text" maxlength="12" id="u_id" name="u_id" value="" required>
+									<p id="idCheck_text">여기</p>
+									
 							<br>
 								<label>비밀번호</label>
 									<input type="password" maxlength="12" name="u_pwd" id="pwd1" value="" required>
@@ -59,40 +60,30 @@
 								 <label for="first_name">이름</label>
 									<input type="text" maxlength="12" name="u_first_name" id="u_first_name" value="" required>
 							<br> 
-								  <!-- <label for ="date">생년월일</label>
-									<div class="row gtr-uniform">
-										<div class="col-6 col-12-small">
-											<input type="text" maxlength="4" name="birth_yy" id="" value="" placeholder="년(4자)" size="6" required/>										
-										</div>
-											<div class="col-6 col-12-small">
-												<select name="birth_mm" id="month"required>
-													<option value="">월</option>
-													<option value="01">1</option>
-													<option value="02">2</option>
-													<option value="03">3</option>
-													<option value="04">4</option>
-													<option value="05">5</option>
-													<option value="06">6</option>
-													<option value="07">7</option>
-													<option value="08">8</option>
-													<option value="09">9</option>
-													<option value="10">10</option>
-													<option value="11">11</option>
-													<option value="12">12</option>
-												</select>
-											</div>
-											<div class="col-6 col-12-small">
-												<input type="text" maxlength="2" name="birth_dd" id="" value="" placeholder="일" size="4"required />
-											</div>	
-										  </div> 		
-							<br>	  -->
-								  <label>성별</label>
-									 <select name="u_gender" id="u_gender" required>
-										<option value="" disabled>성별 선택</option>
-										<option value="남자">남자</option>
-										<option value="여자">여자</option>
-									</select> 
-							<br>  
+								  <label for ="date">생년월일</label>
+									생년월일<br>
+							<select name="year" id="year" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month" id="month" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date" id="date" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select><br>
+							
+							<br>
 								<label for="email">이메일</label>
 									<input type="email" name="u_email" id="u_email" value="" required>
 							<br>
@@ -239,7 +230,7 @@
 						<br>
 							<ul class="actions">
 								<li style="margin:0 auto;">
-									<input type="submit" value="가입하기" class="primary" id="joinSubmit" onClick="location.href='javascript:formSubmit()'"/>
+									<input type="submit" value="가입하기" class="primary"/>
 									<!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
 									<input type="reset" value="다시작성" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>
                     				<!-- <a href="javascript:joinForm.reset()">다시작성</a>&nbsp;&nbsp; -->
@@ -258,8 +249,33 @@
 		
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
-<script src="${pageContext.request.contextPath}/app/member/join.js"></script>
+
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <%@ include file = "joinFormJS.jsp" %>
 <!-- Footer -->
 <%@ include file = "../../footer.jsp" %>
+
+
+<script>
+$('#u_id').on("propertychange change keyup paste input", function(){
+	var memberId = $('#u_id').val(); // .id_input에 입력되는 값 
+	var data = {memberId : memberId} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+	var check = false;
+	$.ajax({ type : "post",
+		url : "/join/check",
+		data : data, 
+		success : function(result){ 
+			
+			if(result != 'fail'){ 
+				check = true;
+				$("#idCheck_text").text("사용할 수 있는 아이디입니다.");}
+			else { 
+			$("#idCheck_text").text("중복된 아이디입니다."); }
+
+		}// success 종료
+
+	}); // ajax 종료
+
+
+	 });// function 종료
+</script>

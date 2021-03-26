@@ -28,9 +28,6 @@
 				},
 				"auth-model": "oracle_native",
 				"handlers": {}
-			},
-			"custom-properties": {
-				"database.meta.separate.connection": "false"
 			}
 		}
 	},

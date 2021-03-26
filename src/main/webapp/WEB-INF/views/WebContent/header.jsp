@@ -29,7 +29,7 @@
                   <li><a href="${pageContext.request.contextPath}/member/MemberPoint.me?id=<%=session.getAttribute("session_id")%>">고객센터</a></li>
 
 	             <%}else{%>
-	             <li><a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a></li>
+	             <li><a href="/main/loginForm">로그인</a></li>
                  <li><a href="${pageContext.request.contextPath}/review/ReviewList.rv">리뷰</a></li>
                  <li><a href="${pageContext.request.contextPath}/member/MemberPoint.me?id=<%=session.getAttribute("session_id")%>">고객센터</a></li>
 	         	<%}%>

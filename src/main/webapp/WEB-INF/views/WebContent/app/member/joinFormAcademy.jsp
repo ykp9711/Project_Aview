@@ -8,7 +8,7 @@
    License: pixelarity.com/license
 -->
 <!-- Header -->
-<%@ include file = "/header.jsp" %>
+<%@ include file = "../../header.jsp" %>
 
    <head>
       <title>Aview Academy Join</title>
@@ -19,13 +19,13 @@
       <!-- Main -->
    <section id="main" class="wrapper style1">
       <header class="major">
-         <h2>ReturnCycle Join</h2>
+         <h2>학원 회원가입</h2>
       </header>
       <div class="container">
 
       <!-- Join -->
          <article id = "join">
-            <form name="joinForm" action="${pageContext.request.contextPath}/member/MemberJoinOk.me" method="post">   
+            <form name="joinForm" action="" method="post">   
                <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
                         <label>학원 이름</label>
@@ -225,6 +225,6 @@
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
 <script src="${pageContext.request.contextPath}/app/member/join.js"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<%@ include file = "/app/member/joinFormJS.jsp" %>
+<%@ include file = "joinFormJS.jsp" %>
 <!-- Footer -->
-<%@ include file = "/footer.jsp" %>
+<%@ include file = "../../footer.jsp" %>
