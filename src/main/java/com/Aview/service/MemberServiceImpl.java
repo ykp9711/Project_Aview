@@ -3,6 +3,7 @@ package com.Aview.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Aview.domain.AcademyVO;
 import com.Aview.domain.StudentVO;
 import com.Aview.mapper.MemberMapper;
 
@@ -22,5 +23,16 @@ public class MemberServiceImpl implements MemberService {
 	public int stuLogin(StudentVO stu) {
 		return mapper.stuLogin(stu);
 	}
+	
+	public int acaJoin(AcademyVO aca) {
+		return mapper.acaJoin(aca);
+	}
+	
+	public int checkId(String id) {
+		return mapper.checkId(id);
+	}
 
+	public int checkIdAca(String id) {
+		return mapper.checkIdAca(id);
+	}
 }

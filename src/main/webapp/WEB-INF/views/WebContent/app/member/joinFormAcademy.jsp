@@ -14,7 +14,7 @@
       <title>Aview Academy Join</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+      <link rel="stylesheet" href="../../../../../resources/assets/css/main.css" />
    </head>
       <!-- Main -->
    <section id="main" class="wrapper style1">
@@ -25,32 +25,32 @@
 
       <!-- Join -->
          <article id = "join">
-            <form name="joinForm" action="" method="post">   
+            <form name="joinForm" action="/join/acajoin" method="post">   
                <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
                         <label>학원 이름</label>
                            <input type="text" maxlength="12" name="a_name" value="" required>
                            <p id="Academy_text"></p>
                         <label>아이디</label>
-                           <input type="text" maxlength="12" name="a_id" value="" required>
+                           <input type="text" maxlength="12" id="a_id" name="a_id" value="" required>
                            <p id="idCheck_text"></p>
                         <label>사업자 등록번호</label>
                            <div class="row gtr-uniform">
                               <div class="col-6 col-12-small">
-                                 <input type="text" name="a_corporate" id="a_corporate" value=""  required>
+                                 <input type="text" name="a_corporate_number" id="a_corporate_number" value=""  required>
                               </div>   
                                 <div class="col-6 col-12-small">   
                                  <input type="button" name="a_corporate_certify" id="a_corporate_certify" value="인증하기" style="display: inline;">
                               </div>
-                              <br>
-                           </div>   
+                              
+                           </div>
+                           <br>
                         <label>비밀번호</label>
                            <input type="password" maxlength="12" name="a_pwd" id="pwd1" value="" required>
                      <br>
                          <label for="pw2">비밀번호 재확인</label>
                            <input type="password" maxlength="12" name="pw2" id="pwd2" value="" onkeyup="checkPwd();" required>
                            <p id="checkMsg"></p>
-                     <br> 
                          <label for ="hint">비밀번호 확인 질문</label>
                            <select name="a_pwd_q" id="a_pwd_q" required>
                               <option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
@@ -204,7 +204,7 @@
                   <br>
                      <ul class="actions">
                         <li style="margin:0 auto;">
-                           <input type="submit" value="가입하기" class="primary" id="joinSubmit" onClick="location.href='javascript:formSubmit()'"/>
+                           <input type="submit" value="가입하기" class="primary"/>
                            <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
                            <input type="reset" value="다시작성" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>
                                 <!-- <a href="javascript:joinForm.reset()">다시작성</a>&nbsp;&nbsp; -->
@@ -223,8 +223,32 @@
       
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
-<script src="${pageContext.request.contextPath}/app/member/join.js"></script>
+
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<%@ include file = "joinFormJS.jsp" %>
+<%@ include file = "joinFormAcaJS.jsp" %>
 <!-- Footer -->
 <%@ include file = "../../footer.jsp" %>
+
+<script>
+$('#a_id').on("propertychange change keyup paste input", function(){
+	var memberId = $('#a_id').val(); // .id_input에 입력되는 값 
+	var data = {memberId : memberId} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+	var check = false;
+	$.ajax({ type : "post",
+		url : "/join/checkAca",
+		data : data, 
+		success : function(result){ 
+			
+			if(result != 'fail'){ 
+				check = true;
+				$("#idCheck_text").text("사용할 수 있는 아이디입니다.");}
+			else { 
+			$("#idCheck_text").text("중복된 아이디입니다."); }
+
+		}// success 종료
+
+	}); // ajax 종료
+
+
+	 });// function 종료
+</script>
