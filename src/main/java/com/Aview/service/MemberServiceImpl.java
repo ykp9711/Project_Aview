@@ -18,5 +18,9 @@ public class MemberServiceImpl implements MemberService {
 	public int stuJoin(StudentVO stu) {
 		return mapper.stuJoin(stu);
 	}
+	
+	public int stuLogin(StudentVO stu) {
+		return mapper.stuLogin(stu);
+	}
 
 }
