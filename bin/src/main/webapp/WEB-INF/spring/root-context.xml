@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+			<!-- Root Context: defines shared resources visible to all other web components -->
+		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> -->
+		<!-- <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/> -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"/>
+		<property name="username" value="hr"/>
+		<property name="password" value="hr"/>
+	</bean>
+	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig"></constructor-arg>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- .xml 매퍼 파일의 경로를 META-INF안에 숨겨놓을 때에는 반드시 아래의 설정을 통해 매핑할 수 있도록 해주어야 한다. -->
+		<property name="mapperLocations" value="classpath:/META-INF/com/Aview/mapper/**/*.xml"/>
+		<property name="configuration">
+		<!-- 
+			언더바로 표기된 변수 혹은 컬럼명은 log로 출력 시 인식되지 않을 경우가 있다.
+			이 때에는 카멜 표기법을 사용해야 하며, 아래의 설정은 카멜 표기법으로 자동 변환되는 설정이다. 
+		-->
+		
+			<bean class="org.apache.ibatis.session.Configuration">
+				<property name="mapUnderscoreToCamelCase" value="true"/>
+			</bean>
+		</property>
+	</bean>
+</beans>
