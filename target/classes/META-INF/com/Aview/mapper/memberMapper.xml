@@ -11,6 +11,10 @@ VALUES(#{u_id}, #{u_pwd}, #{u_pwd_q}, #{u_pwd_a}, #{u_last_name}, #{u_first_name
 	<select id="checkId" resultType="_int">
 	SELECT COUNT(*) FROM TBL_STUDENT WHERE U_ID = #{u_id}	
 	</select>
+	
+	<select id="stuLogin" resultType="_int">
+	SELECT COUNT(*) FROM TBL_STUDENT WHERE U_ID = #{u_id} AND U_PWD = #{u_pwd}
+	</select>
 </mapper>
 
 

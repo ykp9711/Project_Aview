@@ -25,7 +25,7 @@
 
 		<!-- Join -->
 			<article id = "join">
-				<form name="joinForm" action="/join/stujoin" method="post">	
+				<form name="joinForm" action="/member/stujoin" method="post">	
 					<div class="row gtr-uniform">
 							<div class="col-6 col-12-small" style="margin:0 auto;">
 								<label>아이디</label>
