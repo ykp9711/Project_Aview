@@ -4,15 +4,15 @@ import lombok.Data;
 
 @Data
 public class AcademyVO {
-	private String a_name;
-	private String a_id;
-	private String a_corporate_number;
-	private String a_pwd;
-	private String a_pwd_q;
-	private String a_pwd_a;
-	private String a_email;
-	private String a_phone;
-	private String a_zipcode;
-	private String a_address;
-	private String a_address_detail;
+	private String Aname;
+	private String Aid;
+	private String Acorporate;
+	private String Apwd;
+	private String Apwdq;
+	private String Apwda;
+	private String Aemail;
+	private String Aphone;
+	private String Azipcode;
+	private String Aaddress;
+	private String Aaddressdetail;
 }

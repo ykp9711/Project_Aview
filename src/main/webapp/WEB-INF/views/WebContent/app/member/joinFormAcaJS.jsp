@@ -16,31 +16,31 @@
           $("#find_zipcode").click(function(){
                new daum.Postcode({
                   oncomplete:function(data) {
-                     jQuery("#a_zipcode").val(data.zonecode);
-                     jQuery("#a_address").val(data.address);
-                     jQuery("#a_detail_address").focus();
+                     jQuery("#Azipcode").val(data.zonecode);
+                     jQuery("#Aaddress").val(data.address);
+                     jQuery("#Aaddressdetail").focus();
                   }
                }).open();
             });
           
                   //회원가입 막아주기
                   $("#joinSubmit").on('click',function(){
-                	  //아이디 없으면
-                      if($("#a_name").val() == ""){
+                	  //학원이름 없으면
+                      if($("#Aname").val() == ""){
                          alert("학원 이름을 입력해주세요");
-                         $("#a_name").focus();
+                         $("#Aname").focus();
                          return false;
                       }
                       //사업자 등록번호
-                      if($("#a_corporate_number").val() == ""){
-                         alert("비밀번호를 입력해 주세요");
-                         $("#a_corporate_number").focus();
+                      if($("#Acorporate").val() == ""){
+                         alert("사업자 등록번호를 인증해주세요");
+                         $("#Acorporate").focus();
                          return false;
                       }
                 	  //아이디 없으면
-                      if($("#a_id").val() == ""){
+                      if($("#Aid").val() == ""){
                          alert("아이디를 입력해 주세요");
-                         $("#a_id").focus();
+                         $("#Aid").focus();
                          return false;
                       }
                      //비밀번호 없으면
@@ -50,15 +50,15 @@
                         return false;
                      }
                      //비밀번호 질문
-                     if($("#a_pwd_q").val() == ""){
+                     if($("#Apwdq").val() == ""){
                         alert("비밀번호 질문을 입력해주세요");
-                        $("#a_pwd_q").focus();
+                        $("#Apwdq").focus();
                         return false;
                      }
                      //비밀번호 질문 답변
-                     if($("#a_pwd_a").val() == ""){
+                     if($("#Apwda").val() == ""){
                         alert("비밀번호질문 답변을 입력해주세요");
-                        $("#a_pwd_a").focus();
+                        $("#Apwda").focus();
                         return false;
                      }
                      //생년월일 없으면
@@ -82,23 +82,23 @@
                         }
                   
                   //이메일 없으면
-                     if($("#a_email").val() == ""){
+                     if($("#Aemail").val() == ""){
                         alert("이메일를 입력해 주세요");
-                        $("a_email").focus();
+                        $("Aemail").focus();
                         return false;
                      }
                      
                   //핸드폰 번호 없으면
-                     if($("#a_phone").val() == ""){
+                     if($("#Aphone").val() == ""){
                         alert("핸드폰 번호를 입력해 주세요");
-                        $("a_phone").focus();
+                        $("Aphone").focus();
                         return false;
                      }
                      
                   //주소 하나라도 없으면
-                     if($("#a_zipcode").val() == "" || $("#a_address").val() == "" || $("#a_address_detail").val() == ""){
+                     if($("#Azipcode").val() == "" || $("#Aaddress").val() == "" || $("#Aaddressdetail").val() == ""){
                         alert("주소를 입력해 주세요");
-                        $("a_zipcode").focus();
+                        $("Azipcode").focus();
                         return false;
                      }
                      if(!$("#agree").prop("checked")){

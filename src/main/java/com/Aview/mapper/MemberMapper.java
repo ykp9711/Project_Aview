@@ -14,4 +14,6 @@ public interface MemberMapper {
 	public int checkIdAca(String id);
 	
 	public int acaJoin(AcademyVO aca);
+	
+	public int acaLogin(AcademyVO aca);
 }

@@ -3,29 +3,34 @@
 <mapper namespace="com.Aview.mapper.MemberMapper">
 	<insert id="stuJoin">
 		INSERT INTO TBL_STUDENT
-(U_ID, U_PWD, U_PWD_Q, U_PWD_A, U_LAST_NAME, U_FIRST_NAME, U_EMAIL, U_BIRTH, U_PHONE, U_ZIPCODE, U_ADDRESS, U_ADDRESS_DETAIL)
-VALUES(#{u_id}, #{u_pwd}, #{u_pwd_q}, #{u_pwd_a}, #{u_last_name}, #{u_first_name}, #{u_email}, #{u_birth},
-#{u_phone}, #{u_zipcode}, #{u_address}, #{u_address_detail})
+(UID, UPWD, UPWDQ, UPWDA, ULASTNAME, UFIRSTNAME, UEMAIL, UBIRTH, UPHONE, UZIPCODE, UADDRESS, UADDRESSDETAIL)
+VALUES(#{uid}, #{upwd}, #{upwdq}, #{upwda}, #{ulastname}, #{ufirstname}, #{uemail}, #{ubirth},
+#{uphone}, #{uzipcode}, #{uaddress}, #{uaddressdetail})
 	</insert>
 	
-	<select id="checkId" resultType="_int">
-	SELECT COUNT(*) FROM TBL_STUDENT WHERE U_ID = #{u_id}	
+	<select id="checkId" resultType="int">
+	SELECT COUNT(*) FROM TBL_STUDENT WHERE UID = #{uid}	
 	</select>
 	
-	<select id="stuLogin" resultType="_int">
-	SELECT COUNT(*) FROM TBL_STUDENT WHERE U_ID = #{u_id} AND U_PWD = #{u_pwd}
+	<select id="stuLogin" resultType="int">
+	SELECT COUNT(*) FROM TBL_STUDENT WHERE UID = #{uid} AND UPWD = #{upwd}
 	</select>
 	
 	<insert id="acaJoin">
 		INSERT INTO TBL_ACADEMY
-(A_NAME, A_ID, A_CORPORATE_NUMBER, A_PWD, A_PWD_Q, A_PWD_A, A_EMAIL, A_PHONE, A_ZIPCODE, A_ADDRESS, A_ADDRESS_DETAIL)
-VALUES(#{a_name}, #{a_id}, #{a_corporate_number}, #{a_pwd}, #{a_pwd_q}, #{a_pwd_a}, #{a_email},
-#{a_phone}, #{a_zipcode}, #{a_address}, #{a_address_detail})
+(ANAME, AID, ACORPORATE, APWD, APWDQ, APWDA, AEMAIL, APHONE, AZIPCODE, AADDRESS, AADDRESSDETAIL)
+VALUES(#{Aname}, #{Aid}, #{Acorporate}, #{Apwd}, #{Apwdq}, #{Apwda}, #{Aemail},
+#{Aphone}, #{Azipcode}, #{Aaddress}, #{Aaddressdetail})
 	</insert>
 	
-	<select id="checkIdAca" resultType="_int">
-	SELECT COUNT(*) FROM TBL_ACADEMY WHERE A_ID = #{a_id}	
+	<select id="checkIdAca" resultType="int">
+	SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{Aid}	
 	</select>
+	
+	<select id="acaLogin" resultType="int">
+	SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{Aid} AND APWD = #{Apwd}
+	</select>
+
 </mapper>
 
 

@@ -35,4 +35,8 @@ public class MemberServiceImpl implements MemberService {
 	public int checkIdAca(String id) {
 		return mapper.checkIdAca(id);
 	}
+	
+	public int acaLogin(AcademyVO aca) {
+		return mapper.acaLogin(aca);
+	}
 }
