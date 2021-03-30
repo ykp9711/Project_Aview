@@ -1,22 +1,16 @@
 package com.Aview.controller;
 
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,8 +18,6 @@ import com.Aview.domain.AcademyVO;
 import com.Aview.domain.StudentVO;
 import com.Aview.mapper.MemberMapper;
 import com.Aview.service.MemberService;
-
-import jdk.internal.org.jline.utils.Log;
 
 @Controller
 @RequestMapping("/member/*")
@@ -53,7 +45,7 @@ public class MemberController {
 	}
 
 	// 아이디 중복 검사
-	@PostMapping(value = "/check")
+	@GetMapping(value = "/check")
 	@ResponseBody
 	public String memberIdChkPOST(String memberId) throws Exception {
 
@@ -66,7 +58,7 @@ public class MemberController {
 		}
 	}
 	// 아이디 중복 검사 학원 
-		@PostMapping(value = "/checkAca") 
+		@GetMapping(value = "/checkAca") 
 		@ResponseBody public String memberIdChkPOST2(String memberId) throws Exception{ 
 		 
 			 int result = service.checkIdAca(memberId);
@@ -107,7 +99,23 @@ public class MemberController {
 			 out.println("</script>");
 		return null;
 	}
-	
+	//학원 로그인
+	@PostMapping("/acaLogin")
+	public String acaLogin(AcademyVO aca,Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		if(service.acaLogin(aca)==1) {
+			HttpSession session = req.getSession();
+			session.setAttribute("session_id", aca.getAid());
+			return "redirect:/main/index";
+		}else
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("text/html;charset=utf-8");
+			out.println("<script>");
+			out.println("alert('아이디 혹은 패스워드를 확인해주세요.')");
+			out.println("location.href='/main/loginForm'");
+			out.println("</script>");
+			return null;
+	}
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest req) {

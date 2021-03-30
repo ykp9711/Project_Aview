@@ -16,7 +16,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main.css" />
+	href="../../../../../resources/assets/css/main.css" />
 </head>
 
 <!-- Main -->
@@ -53,7 +53,7 @@
 					<input type="password" name="u_pwd" placeholder="패스워드">
 				
 					<p align="right">
-						<a href="find_id.jsp" style="font-size: 13px">아이디및 비밀번호 찾기</a>
+						<a href="find_id.jsp" style="font-size: 13px">아이디 또는 비밀번호 찾기</a>
 					</p>
 					<br>
 					<ul class="actions">
@@ -61,8 +61,9 @@
 							href="javascript:loginForm.submit()" class="button"	style="width: 125px;">로그인</a>&nbsp;&nbsp; 
 							<!-- <input type="submit" value="로그인" class="primary" id="login" onClick="location.href='javascript:formSubmit()'"/> -->
 							<a href="/main/joinStudentForm" class="button">학생 회원가입</a></li>
-							</form>
+							
 					</ul>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -72,21 +73,23 @@
 			<div class="col-6 col-12-medium" style="margin: 0 auto;">
 				<div class="box">
 					<h3 align="center" id="title">학원 로그인</h3>
-					<input type="text" name="id" id="id" placeholder="아이디"> <br>
-					<input type="password" name="pw" id="pw" placeholder="패스워드">
+					<form name="loginFormAca" action="/member/acaLogin" method="post">
+					<input type="text" name="Aid" placeholder="아이디"> <br>
+					<input type="password" name="Apwd" placeholder="패스워드">
 
 					<p align="right">
-						<a href="find_id.jsp" style="font-size: 13px">아이디및 비밀번호 찾기</a>
+						<a href="find_id.jsp" style="font-size: 13px">아이디 또는 비밀번호 찾기</a>
 					</p>
 					<br>
 
 					<!-- button -->
 					<ul class="actions">
-						<li style="margin: 0 auto;"><a
-							href="javascript:loginForm.submit()" class="button"
-							style="width: 125px;">로그인</a>&nbsp;&nbsp; <!-- <input type="submit" value="로그인" class="primary" id="login" onClick="location.href='javascript:formSubmit()'"/> -->
+						<li style="margin: 0 auto;">
+						<a href="javascript:loginFormAca.submit()" class="button"style="width: 125px;">로그인</a>&nbsp;&nbsp;
+							<!-- <input type="submit" value="로그인" class="primary" id="login" onClick="location.href='javascript:formSubmit()'"/> -->
 							<a href="/main/joinAcademyForm" class="button">학원 회원가입</a></li>
 					</ul>
+					</form></div></div></div></div>
 </section>
 
 
