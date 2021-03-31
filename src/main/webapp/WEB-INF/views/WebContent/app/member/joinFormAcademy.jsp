@@ -25,19 +25,19 @@
 
       <!-- Join -->
          <article id = "join">
-            <form name="joinForm" action="/join/acajoin" method="post">   
+            <form name="joinForm" action="/member/acajoin" method="post">   
                <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
                         <label>학원 이름</label>
-                           <input type="text" maxlength="12" name="a_name" value="" required>
+                           <input type="text" maxlength="12" name="Aname" value="" required>
                            <p id="Academy_text"></p>
                         <label>아이디</label>
-                           <input type="text" maxlength="12" id="a_id" name="a_id" value="" required>
+                           <input type="text" maxlength="12" id="Aid" name="Aid" value="" required>
                            <p id="idCheck_text"></p>
                         <label>사업자 등록번호</label>
                            <div class="row gtr-uniform">
                               <div class="col-6 col-12-small">
-                                 <input type="text" name="a_corporate_number" id="a_corporate_number" value=""  required>
+                                 <input type="text" name="Acorporate" id="Acorporate" value=""  required>
                               </div>   
                                 <div class="col-6 col-12-small">   
                                  <input type="button" name="a_corporate_certify" id="a_corporate_certify" value="인증하기" style="display: inline;">
@@ -46,13 +46,13 @@
                            </div>
                            <br>
                         <label>비밀번호</label>
-                           <input type="password" maxlength="12" name="a_pwd" id="pwd1" value="" required>
+                           <input type="password" maxlength="12" name="Apwd" id="pwd1" value="" required>
                      <br>
                          <label for="pw2">비밀번호 재확인</label>
                            <input type="password" maxlength="12" name="pw2" id="pwd2" value="" onkeyup="checkPwd();" required>
                            <p id="checkMsg"></p>
                          <label for ="hint">비밀번호 확인 질문</label>
-                           <select name="a_pwd_q" id="a_pwd_q" required>
+                           <select name="Apwdq" id="Apwdq" required>
                               <option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
                               <option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
                               <option value="가장 기억에 남는 선생님 성함은?">가장 기억에 남는 선생님 성함은?</option>
@@ -63,22 +63,22 @@
                            </select>
                      <br> 
                           <label for="hint_answer">비밀번호 확인 답변</label>
-                           <input type="text" name="a_pwd_a" id="a_pwd_a" value="" required>
+                           <input type="text" name="Apwda" id="Apwda" value="" required>
                      <br>
                         <label for="email">이메일</label>
-                           <input type="email" name="a_email" id="a_email" value="" required>
+                           <input type="email" name="Aemail" id="Aemail" value="" required>
                      <br>
                           <label for="phone">학원 관리자 휴대전화</label>
                            <div class="row gtr-uniform">
                               <div class="col-6 col-12-small">
-                                 <input type="text" name="a_phone" id="a_phone" value="" placeholder="010-0000-0000" required>
+                                 <input type="text" name="Aphone" id="Aphone" value="" placeholder="010-0000-0000" required>
                               </div>
                            </div>
                      <br>
                         <label for ="postal_code">우편번호</label>
                            <div class="row gtr-uniform">
                               <div class="col-6 col-12-small">
-                                 <input type="text" name="a_zipcode" id="a_zipcode" value=""  required>
+                                 <input type="text" name="Azipcode" id="Azipcode" value=""  required>
                               </div>   
                                 <div class="col-6 col-12-small">   
                                  <input type="button" name="find_zipcode" id="find_zipcode" value="우편번호 찾기" style="display: inline;">
@@ -86,10 +86,10 @@
                            </div>      
                      <br>      
                         <label for ="address">주소</label>
-                           <input type="text" name="a_address" id="a_address" value=""  required>
+                           <input type="text" name="Aaddress" id="Aaddress" value=""  required>
                      <br>
                         <label for ="detail_address">상세주소</label>
-                           <input type="text" name="a_address_detail" id="a_address_detail" value=""required>
+                           <input type="text" name="Aaddressdetail" id="Aaddressdetail" value=""required>
                      <br> 
                         <label for="term">회원가입 이용약관</label>
                               <textarea name="term" id="term" rows="6" style="resize:none" readonly>
@@ -230,12 +230,12 @@
 <%@ include file = "../../footer.jsp" %>
 
 <script>
-$('#a_id').on("propertychange change keyup paste input", function(){
-	var memberId = $('#a_id').val(); // .id_input에 입력되는 값 
+$('#Aid').on("propertychange change keyup paste input", function(){
+	var memberId = $('#Aid').val(); // .id_input에 입력되는 값 
 	var data = {memberId : memberId} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
 	var check = false;
-	$.ajax({ type : "post",
-		url : "/join/checkAca",
+	$.ajax({ type : "get",
+		url : "/member/checkAca",
 		data : data, 
 		success : function(result){ 
 			
