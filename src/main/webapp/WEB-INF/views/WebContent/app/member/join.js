@@ -7,9 +7,9 @@ function formSubmit(){
 	var form = document.joinForm;
 
 	//아이디 검사
-	if(form.u_id.value == "" || !check){
+	if(form.sid.value == "" || !check){
 		alert("아이디를 확인해주세요.");
-		form.u_id.focus();
+		form.sid.focus();
 		return false;
 	}
 	
@@ -42,8 +42,8 @@ function checkId(id){
 	}
 }
 //아이디 중복확인 없이 키가 하나하나 입력됬을때 체크를 한다.
-$("input[name='u_id']").keyup(function(event){
-	var id = $("input[name='u_id']").val();
+$("input[name='sid']").keyup(function(event){
+	var id = $("input[name='sid']").val();
 	checkId(id);
 });
 
