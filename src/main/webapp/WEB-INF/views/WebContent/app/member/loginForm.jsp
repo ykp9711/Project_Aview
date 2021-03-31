@@ -16,7 +16,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet"
-	href="../../../../../resources/assets/css/main.css" />
+	href="${pageContext.request.contextPath}/assets/css/main.css" />
 </head>
 
 <!-- Main -->
@@ -49,11 +49,11 @@
 				<div class="box">
 					<h3 align="center" id="title">학생 로그인</h3>
 				<form name="loginForm" action="/member/stulogin" method="post">
-					<input type="text" name="u_id" placeholder="아이디"> <br>
-					<input type="password" name="u_pwd" placeholder="패스워드">
+					<input type="text" name="sid" placeholder="아이디"> <br>
+					<input type="password" name="spwd" placeholder="패스워드">
 				
 					<p align="right">
-						<a href="find_id.jsp" style="font-size: 13px">아이디 또는 비밀번호 찾기</a>
+						<a href="find_id.jsp" style="font-size: 13px">아이디및 비밀번호 찾기</a>
 					</p>
 					<br>
 					<ul class="actions">
@@ -61,9 +61,8 @@
 							href="javascript:loginForm.submit()" class="button"	style="width: 125px;">로그인</a>&nbsp;&nbsp; 
 							<!-- <input type="submit" value="로그인" class="primary" id="login" onClick="location.href='javascript:formSubmit()'"/> -->
 							<a href="/main/joinStudentForm" class="button">학생 회원가입</a></li>
-							
+							</form>
 					</ul>
-					</form>
 				</div>
 			</div>
 		</div>

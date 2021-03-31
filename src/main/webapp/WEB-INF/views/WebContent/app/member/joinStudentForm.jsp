@@ -29,19 +29,19 @@
 					<div class="row gtr-uniform">
 							<div class="col-6 col-12-small" style="margin:0 auto;">
 								<label>아이디</label>
-									<input type="text" maxlength="12" id="u_id" name="u_id" value="" required>
+									<input type="text" maxlength="12" id="sid" name="sid" value="" required>
 									<p id="idCheck_text">여기</p>
 									
 							<br>
 								<label>비밀번호</label>
-									<input type="password" maxlength="12" name="u_pwd" id="pwd1" value="" required>
+									<input type="password" maxlength="12" name="spwd" id="pwd1" value="" required>
 							<br>
 								 <label for="pw2">비밀번호 재확인</label>
 									<input type="password" maxlength="12" name="pw2" id="pwd2" value="" onkeyup="checkPwd();" required>
 									<p id="checkMsg"></p>
 							<br> 
 								 <label for ="hint">비밀번호 확인 질문</label>
-									<select name="u_pwd_q" id="u_pwd_q" required>
+									<select name="spwdq" id="spwdq" required>
 										<option value="기억에 남는 추억의 장소는?">기억에 남는 추억의 장소는?</option>
 										<option value="자신의 인생 좌우명은?">자신의 인생 좌우명은?</option>
 										<option value="가장 기억에 남는 선생님 성함은?">가장 기억에 남는 선생님 성함은?</option>
@@ -52,13 +52,13 @@
 									</select>
 							<br> 
 							  	<label for="hint_answer">비밀번호 확인 답변</label>
-									<input type="text" name="u_pwd_a" id="u_pwd_a" value="" required>
+									<input type="text" name="spwda" id="spwda" value="" required>
 							<br> 
 								 <label for="last_name">성</label>
-									<input type="text" maxlength="12" name="u_last_name" id="u_last_name" value="" required>
+									<input type="text" maxlength="12" name="slastname" id="slastname" value="" required>
 							<br> 
 								 <label for="first_name">이름</label>
-									<input type="text" maxlength="12" name="u_first_name" id="u_first_name" value="" required>
+									<input type="text" maxlength="12" name="sfirstname" id="sfirstname" value="" required>
 							<br> 
 								  <label for ="date">생년월일</label>
 									생년월일<br>
@@ -85,12 +85,12 @@
 							
 							<br>
 								<label for="email">이메일</label>
-									<input type="email" name="u_email" id="u_email" value="" required>
+									<input type="email" name="semail" id="semail" value="" required>
 							<br>
 								  <label for="phone">휴대전화</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="u_phone" id="u_phone" value="" placeholder="010-0000-0000" required>
+											<input type="text" name="sphone" id="sphone" value="" placeholder="010-0000-0000" required>
 										</div>
 									</div>
 							<br>
@@ -104,7 +104,7 @@
 								<label for ="postal_code">우편번호</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="u_zipcode" id="u_zipcode" value=""  required>
+											<input type="text" name="szipcode" id="u_zipcode" value=""  required>
 										</div>	
  										 <div class="col-6 col-12-small">	
 											<input type="button" name="find_zipcode" id="find_zipcode" value="우편번호 찾기" style="display: inline;">
@@ -112,10 +112,10 @@
 									</div>		
 							<br>		
 								<label for ="address">주소</label>
-									<input type="text" name="u_address" id="u_address" value=""  required>
+									<input type="text" name="saddress" id="u_address" value=""  required>
 							<br>
 								<label for ="detail_address">상세주소</label>
-									<input type="text" name="u_address_detail" id="u_address_detail" value=""required>
+									<input type="text" name="saddressdetail" id="u_address_detail" value=""required>
 							<br> 
 								<label for="term">회원가입 이용약관</label>
 										<textarea name="term" id="term" rows="6" style="resize:none" readonly>
@@ -257,8 +257,8 @@
 
 
 <script>
-$('#u_id').on("propertychange change keyup paste input", function(){
-	var memberId = $('#u_id').val(); // .id_input에 입력되는 값 
+$('#sid').on("propertychange change keyup paste input", function(){
+	var memberId = $('#sid').val(); // .id_input에 입력되는 값 
 	var data = {memberId : memberId} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
 	var check = false;
 	$.ajax({ type : "get",
@@ -271,11 +271,7 @@ $('#u_id').on("propertychange change keyup paste input", function(){
 				$("#idCheck_text").text("사용할 수 있는 아이디입니다.");}
 			else { 
 			$("#idCheck_text").text("중복된 아이디입니다."); }
-
 		}// success 종료
-
 	}); // ajax 종료
-
-
 	 });// function 종료
 </script>

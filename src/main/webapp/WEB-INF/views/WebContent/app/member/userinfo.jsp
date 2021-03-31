@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ include file = "/header.jsp" %>
+<%@ include file = "../../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 <title>user info</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+<link rel="stylesheet" href="../../../../../resources/assets/css/main.css" />
 </head>
 		<!-- Main -->
 	<section id="main" class="wrapper style1">
@@ -26,35 +26,27 @@
 							<div class="col-6 col-12-small" style="margin:0 auto;"> 
 									
                           
-								<label>아이디</label><input type="text" maxlength="12" name="u_id" value="${memberBean.getU_id()}" readonly onclick="alert('※변경할수 없습니다')">
+								<label>아이디</label><input type="text" maxlength="12" name="u_id" value="${id.sid}" readonly onclick="alert('※변경할수 없습니다')">
 						
 							<br>
-								 <label for="first_name">이름</label><input type="text" name="a_name" id="a_name" placeholder="이름" value="${memberBean.getU_last_name()}${memberBean.getU_first_name()}" readonly onclick="alert('※변경할수 없습니다')"/>				
+								 <label for="first_name">이름</label><input type="text" name="a_name" id="a_name" placeholder="이름" value="${id.slastname}${id.sfirstname}" readonly onclick="alert('※변경할수 없습니다')"/>				
 							<br>
-									
-								  <label>성별</label>
- 									 <select name="u_gender" id="u_gender" >
-										<option value="${memberBean.getU_gender()}" disabled>성별 선택</option>
-										<option value="남자">남자</option>
-										<option value="여자">여자</option> 
-									</select>  	
-									
-							<br>  
+	
 								<label>비밀번호</label>
-									<input type="password" maxlength="12" name="u_pwd" id="pwd1" value="${memberBean.getU_pwd()}" required>
+									<input type="password" maxlength="12" name="u_pwd" id="pwd1" value="${id.spwd}" required>
 							<br>
 								 <label for="pw2">비밀번호 재확인</label>
-									<input type="password" maxlength="12" name="pw2" id="pwd2" value="${memberBean.getU_pwd()}" onkeyup="checkPwd();" required>
+									<input type="password" maxlength="12" name="pw2" id="pwd2" value="${id.spwd}" onkeyup="checkPwd();" required>
 									<p id="checkMsg"></p>
 							<br> 
 			
 								<label for="email">이메일</label>
-									<input type="email" name="u_email" id="u_email" value="${memberBean.getU_email()}" required>
+									<input type="email" name="u_email" id="u_email" value="${id.semail}" required>
 							<br>
 								  <label for="phone">휴대전화</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="u_phone" id="u_phone" value="${memberBean.getU_phone()}" required>
+											<input type="text" name="u_phone" id="u_phone" value="${id.sphone}" required>
 										</div>
 									</div>
 							<br>
@@ -68,7 +60,7 @@
 								<label for ="postal_code">우편번호</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="u_zipcode" id="u_zipcode" value="${memberBean.getU_zipcode()}"  >
+											<input type="text" name="u_zipcode" id="u_zipcode" value="${id.szipcode}"  >
 										</div>	
  										 <div class="col-6 col-12-small">	
 											<input type="button" name="find_zipcode" id="find_zipcode" value="우편번호 찾기" style="display: inline;">
@@ -76,10 +68,10 @@
 									</div>		
 							<br>		
 								<label for ="address">주소</label>
-									<input type="text" name="u_address" id="u_address" value="${memberBean.getU_address()}" >
+									<input type="text" name="u_address" id="u_address" value="${id.saddress}" >
 							<br>
 								<label for ="detail_address">상세주소</label>
-									<input type="text" name="u_address_detail" id="u_address_detail" value="${memberBean.getU_address_detail()}">
+									<input type="text" name="u_address_detail" id="u_address_detail" value="${id.saddressdetail}">
 							<br> 
                <!-- Content -->
                
@@ -111,6 +103,6 @@
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
 <script src="${pageContext.request.contextPath}/app/member/join.js"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-<%@ include file = "/app/member/joinFormJS.jsp" %>
+<%@ include file = "joinFormJS.jsp" %>
 <!-- Footer -->
-<%@ include file = "/footer.jsp" %>
+<%@ include file = "../../footer.jsp" %>

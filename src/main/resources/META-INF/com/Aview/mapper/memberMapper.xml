@@ -3,34 +3,30 @@
 <mapper namespace="com.Aview.mapper.MemberMapper">
 	<insert id="stuJoin">
 		INSERT INTO TBL_STUDENT
-(UID, UPWD, UPWDQ, UPWDA, ULASTNAME, UFIRSTNAME, UEMAIL, UBIRTH, UPHONE, UZIPCODE, UADDRESS, UADDRESSDETAIL)
-VALUES(#{uid}, #{upwd}, #{upwdq}, #{upwda}, #{ulastname}, #{ufirstname}, #{uemail}, #{ubirth},
-#{uphone}, #{uzipcode}, #{uaddress}, #{uaddressdetail})
+(SID, SPWD, SPWDQ, SPWDA, SLASTNAME, SFIRSTNAME, SEMAIL, SBIRTH, SPHONE, SZIPCODE, SADDRESS, SADDRESSDETAIL)
+VALUES(#{sid}, #{spwd}, #{spwdq}, #{spwda}, #{slastname}, #{sfirstname}, #{semail}, #{sbirth},
+#{sphone}, #{szipcode}, #{saddress}, #{saddressdetail})
 	</insert>
 	
-	<select id="checkId" resultType="int">
-	SELECT COUNT(*) FROM TBL_STUDENT WHERE UID = #{uid}	
+	<select id="checkId" resultType="_int">
+	SELECT COUNT(*) FROM TBL_STUDENT WHERE SID = #{sid}	
 	</select>
 	
-	<select id="stuLogin" resultType="int">
-	SELECT COUNT(*) FROM TBL_STUDENT WHERE UID = #{uid} AND UPWD = #{upwd}
+	<select id="stuLogin" resultType="_int">
+	SELECT COUNT(*) FROM TBL_STUDENT WHERE SID = #{sid} AND SPWD = #{spwd}
 	</select>
 	
-	<insert id="acaJoin">
-		INSERT INTO TBL_ACADEMY
-(ANAME, AID, ACORPORATE, APWD, APWDQ, APWDA, AEMAIL, APHONE, AZIPCODE, AADDRESS, AADDRESSDETAIL)
-VALUES(#{Aname}, #{Aid}, #{Acorporate}, #{Apwd}, #{Apwdq}, #{Apwda}, #{Aemail},
-#{Aphone}, #{Azipcode}, #{Aaddress}, #{Aaddressdetail})
-	</insert>
-	
-	<select id="checkIdAca" resultType="int">
-	SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{Aid}	
-	</select>
-	
-	<select id="acaLogin" resultType="int">
-	SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{Aid} AND APWD = #{Apwd}
-	</select>
+<insert id="acaJoin">INSERT INTO TBL_ACADEMY (ANAME, AID, ACORPORATE, APWD, APWDQ, APWDA, AEMAIL, APHONE, AZIPCODE, AADDRESS, AADDRESSDETAIL) VALUES(#{Aname}, #{Aid}, #{Acorporate}, #{Apwd}, #{Apwdq}, #{Apwda}, #{Aemail}, #{Aphone}, #{Azipcode}, #{Aaddress}, #{Aaddressdetail}) </insert>
 
+<select id="checkIdAca" resultType="int">SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{Aid} </select>
+
+<select id="acaLogin" resultType="int">
+SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd} 
+</select>
+	
+	<select id="stuInfo" resultType="com.Aview.domain.StudentVO">
+		SELECT * FROM TBL_STUDENT WHERE SID = #{id}
+	</select>
 </mapper>
 
 

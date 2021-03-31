@@ -9,7 +9,7 @@
 <body>
 		<!-- Header -->
 			<header id="header" class="reveal">
-            <a href="main/index.jsp" style="border-bottom: 0px">
+            <a href="/main/index" style="border-bottom: 0px">
             <img  src="/resources/images/logo_w.png" id="logo" alt=""  
     style="width: 200px;
     height: 100px;
@@ -18,21 +18,21 @@
             </a>
             <nav id="nav">
                <ul>
-               <% if(session.getAttribute("admin") == "admin"){%>
-               	<li><a href="/member/logout">로그아웃</a></li>
+              
+              
 	            <%-- <li><a href="${pageContext.request.contextPath}/mypage.html">마이페이지</a></li> --%>
-				<%}else if(session.getAttribute("session_id")!= null){ %>
-	             <li><p><%=session.getAttribute("session_id") %>님 </p></li>    
+				<c:if test="${not empty session_id}">
+	             <li><p>${session_id}님 </p></li>    
 	             <li><a href="/member/logout">로그아웃</a></li>
-	             <li><a href="${pageContext.request.contextPath}/member/MemberView.me?u_id=<%=session.getAttribute("session_id")%>">마이페이지</a></li>
+	             <li><a href="/member/userinfo">마이페이지</a></li>
 	             <li><a href="${pageContext.request.contextPath}/review/ReviewList.rv">리뷰</a></li>
-                  <li><a href="${pageContext.request.contextPath}/member/MemberPoint.me?id=<%=session.getAttribute("session_id")%>">고객센터</a></li>
-
-	             <%}else{%>
+                  <li><a href="">고객센터</a></li>
+				</c:if>
+	             <c:if test="${empty session_id}">
 	             <li><a href="/main/loginForm">로그인</a></li>
-                 <li><a href="${pageContext.request.contextPath}/review/ReviewList.rv">리뷰</a></li>
-                 <li><a href="${pageContext.request.contextPath}/member/MemberPoint.me?id=<%=session.getAttribute("session_id")%>">고객센터</a></li>
-	         	<%}%>
+                 <li><a href="/review/ReviewList.rv">리뷰</a></li>
+                 <li><a href="">고객센터</a></li>
+	      		</c:if>
                </ul>
             </nav>
          </header>
