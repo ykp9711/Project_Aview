@@ -1,18 +1,21 @@
 package com.Aview.domain;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
+@Component
 @Data
 public class AcademyVO {
-	private String Aname;
-	private String Aid;
-	private String Acorporate;
-	private String Apwd;
-	private String Apwdq;
-	private String Apwda;
-	private String Aemail;
-	private String Aphone;
-	private String Azipcode;
-	private String Aaddress;
-	private String Aaddressdetail;
+	private String aname;
+	private String aid;
+	private String acorporate;
+	private String apwd;
+	private String apwdq;
+	private String apwda;
+	private String aemail;
+	private String aphone;
+	private String azipcode;
+	private String aaddress;
+	private String aaddressdetail;
 }

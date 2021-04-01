@@ -19,4 +19,6 @@ public interface MemberService {
 	public int checkIdAca(String id);
 	
 	public int acaLogin(AcademyVO aca);
+	
+	public StudentVO stuInfo(String id);
 }

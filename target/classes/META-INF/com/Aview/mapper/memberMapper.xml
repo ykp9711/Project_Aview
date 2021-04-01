@@ -16,9 +16,9 @@ VALUES(#{sid}, #{spwd}, #{spwdq}, #{spwda}, #{slastname}, #{sfirstname}, #{semai
 	SELECT COUNT(*) FROM TBL_STUDENT WHERE SID = #{sid} AND SPWD = #{spwd}
 	</select>
 	
-<insert id="acaJoin">INSERT INTO TBL_ACADEMY (ANAME, AID, ACORPORATE, APWD, APWDQ, APWDA, AEMAIL, APHONE, AZIPCODE, AADDRESS, AADDRESSDETAIL) VALUES(#{Aname}, #{Aid}, #{Acorporate}, #{Apwd}, #{Apwdq}, #{Apwda}, #{Aemail}, #{Aphone}, #{Azipcode}, #{Aaddress}, #{Aaddressdetail}) </insert>
+<insert id="acaJoin">INSERT INTO TBL_ACADEMY (ANAME, AID, ACORPORATE, APWD, APWDQ, APWDA, AEMAIL, APHONE, AZIPCODE, AADDRESS, AADDRESSDETAIL) VALUES(#{aname}, #{aid}, #{acorporate}, #{apwd}, #{apwdq}, #{apwda}, #{aemail}, #{aphone}, #{azipcode}, #{aaddress}, #{aaddressdetail}) </insert>
 
-<select id="checkIdAca" resultType="int">SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{Aid} </select>
+<select id="checkIdAca" resultType="int">SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} </select>
 
 <select id="acaLogin" resultType="int">
 SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd} 
@@ -27,6 +27,23 @@ SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd}
 	<select id="stuInfo" resultType="com.Aview.domain.StudentVO">
 		SELECT * FROM TBL_STUDENT WHERE SID = #{id}
 	</select>
+	
+	<select id="acaInfo" resultType="com.Aview.domain.AcademyVO">
+		SELECT * FROM TBL_ACADEMY WHERE AID = #{id}
+	</select>
+	
+	<select id="checkSessionIdStudent" resultType="int">
+		SELECT CHECKACADEMY FROM TBL_STUDENT WHERE SID = #{id}
+	</select>
+	
+	<select id="stuAcademyCheck" resultType="_int">
+		SELECT CHECKACADEMY FROM TBL_STUDENT WHERE SID = #{id}
+	</select>
+	
+	<select id="acaAcademyCheck" resultType="_int">
+		SELECT CHECKACADEMY FROM TBL_ACADEMY WHERE AID = #{id}
+	</select>
+	
 </mapper>
 
 
