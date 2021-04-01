@@ -38,4 +38,11 @@ public class MemberServiceImpl implements MemberService {
 	public int acaLogin(AcademyVO aca) {
 		return mapper.acaLogin(aca);
 	}
+
+	@Override
+	public StudentVO stuInfo(String id) {
+		
+		return mapper.stuInfo(id);
+	}
+	
 }

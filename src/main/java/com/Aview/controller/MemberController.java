@@ -42,6 +42,9 @@ public class MemberController {
 	
 	@Autowired
 	StudentVO stu;
+	
+	@Autowired
+	AcademyVO aca;
 
 	@PostMapping("/stujoin")
 	public String joinStu(StudentVO stu, HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -64,8 +67,9 @@ public class MemberController {
 	@ResponseBody
 	public String memberIdChkPOST(String memberId) throws Exception {
 
-		int result = mapper.checkId(memberId);
-		if (result != 0) {
+		int result = service.checkId(memberId);
+		int result2 = service.checkIdAca(memberId);
+		if (result != 0 || result2 !=0) {
 			return "fail";
 		} // 중복 아이디가 존재
 		else {
@@ -73,16 +77,16 @@ public class MemberController {
 		}
 	}
 	// 아이디 중복 검사 학원 
-	@GetMapping(value = "/checkAca") 
-	@ResponseBody public String memberIdChkPOST2(String memberId) throws Exception{ 
-	 
-		 int result = service.checkIdAca(memberId);
-		if(result != 0) {
-			return "fail";} // 중복 아이디가 존재  
-			else { 
-				return "success"; // 중복 아이디 x }
-			}
-			}
+//	@GetMapping(value = "/checkAca") 
+//	@ResponseBody public String memberIdChkPOST2(String memberId) throws Exception{ 
+//	 
+//		 int result = service.checkIdAca(memberId);
+//		if(result != 0) {
+//			return "fail";} // 중복 아이디가 존재  
+//			else { 
+//				return "success"; // 중복 아이디 x }
+//			}
+//			}
 	//학원 회원가입
 	@PostMapping("/acajoin")
 	public String joinAca(AcademyVO aca, HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -142,13 +146,22 @@ public class MemberController {
 	//마이페이지 페이지 이동
 	@GetMapping("/userinfo")
 	public String userInfo(HttpSession session, Model model) {
+		String id = (String)session.getAttribute("session_id");
 		model.addAttribute("session_id", session.getAttribute("session_id"));
 		
-		stu = mapper.stuInfo((String)session.getAttribute("session_id"));
-		model.addAttribute("id", stu);
-		
-		
-
-		return "/WebContent/app/member/userinfo";
+		log.info(mapper.checkSessionIdStudent(id));
+		try {
+		if(mapper.checkSessionIdStudent(id) == 0){ // 세션 id의 CHECKACADEMY가 0이면 현재 로그인 된 아이디는 학생 아이디임
+			stu = mapper.stuInfo(id);
+			model.addAttribute("id", stu);
+			return "/WebContent/app/member/userinfo";
+		}
+		}catch(NullPointerException e) {
+		 // 세션 id CHECKACADEMY가 0이 아님으로 현재 세션 ID는 학원 ID임
+			aca = mapper.acaInfo(id);
+			model.addAttribute("id",aca);
+			return "/WebContent/app/member/acainfo";
+		}		
+		return null;
 	}
 }

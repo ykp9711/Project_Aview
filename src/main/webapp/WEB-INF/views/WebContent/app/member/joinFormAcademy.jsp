@@ -29,15 +29,15 @@
                <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
                         <label>학원 이름</label>
-                           <input type="text" maxlength="12" name="Aname" value="" required>
+                           <input type="text" maxlength="12" name="aname" value="" required>
                            <p id="Academy_text"></p>
                         <label>아이디</label>
-                           <input type="text" maxlength="12" id="Aid" name="Aid" value="" required>
+                           <input type="text" maxlength="12" id="aid" name="aid" value="" required>
                            <p id="idCheck_text"></p>
                         <label>사업자 등록번호</label>
                            <div class="row gtr-uniform">
                               <div class="col-6 col-12-small">
-                                 <input type="text" name="Acorporate" id="Acorporate" value=""  required>
+                                 <input type="text" name="acorporate" id="Acorporate" value=""  required>
                               </div>   
                                 <div class="col-6 col-12-small">   
                                  <input type="button" name="a_corporate_certify" id="a_corporate_certify" value="인증하기" style="display: inline;">
@@ -46,7 +46,7 @@
                            </div>
                            <br>
                         <label>비밀번호</label>
-                           <input type="password" maxlength="12" name="Apwd" id="pwd1" value="" required>
+                           <input type="password" maxlength="12" name="apwd" id="pwd1" value="" required>
                      <br>
                          <label for="pw2">비밀번호 재확인</label>
                            <input type="password" maxlength="12" name="pw2" id="pwd2" value="" onkeyup="checkPwd();" required>
@@ -63,22 +63,22 @@
                            </select>
                      <br> 
                           <label for="hint_answer">비밀번호 확인 답변</label>
-                           <input type="text" name="Apwda" id="Apwda" value="" required>
+                           <input type="text" name="apwda" id="Apwda" value="" required>
                      <br>
                         <label for="email">이메일</label>
-                           <input type="email" name="Aemail" id="Aemail" value="" required>
+                           <input type="email" name="aemail" id="Aemail" value="" required>
                      <br>
                           <label for="phone">학원 관리자 휴대전화</label>
                            <div class="row gtr-uniform">
                               <div class="col-6 col-12-small">
-                                 <input type="text" name="Aphone" id="Aphone" value="" placeholder="010-0000-0000" required>
+                                 <input type="text" name="aphone" id="Aphone" value="" placeholder="010-0000-0000" required>
                               </div>
                            </div>
                      <br>
                         <label for ="postal_code">우편번호</label>
                            <div class="row gtr-uniform">
                               <div class="col-6 col-12-small">
-                                 <input type="text" name="Azipcode" id="Azipcode" value=""  required>
+                                 <input type="text" name="azipcode" id="Azipcode" value=""  required>
                               </div>   
                                 <div class="col-6 col-12-small">   
                                  <input type="button" name="find_zipcode" id="find_zipcode" value="우편번호 찾기" style="display: inline;">
@@ -86,10 +86,10 @@
                            </div>      
                      <br>      
                         <label for ="address">주소</label>
-                           <input type="text" name="Aaddress" id="Aaddress" value=""  required>
+                           <input type="text" name="aaddress" id="Aaddress" value=""  required>
                      <br>
                         <label for ="detail_address">상세주소</label>
-                           <input type="text" name="Aaddressdetail" id="Aaddressdetail" value=""required>
+                           <input type="text" name="aaddressdetail" id="Aaddressdetail" value=""required>
                      <br> 
                         <label for="term">회원가입 이용약관</label>
                               <textarea name="term" id="term" rows="6" style="resize:none" readonly>
@@ -230,12 +230,12 @@
 <%@ include file = "../../footer.jsp" %>
 
 <script>
-$('#Aid').on("propertychange change keyup paste input", function(){
-	var memberId = $('#Aid').val(); // .id_input에 입력되는 값 
+$('#aid').on("propertychange change keyup paste input", function(){
+	var memberId = $('#aid').val(); // .id_input에 입력되는 값 
 	var data = {memberId : memberId} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
 	var check = false;
 	$.ajax({ type : "get",
-		url : "/member/checkAca",
+		url : "/member/check",
 		data : data, 
 		success : function(result){ 
 			
