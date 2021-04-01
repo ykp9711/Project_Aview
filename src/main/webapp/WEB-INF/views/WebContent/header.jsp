@@ -11,10 +11,10 @@
 			<header id="header" class="reveal">
             <a href="/main/index" style="border-bottom: 0px">
             <img  src="/resources/images/logo_w.png" id="logo" alt=""  
-    style="width: 200px;
-    height: 100px;
-    margin-left: -31px;
-    margin-top: -30px;" />
+    style="width: 170px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 3px;"/>
             </a>
             <nav id="nav">
                <ul>
