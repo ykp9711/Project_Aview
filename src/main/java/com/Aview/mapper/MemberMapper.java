@@ -28,4 +28,8 @@ public interface MemberMapper {
 	public int acaAcademyCheck(String id);
 	
 	public Integer checkSessionIdStudent(String id);
+	
+	public int stuUpdate(StudentVO stu);
+	
+	public int acaUpdate(AcademyVO aca);
 }

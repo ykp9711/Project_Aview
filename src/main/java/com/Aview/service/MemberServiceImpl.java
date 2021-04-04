@@ -41,8 +41,15 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public StudentVO stuInfo(String id) {
-		
 		return mapper.stuInfo(id);
+	}
+	
+	public int stuUpdate(StudentVO stu) {
+		return mapper.stuUpdate(stu);
+	}
+	
+	public int acaUpdate(AcademyVO aca) {
+		return mapper.acaUpdate(aca);
 	}
 	
 }

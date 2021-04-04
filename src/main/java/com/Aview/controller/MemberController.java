@@ -164,4 +164,50 @@ public class MemberController {
 		}		
 		return null;
 	}
+	
+	//마이페이지 학생 수정
+//	@PostMapping("/infoModifystu")
+//	public String edit_user_apply(UserInfo userinfo, ModelMap modelMap) throws Exception { 
+//		int updateCount = service.updatetUser(userinfo);
+//		return "redirect:/hello_world.iot"; 
+//	}
+		@PostMapping("/infoModifystu")
+		public String updateStu(StudentVO stu, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			if(mapper.stuUpdate(stu)==1) {
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("text/html;charset=utf-8");
+				out.println("<script>");
+				out.println("alert('회원 정보 수정이 완료 되었습니다.')");
+				out.println("</script>");
+				out.close();
+				return "/WebContent/index";
+			}
+			 PrintWriter out = resp.getWriter();
+			 resp.setContentType("text/html;charset=utf-8");
+			 out.println("<script>");
+			 out.println("alert('빈칸 없이 입력해주세요.')");
+			 out.println("</script>");
+			 out.close();
+			 return "/WebContent/index";
+		}
+		
+		@PostMapping("/infoModifyaca")
+		public String updateStu(AcademyVO aca, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			if(mapper.acaUpdate(aca)==1) {
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("text/html;charset=utf-8");
+				out.println("<script>");
+				out.println("alert('회원 정보 수정이 완료 되었습니다.')");
+				out.println("</script>");
+				out.close();
+				return "/WebContent/index";
+			}
+			 PrintWriter out = resp.getWriter();
+			 resp.setContentType("text/html;charset=utf-8");
+			 out.println("<script>");
+			 out.println("alert('빈칸 없이 입력해주세요.')");
+			 out.println("</script>");
+			 out.close();
+			 return "/WebContent/index";
+		}
 }

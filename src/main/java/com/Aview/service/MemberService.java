@@ -21,4 +21,8 @@ public interface MemberService {
 	public int acaLogin(AcademyVO aca);
 	
 	public StudentVO stuInfo(String id);
+	
+	public int stuUpdate(StudentVO stu);
+	
+	public int acaUpdate(AcademyVO aca);
 }
