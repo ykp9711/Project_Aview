@@ -10,7 +10,8 @@
 <title>user info</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="../../../../../resources/assets/css/main.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/main.css" />
 </head>
 		<!-- Main -->
 	<section id="main" class="wrapper style1">
@@ -21,32 +22,35 @@
 		
 
             <article id = "user">
-				<form name="userinfo" action="${pageContext.request.contextPath}/member/MemberModify.me" method="post">	
+				<form name="userinfo" action="/member/infoModifystu" method="post">	
 					 <div class="row gtr-uniform">
 							<div class="col-6 col-12-small" style="margin:0 auto;"> 
 									
                           
-								<label>아이디</label><input type="text" maxlength="12" name="u_id" value="${id.sid}" readonly onclick="alert('※변경할수 없습니다')">
+								<label>아이디</label><input type="text" maxlength="12" name="sid" id="sid" value="${id.sid}" readonly onclick="alert('※변경할수 없습니다')">
 						
 							<br>
-								 <label for="first_name">이름</label><input type="text" name="a_name" id="a_name" placeholder="이름" value="${id.slastname}${id.sfirstname}" readonly onclick="alert('※변경할수 없습니다')"/>				
-							<br>
-	
+							<label for="last_name">성</label>
+								<input type="text"  name="slastname" id="slastname" value="${id.slastname}" readonly onclick="alert('※변경할수 없습니다')">
+							<br> 
+							<label for="first_name">이름</label>
+								<input type="text"  name="sfirstname" id="sfirstname" value="${id.sfirstname}" readonly onclick="alert('※변경할수 없습니다')">
+							<br> 
 								<label>비밀번호</label>
-									<input type="password" maxlength="12" name="u_pwd" id="pwd1" value="${id.spwd}" required>
+									<input type="password" maxlength="12" name="spwd" id="spwd" value="${id.spwd}" required>
 							<br>
-								 <label for="pw2">비밀번호 재확인</label>
+								 <%-- <label for="pw2">비밀번호 재확인</label>
 									<input type="password" maxlength="12" name="pw2" id="pwd2" value="${id.spwd}" onkeyup="checkPwd();" required>
 									<p id="checkMsg"></p>
-							<br> 
+							<br>  --%>
 			
 								<label for="email">이메일</label>
-									<input type="email" name="u_email" id="u_email" value="${id.semail}" required>
+									<input type="email" name="semail" id="semail" value="${id.semail}" required>
 							<br>
 								  <label for="phone">휴대전화</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="u_phone" id="u_phone" value="${id.sphone}" required>
+											<input type="text" name="sphone" id="sphone" value="${id.sphone}" required>
 										</div>
 									</div>
 							<br>
@@ -60,7 +64,7 @@
 								<label for ="postal_code">우편번호</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="u_zipcode" id="u_zipcode" value="${id.szipcode}"  >
+											<input type="text" name="szipcode" id="szipcode" value="${id.szipcode}"  >
 										</div>	
  										 <div class="col-6 col-12-small">	
 											<input type="button" name="find_zipcode" id="find_zipcode" value="우편번호 찾기" style="display: inline;">
@@ -68,23 +72,17 @@
 									</div>		
 							<br>		
 								<label for ="address">주소</label>
-									<input type="text" name="u_address" id="u_address" value="${id.saddress}" >
+									<input type="text" name="saddress" id="saddress" value="${id.saddress}" >
 							<br>
 								<label for ="detail_address">상세주소</label>
-									<input type="text" name="u_address_detail" id="u_address_detail" value="${id.saddressdetail}">
+									<input type="text" name="saddressdetail" id="saddressdetail" value="${id.saddressdetail}">
 							<br> 
                <!-- Content -->
-               
 
-              
-                        
-                                   
-                        
                         <ul class="actions">
 								<li style="margin:0 auto;">
-									<input type="submit" value="수정하기" id="modifySubmit" onClick="location.href='javascript:formSubmit()'"/>
-								
-									<input type="submit" value="되돌아가기" id="home" onClick="location.href='${pageContext.request.contextPath}/index.jsp'"/>
+								    <a href="javascript:userinfo.submit()" class="button"style="width: 125px;">수정하기</a>
+									
                     				
 								</li>
 							</ul>
@@ -101,7 +99,6 @@
 </script>
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
-<script src="${pageContext.request.contextPath}/app/member/join.js"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <%@ include file = "joinFormJS.jsp" %>
 <!-- Footer -->

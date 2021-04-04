@@ -44,6 +44,18 @@ SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd}
 		SELECT CHECKACADEMY FROM TBL_ACADEMY WHERE AID = #{id}
 	</select>
 	
+	<select id="readMember" resultType="com.Aview.domain.StudentVO">
+		select * from TBL_STUDENT where SID=#{sid}
+	</select>
+	
+	<update id="stuUpdate">
+		UPDATE TBL_STUDENT SET SID=#{sid}, SLASTNAME=#{slastname}, SFIRSTNAME=#{sfirstname}, SPWD=#{spwd}, SEMAIL=#{semail}, SPHONE=#{sphone}, SZIPCODE=#{szipcode}, SADDRESS=#{saddress}, SADDRESSDETAIL=#{saddressdetail} WHERE SID=#{sid} 
+	</update>
+	
+	<update id="acaUpdate">
+		UPDATE TBL_STUDENT SET AID=#{aid}, ANAME=#{aname}, ACORPORATE=#{acorporate}, APWD=#{apwd}, AEMAIL=#{aemail}, APHONE=#{aphone}, AZIPCODE=#{azipcode}, AADDRESS=#{aaddress}, AADDRESSDETAIL=#{aaddressdetail} WHERE AID=#{aid} 
+	</update>
+	
 </mapper>
 
 

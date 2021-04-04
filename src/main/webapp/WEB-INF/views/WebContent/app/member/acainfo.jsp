@@ -24,14 +24,14 @@
 				<form name="userinfo" action="${pageContext.request.contextPath}/member/MemberModify.me" method="post">	
 					 <div class="row gtr-uniform">
 							<div class="col-6 col-12-small" style="margin:0 auto;"> 
-								<label>학원 이름</label><input type="text" maxlength="12" name="Aname" value="${id.aname}">
+								<label>학원 이름</label><input type="text" maxlength="12" name="aname" id="aname" value="${id.aname}">
                           <br>
-								<label>아이디</label><input type="text" maxlength="12" name="Aid" value="${id.aid}" readonly onclick="alert('※변경할수 없습니다')">
+								<label>아이디</label><input type="text" maxlength="12" name="aid" id="aid" value="${id.aid}" readonly onclick="alert('※변경할수 없습니다')">
 							<br>
-								<label>아이디</label><input type="text" maxlength="12" name="Acorporate" value="${id.acorporate}" readonly onclick="alert('※변경할수 없습니다')">
+								<label>아이디</label><input type="text" maxlength="12" name="acorporate" id="acorporate" value="${id.acorporate}" readonly onclick="alert('※변경할수 없습니다')">
 							<br>
 								<label>비밀번호</label>
-									<input type="password" maxlength="12" name="Apwd" id="pwd1" value="${id.apwd}" required>
+									<input type="password" maxlength="12" name="apwd" id="pwd1" value="${id.apwd}" required>
 							<br>
 								 <label for="pw2">비밀번호 재확인</label>
 									<input type="password" maxlength="12" name="pw2" id="pwd2" value="${id.apwd}" onkeyup="checkPwd();" required>
@@ -39,12 +39,12 @@
 							<br> 
 			
 								<label for="email">이메일</label>
-									<input type="email" name="Aemail" id="Aemail" value="${id.aemail}" required>
+									<input type="email" name="aemail" id="aemail" value="${id.aemail}" required>
 							<br>
 								  <label for="phone">휴대전화</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="Aphone" id="Aphone" value="${id.aphone}" required>
+											<input type="text" name="aphone" id="aphone" value="${id.aphone}" required>
 										</div>
 									</div>
 							<br>
@@ -58,7 +58,7 @@
 								<label for ="postal_code">우편번호</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="Azipcode" id="u_zipcode" value="${id.azipcode}"  >
+											<input type="text" name="azipcode" id="azipcode" value="${id.azipcode}"  >
 										</div>	
  										 <div class="col-6 col-12-small">	
 											<input type="button" name="find_zipcode" id="find_zipcode" value="우편번호 찾기" style="display: inline;">
@@ -66,10 +66,10 @@
 									</div>		
 							<br>		
 								<label for ="address">주소</label>
-									<input type="text" name="Aaddress" id="u_address" value="${id.aaddress}" >
+									<input type="text" name="aaddress" id="aaddress" value="${id.aaddress}" >
 							<br>
 								<label for ="detail_address">상세주소</label>
-									<input type="text" name="Aaddress_detail" id="u_address_detail" value="${id.aaddressdetail}">
+									<input type="text" name="aaddressdetail" id="aaddressdetail" value="${id.aaddressdetail}">
 							<br> 
                <!-- Content -->
                
