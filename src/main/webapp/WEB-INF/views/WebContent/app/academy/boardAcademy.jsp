@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ include file = "../../header.jsp" %>
 <!DOCTYPE html>
 <!--
    Drift by Pixelarity
    pixelarity.com | hello@pixelarity.com
    License: pixelarity.com/license
 -->
-<%@ include file = "/header.jsp" %>
+
 
    <head>
       <title>Untitled</title>
@@ -54,7 +55,7 @@
 <div class="container">
    <section id="content">
    <br><br>
-         <h3><a href="/board/register${pageMaker.cri.getListLink()}" class="button small">글 등록</a></h3>
+         <h3><a href="/list/register" class="button small">글 등록</a></h3>
          <div class="table-wrapper">
             <table>
                <thead>
@@ -164,4 +165,4 @@
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
 <!-- Footer -->
-<%@ include file = "/footer.jsp" %>
+<%@ include file = "../../footer.jsp" %>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+    <%@ include file = "../../header.jsp" %>
 <!DOCTYPE HTML>
 <html>
 <style>
@@ -67,9 +70,6 @@ table{border:1px solid #f2f2f2;width:100%;} */
 
 		<!-- Header -->
 		<body class="is-preload">
-   <%@ include file="/header.jsp"%>
-   
-
 
 		<!-- Main -->
 
@@ -276,13 +276,6 @@ table{border:1px solid #f2f2f2;width:100%;} */
     </div>
     
 
-
-
-	   <!-- Footer  -->
-    <footer id="footer">
-      <%@ include file = "/footer.jsp" %>
-   </footer>
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -350,4 +343,5 @@ $(document).ready(function(){
 	        })
 	    });
 </script>
+<%@ include file = "../../footer.jsp" %>
 </html>

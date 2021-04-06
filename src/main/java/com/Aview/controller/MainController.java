@@ -27,4 +27,6 @@ public class MainController {
 	public String joinAcademyGo() {
 		return "/WebContent/app/member/joinFormAcademy";
 	}
+	
+	
 }
