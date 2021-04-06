@@ -181,14 +181,15 @@ public class MemberController {
 				out.println("</script>");
 				out.close();
 				return "/WebContent/index";
-			}
+			}else {
 			 PrintWriter out = resp.getWriter();
 			 resp.setContentType("text/html;charset=utf-8");
 			 out.println("<script>");
 			 out.println("alert('빈칸 없이 입력해주세요.')");
 			 out.println("</script>");
 			 out.close();
-			 return "/WebContent/index";
+			 return "/WebContent/app/member/userinfo";
+			 }
 		}
 		
 		@PostMapping("/infoModifyaca")
@@ -208,6 +209,6 @@ public class MemberController {
 			 out.println("alert('빈칸 없이 입력해주세요.')");
 			 out.println("</script>");
 			 out.close();
-			 return "/WebContent/index";
+			 return "/WebContent/app/member/acainfo";
 		}
 }
