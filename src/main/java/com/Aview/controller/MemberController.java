@@ -173,42 +173,48 @@ public class MemberController {
 //	}
 		@PostMapping("/infoModifystu")
 		public String updateStu(StudentVO stu, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			resp.setCharacterEncoding("UTF-8");
 			if(mapper.stuUpdate(stu)==1) {
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("text/html;charset=utf-8");
 				out.println("<script>");
 				out.println("alert('회원 정보 수정이 완료 되었습니다.')");
+				out.println("location.href='/member/userinfo'");
 				out.println("</script>");
-				out.close();
-				return "/WebContent/index";
+				
+				return null;
 			}else {
 			 PrintWriter out = resp.getWriter();
 			 resp.setContentType("text/html;charset=utf-8");
 			 out.println("<script>");
-			 out.println("alert('빈칸 없이 입력해주세요.')");
+			 out.println("alert('다시 입력해 주세요')");
+			 out.println("location.href='/member/userinfo'");
 			 out.println("</script>");
-			 out.close();
-			 return "/WebContent/app/member/userinfo";
+			 return null;
 			 }
 		}
 		
 		@PostMapping("/infoModifyaca")
 		public String updateStu(AcademyVO aca, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+			resp.setCharacterEncoding("UTF-8");
 			if(mapper.acaUpdate(aca)==1) {
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("text/html;charset=utf-8");
 				out.println("<script>");
 				out.println("alert('회원 정보 수정이 완료 되었습니다.')");
+				out.println("location.href='/member/userinfo'");
 				out.println("</script>");
 				out.close();
-				return "/WebContent/index";
-			}
+				return null;
+			}else {
 			 PrintWriter out = resp.getWriter();
 			 resp.setContentType("text/html;charset=utf-8");
 			 out.println("<script>");
-			 out.println("alert('빈칸 없이 입력해주세요.')");
+			 out.println("alert('다시 입력해 주세요')");
+			 out.println("location.href='/member/userinfo'");
 			 out.println("</script>");
 			 out.close();
-			 return "/WebContent/app/member/acainfo";
+			 return null;
+			}
 		}
 }
