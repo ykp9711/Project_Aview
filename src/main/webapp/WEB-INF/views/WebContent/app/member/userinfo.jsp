@@ -81,7 +81,7 @@
 
                         <ul class="actions">
 								<li style="margin:0 auto;">
-								    <a href="javascript:userinfo.submit()" class="button"style="width: 125px;">수정하기</a>
+								    <a href="javascript:userinfo.submit()" class="button"style="width:150px;">수정하기</a>
 									
                     				
 								</li>

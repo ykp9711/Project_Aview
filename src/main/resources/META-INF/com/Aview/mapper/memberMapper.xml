@@ -53,7 +53,7 @@ SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd}
 	</update>
 	
 	<update id="acaUpdate">
-		UPDATE TBL_STUDENT SET AID=#{aid}, ANAME=#{aname}, ACORPORATE=#{acorporate}, APWD=#{apwd}, AEMAIL=#{aemail}, APHONE=#{aphone}, AZIPCODE=#{azipcode}, AADDRESS=#{aaddress}, AADDRESSDETAIL=#{aaddressdetail} WHERE AID=#{aid} 
+		UPDATE TBL_ACADEMY SET ANAME=#{aname}, AID=#{aid}, ACORPORATE=#{acorporate}, APWD=#{apwd}, AEMAIL=#{aemail}, APHONE=#{aphone}, AZIPCODE=#{azipcode}, AADDRESS=#{aaddress}, AADDRESSDETAIL=#{aaddressdetail} WHERE AID=#{aid} 
 	</update>
 	
 </mapper>
