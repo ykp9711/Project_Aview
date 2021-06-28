@@ -11,7 +11,7 @@
 
 
    <head>
-      <title>Untitled</title>
+      <title>Aview Board</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
@@ -55,7 +55,7 @@
 <div class="container">
    <section id="content">
    <br><br>
-         <h3><a href="/list/register" class="button small">글 등록</a></h3>
+         <h3><a href="/list/registerGo" class="button small">글 등록</a></h3>
          <div class="table-wrapper">
             <table>
                <thead>
@@ -70,11 +70,11 @@
                <tbody>
                   <c:forEach var="board" items="${list}">
                      <tr class="tBody">
-                        <td class="bno">${board.bno}</td>
-                        <td class="title"><a class="goGet" href="${board.bno}">${board.title}</a></td>
-                        <td class="writer">${board.writer}</td>
-                        <td class="regDate">${board.regDate}</td>
-                        <td class="updateDate">${board.updateDate}</td>
+                        <td class="bno">${review.bno}</td>
+                        <td class="title"><a class="goGet" href="${review.bno}">${review.title}</a></td>
+                        <td class="writer">${review.writer}</td>
+                        <td class="regDate">${review.regDate}</td>
+                        <td class="updateDate">${review.updateDate}</td>
                      </tr>
                   </c:forEach>
                </tbody>
