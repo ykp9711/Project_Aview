@@ -12,7 +12,7 @@
             <a href="/main/index" style="border-bottom: 0px">
             <img  src="/resources/images/logo_w.png" id="logo" alt=""  
     style="width: 170px;
-    height: 40px;
+    height: 45px;
     margin-left: 0px;
     margin-top: 3px;"/>
             </a>
@@ -26,11 +26,13 @@
 	             <li><a href="/member/logout">로그아웃</a></li>
 	             <li><a href="/member/userinfo">마이페이지</a></li>
 	             <li><a href="/list/review">리뷰</a></li>
-                  <li><a href="/list/service">고객센터</a></li>
+                 <li><a href="/list/service">고객센터</a></li>
+                 <li><a href="/list/detail">학원 알아보기</a></li>
 				</c:if>
 	             <c:if test="${empty session_id}">
 	             <li><a href="/main/loginForm">로그인</a></li>
                  <li><a href="/list/review">리뷰</a></li>
+                 <li><a href="/list/detail">학원 알아보기</a></li>
 	      		</c:if>
                </ul>
             </nav>
