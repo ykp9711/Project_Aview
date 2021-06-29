@@ -9,10 +9,8 @@ public interface ReviewMapper {
 	
 	public int register(ReviewVO rv);
 	
-	public List<ReviewVO> getList();
+	public List<ReviewVO> getList(Criteria cri);
 	
-	public List<ReviewVO> getListWithPaging(Criteria criteria);
-	
-	public int getTotal(Criteria cri);
+	public int getTotal();
 	
 }

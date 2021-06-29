@@ -2,7 +2,6 @@ package com.Aview.controller;
 
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,32 +30,32 @@ public class ListController {
 	
 	//리뷰 페이지 이동
 	@GetMapping("/review") 
-	public String reviewGo() {
+	public String reviewGo(Model mo ,Criteria cri) {
+		mo.addAttribute("list", mapper.getList(cri));
+		mo.addAttribute("pageMaker", new PageDTO(cri, mapper.getTotal()));
+		mo.addAttribute("total", mapper.getTotal());
+		
 		return "/WebContent/app/review/boardAcademy";
 	}
-	//전체 목록
-//	@GetMapping("/review")
-//	public void list(Criteria cri, Model model) {
-//		model.addAttribute("list",mapper.getList());
-//		model.addAttribute("pageMaker", new PageDTO(cri, mapper.getTotal(cri)));
-//	}
-	
 
+	//리뷰 글쓰기 페이지 이동
 	@GetMapping("/registerGo")
 	public String registerGo() {
 		return "/WebContent/app/review/register";
 	}
 	
 	@PostMapping("register")
-	public String register(ReviewVO rv, HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	public String register(ReviewVO rv, HttpServletResponse resp) throws Exception{
 		resp.setCharacterEncoding("UTF-8");
 		if(mapper.register(rv)==1) {
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("text/html;charset=utf-8");
 			out.println("<script>");
 			out.println("alert('글 등록이 완료되었습니다..')");
-			out.println("</script>");
-			return "/WebContent/app/review/boardAcademy";
+			
+			 out.println("location.href='/list/review'");
+			 out.println("</script>");
+			 return null;
 		}else {
 			PrintWriter out = resp.getWriter();
 			 resp.setContentType("text/html;charset=utf-8");
