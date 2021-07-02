@@ -21,4 +21,18 @@
 	<select id="getTotal" resultType="_int">
 		SELECT COUNT(*) FROM TBL_REVIEW
 	</select>
+	
+	<select id="getReview" resultType="com.Aview.domain.ReviewVO">
+		SELECT * FROM TBL_REVIEW WHERE BNO = #{bno}
+	</select>
+	
+	<update id="modify">
+		UPDATE TBL_REVIEW
+		SET TITLE=#{title}, CONTENT = #{content} ,WRITER= #{writer}, REGDATE=SYSDATE, UPDATEDATE=SYSDATE
+		WHERE BNO = #{bno}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM TBL_REVIEW WHERE BNO = #{bno}
+	</delete>
 </mapper>

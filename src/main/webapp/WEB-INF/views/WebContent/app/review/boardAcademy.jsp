@@ -76,7 +76,7 @@ select {
 <!-- 공지사항 -->
 <section id="main" class="wrapper style1">
 	<header class="major">
-		<h2>학원게시판</h2>
+		<h2>리뷰게시판</h2>
 	</header>
 </section>
 <!-- Table -->
@@ -99,7 +99,7 @@ select {
 				<c:forEach var="list" items="${list}">
 					<tr class="tBody">
 						<td class="bno">${list.rn}</td>
-						<td class="title"><a class="goGet" href="${list.bno}">${list.title}</a></td>
+						<td class="title"><a href="/list/getReview?bno=${list.bno}">${list.title}</a></td>
 						<td class="writer">${list.writer}</td>
 						<td class="regDate">${list.regDate}</td>
 					</tr>
