@@ -13,4 +13,9 @@ public interface ReviewMapper {
 	
 	public int getTotal();
 	
+	public ReviewVO getReview(int bno);
+	
+	public int modify(ReviewVO rv);
+	
+	public void delete(int bno);
 }

@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,8 @@ public class ListController {
 		return "/WebContent/app/review/register";
 	}
 	
-	@PostMapping("register")
+    //리뷰 글 등록
+	@PostMapping("/register")
 	public String register(ReviewVO rv, HttpServletResponse resp) throws Exception{
 		resp.setCharacterEncoding("UTF-8");
 		if(mapper.register(rv)==1) {
@@ -65,6 +67,26 @@ public class ListController {
 			 out.println("</script>");
 			 return null;
 		}
+	}
+	// 리뷰 글 상세보기
+	@GetMapping("/getReview")
+	public String getReview(ReviewVO rv, Model mo) {
+		mo.addAttribute("review", mapper.getReview(rv.getBno()));
+		return "/WebContent/app/review/getReview";
+	}
+
+	// 리뷰 수정
+	@PostMapping("/modify")
+		public String modify(ReviewVO rv , Model mo , HttpServletResponse resp) throws Exception {
+			mapper.modify(rv);
+			 return "redirect:/list/getReview?bno=" + rv.getBno();
+	}
+	
+	@GetMapping("/delete")
+	public String delete(@Param("bno") int bno) {
+		mapper.delete(bno);
+		
+		return "redirect:/list/review";
 	}
 
 }
