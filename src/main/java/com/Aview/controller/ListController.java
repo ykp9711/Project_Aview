@@ -3,12 +3,15 @@ package com.Aview.controller;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,9 +42,20 @@ public class ListController {
 		return "/WebContent/app/review/boardAcademy";
 	}
 
-	//리뷰 글쓰기 페이지 이동
+	//리뷰 글쓰기 페이지 이동 , session id가 존재 할 시 글쓰기 페이지로 이동 , session이 존재하지 않을 시 로그인 페이지로 이동
 	@GetMapping("/registerGo")
-	public String registerGo() {
+	public String registerGo(HttpServletResponse resp , HttpSession session) throws Exception {
+		String id = (String) session.getAttribute("session_id");
+		resp.setCharacterEncoding("UTF-8");
+		if(id == "" || id==null) {
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("text/html;charset=utf-8");
+			out.println("<script>");
+			out.println("alert('로그인 후 이용해주세요')");
+			out.println("location.href='/main/loginForm'");
+			out.println("</script>");
+			return null;
+		}else
 		return "/WebContent/app/review/register";
 	}
 	
@@ -70,7 +84,7 @@ public class ListController {
 	}
 	// 리뷰 글 상세보기
 	@GetMapping("/getReview")
-	public String getReview(ReviewVO rv, Model mo) {
+	public String getReview(ReviewVO rv, Model mo, @ModelAttribute("cri") Criteria cri) {
 		mo.addAttribute("review", mapper.getReview(rv.getBno()));
 		return "/WebContent/app/review/getReview";
 	}
