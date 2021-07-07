@@ -21,7 +21,7 @@
                   <div class="container">   
                   	 <section id="content">
                   	 <span>
-                  	     <a href="/list/review" class="button small" style="width:170px; float:left;">목록 보기</a>
+                  	     <a href="/list/review?pageNum=${cri.pageNum}&amount=${cri.amount}" class="button small" style="width:170px; float:left;">목록 보기</a>
 			             <button id="modifyButton" class="button small" style="width:170px; ">게시글 수정</button>
 			             <button id="modify"class="button small" style="width:170px; display: none; ">수정 완료</button>
 			             <button id="delete"class="button small" style="width:170px; float:right; ">게시글 삭제</button>
@@ -40,6 +40,7 @@
 			                              <div class="field">
 			                                 <h4>작성자</h4>
 			                                 <input name="writer" id="writer" placeholder="Writer" readonly="readonly" type="text" value="${review.writer}" />
+			                                 <input name="session_id" id="session_id" type="hidden" value="${session_id}" />
 			                              </div><br>
 			                           </div>
 									</form>
@@ -56,13 +57,18 @@
    </body>
    <script>
    var review =  $("#review");
+   var writer = $("#writer").val();
+   var id = $("#session_id").val();
    $("#modifyButton").on("click", function(e){
+	   if(id.trim() != writer.trim()){
+		   alert("다른 회원의 게시글은 수정 할 수 없습니다.")
+	   }else{
 	   alert("게시글을 수정 후 완료버튼을 눌러주세요");
 	   $("#content1").removeAttr("readonly");
 	   $("#title").removeAttr("readonly");
 	   $("#modifyButton").css({"float" : "left"});
 	   $("#modify").css('display','block');
-	   
+	   }
    } )
    
    $("#modify").on("click",function(e){

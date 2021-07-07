@@ -99,7 +99,7 @@ select {
 				<c:forEach var="list" items="${list}">
 					<tr class="tBody">
 						<td class="bno">${list.rn}</td>
-						<td class="title"><a href="/list/getReview?bno=${list.bno}">${list.title}</a></td>
+						<td class="title"><a href="/list/getReview?bno=${list.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">${list.title}</a></td>
 						<td class="writer">${list.writer}</td>
 						<td class="regDate">${list.regDate}</td>
 					</tr>

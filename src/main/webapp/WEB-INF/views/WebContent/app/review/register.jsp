@@ -38,7 +38,7 @@
 			                              </div><br>
 			                              <div class="field">
 			                                 <h4>작성자</h4>
-			                                 <input name="writer" id="writer" placeholder="Writer" type="text" />
+			                                 <input name="writer" id="writer" placeholder="Writer" type="text" value=${session_id} readonly="readonly"/>
 			                              </div><br>
 			                           </div>
 			                           <ul class="actions special">
