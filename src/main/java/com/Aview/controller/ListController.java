@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.Aview.domain.Criteria;
 import com.Aview.domain.PageDTO;
 import com.Aview.domain.ReviewVO;
+import com.Aview.domain.ServiceVO;
 import com.Aview.mapper.ReviewMapper;
+import com.Aview.mapper.ServiceMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -27,6 +29,7 @@ public class ListController {
 
 	@Autowired
 	ReviewMapper mapper;
+	ServiceMapper mapper2;
 	
 	//리뷰 페이지 이동
 	@GetMapping("/review") 

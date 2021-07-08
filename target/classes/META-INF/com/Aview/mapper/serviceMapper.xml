@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Aview.mapper.ServiceMapper">
+	<insert id="register">
+		INSERT INTO TBL_CUSTOMER
+		(BNO, TITLE, CONTENT, WRITER, PASSWORD) VALUES
+		(SEQ_CUSTOMER.NEXTVAL, #{title}, #{content}, #{writer}, #{password})
+	</insert>
+	
+	<select id="getList" resultType="com.Aview.domain.ServiceVO">
+	SELECT RN, BNO, TITLE, CONTENT, WRITER, REGDATE, REACT
+	FROM
+		(SELECT /*+ INDEX_DESC(TBL_CUSTOMER PK_CUSTOMER) */ ROWNUM RN, BNO, TITLE, CONTENT, WRITER , REGDATE , REACT 
+		FROM TBL_CUSTOMER
+		<![CDATA[
+		WHERE ROWNUM <= #{amount} * #{pageNum})
+	WHERE RN >= (#{pageNum} * #{amount}) - 9 
+		]]> 
+	</select>
+	
+	<select id="getTotal" resultType="_int">
+		SELECT COUNT(*) FROM TBL_CUSTOMER
+	</select>
+	
+	<select id="get" resultType="com.Aview.domain.ServiceVO">
+		SELECT * FROM TBL_CUSTOMER WHERE BNO = #{bno}
+	</select>
+	
+	<update id="modify">
+		UPDATE TBL_CUSTOMER
+		SET TITLE = #{title}, CONTENT = #{content}, WRITER = #{writer}, PASSWORD = #{password}
+		WHERE BNO = #{bno}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM TBL_CUSTOMER WHERE BNO = #{bno}
+	</delete>
+</mapper>
