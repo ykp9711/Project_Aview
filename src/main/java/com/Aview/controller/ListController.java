@@ -19,6 +19,7 @@ import com.Aview.domain.Criteria;
 import com.Aview.domain.PageDTO;
 import com.Aview.domain.ReviewVO;
 import com.Aview.mapper.ReviewMapper;
+import com.Aview.service.ReviewService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -30,14 +31,14 @@ public class ListController {
 //	ReivewService service;
 
 	@Autowired
-	ReviewMapper mapper;
+	ReviewService service;
 	
 	//리뷰 페이지 이동
 	@GetMapping("/review") 
 	public String reviewGo(Model mo ,Criteria cri) {
-		mo.addAttribute("list", mapper.getList(cri));
-		mo.addAttribute("pageMaker", new PageDTO(cri, mapper.getTotal()));
-		mo.addAttribute("total", mapper.getTotal());
+		mo.addAttribute("list", service.getList(cri));
+		mo.addAttribute("pageMaker", new PageDTO(cri, service.getTotal()));
+		mo.addAttribute("total", service.getTotal());
 		
 		return "/WebContent/app/review/boardAcademy";
 	}
@@ -63,7 +64,7 @@ public class ListController {
 	@PostMapping("/register")
 	public String register(ReviewVO rv, HttpServletResponse resp) throws Exception{
 		resp.setCharacterEncoding("UTF-8");
-		if(mapper.register(rv)==1) {
+		if(service.register(rv)==1) {
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("text/html;charset=utf-8");
 			out.println("<script>");
@@ -85,22 +86,36 @@ public class ListController {
 	// 리뷰 글 상세보기
 	@GetMapping("/getReview")
 	public String getReview(ReviewVO rv, Model mo, @ModelAttribute("cri") Criteria cri) {
-		mo.addAttribute("review", mapper.getReview(rv.getBno()));
+		mo.addAttribute("review", service.getReview(rv.getBno()));
 		return "/WebContent/app/review/getReview";
 	}
 
 	// 리뷰 수정
 	@PostMapping("/modify")
 		public String modify(ReviewVO rv , Model mo , HttpServletResponse resp) throws Exception {
-			mapper.modify(rv);
+			service.modify(rv);
 			 return "redirect:/list/getReview?bno=" + rv.getBno();
 	}
 	
+	//리뷰 삭제
 	@GetMapping("/delete")
-	public String delete(@Param("bno") int bno) {
-		mapper.delete(bno);
+	public String delete(@Param("bno") int bno, HttpSession session , HttpServletResponse resp) throws Exception{
+		String id = service.getReview(bno).getWriter(); // 게시물에 등록된 ID
+		String session_id = (String)session.getAttribute("session_id");
 		
+		if(id.equals(session_id)) {
+		service.delete(bno);
 		return "redirect:/list/review";
+		}else {
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("text/html;charset=utf-8");
+			out.println("<script>");
+			out.println("alert('다른 회원의 게시글을 삭제 할 수 없습니다.')");
+			out.println("window.history.back();");
+			out.println("</script>");
+			return null;
+		}
 	}
 
 }
