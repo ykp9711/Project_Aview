@@ -22,7 +22,7 @@
                   	 <section id="content">
                   	 <span>
                   	     <a href="/list/review?pageNum=${cri.pageNum}&amount=${cri.amount}" class="button small" style="width:170px; float:left;">목록 보기</a>
-			             <button id="modifyButton" class="button small" style="width:170px; ">게시글 수정</button>
+			             <button idrlt" class="button small" style="width:170px; ">게시글 수정</button>
 			             <button id="modify"class="button small" style="width:170px; display: none; ">수정 완료</button>
 			             <button id="delete"class="button small" style="width:170px; float:right; ">게시글 삭제</button>
 			             </span>
