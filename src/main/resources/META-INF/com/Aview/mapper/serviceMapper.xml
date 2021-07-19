@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Aview.mapper.ServiceMapper">
+
+	<sql id="criteria">
+		<if test="type != null and keyword != null">
+			<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<!-- 전달받은 객체(Criteria)에서 collection에 적당한 typeArr의 getter()를 mapping한다. -->
+			<!-- 즉, Criteria 필드에 getTypeArr()을 사용하여 반복횟수와 값을 결정한다. -->
+				<foreach item="type" collection="typeArr">
+					<trim prefix="OR">
+						<choose>
+							<when test="type == 'T'.toString()">
+								(TITLE LIKE '%' || #{keyword} || '%')
+							</when>
+							<when test="type == 'C'.toString()">
+								(CONTENT LIKE '%' || #{keyword} || '%')
+							</when>
+							<when test="type == 'W'.toString()">
+								(WRITER LIKE '%' || #{keyword} || '%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim> 
+		</if>
+	</sql>
+
 	<insert id="register">
 		INSERT INTO TBL_CUSTOMER
 		(BNO, TITLE, CONTENT, WRITER, PASSWORD) VALUES
@@ -8,24 +33,34 @@
 	</insert>
 	
 	<select id="getList" resultType="com.Aview.domain.ServiceVO">
-	SELECT RN, BNO, TITLE, CONTENT, WRITER, REGDATE, REACT
-	FROM
-		(SELECT /*+ INDEX_DESC(TBL_CUSTOMER PK_CUSTOMER) */ ROWNUM RN, BNO, TITLE, CONTENT, WRITER , REGDATE , REACT 
-		FROM TBL_CUSTOMER
 		<![CDATA[
-		WHERE ROWNUM <= #{amount} * #{pageNum})
-	WHERE RN >= (#{pageNum} * #{amount}) - 9 
+			SELECT RN, BNO, TITLE, CONTENT, WRITER, REGDATE, REACT
+			FROM
+				(SELECT /*+ INDEX_DESC(TBL_CUSTOMER PK_CUSTOMER) */ 
+				ROWNUM RN, BNO, TITLE, CONTENT, WRITER , REGDATE , REACT
+				FROM TBL_CUSTOMER
+				WHERE
 		]]> 
+		<include refid="criteria"></include>
+			<![CDATA[
+				ROWNUM <= #{amount} * #{pageNum})
+				WHERE RN >= (#{pageNum} * #{amount}) - 9 
+			]]> 
 	</select>
 	
 	<select id="getTotal" resultType="_int">
-		SELECT COUNT(*) FROM TBL_CUSTOMER
+		SELECT COUNT(*) FROM TBL_CUSTOMER WHERE
+		<include refid="criteria"></include>
+		<![CDATA[
+		BNO > 0
+		]]>
+		<!-- 뒤에 AND가 오니깐 무조건 TRUE인 조건을 하나 붙혀서 오류를 해결한다. -->
 	</select>
 	
 	<select id="get" resultType="com.Aview.domain.ServiceVO">
 		SELECT * FROM TBL_CUSTOMER WHERE BNO = #{bno}
 	</select>
-	
+	  
 	<select id="check" resultType="com.Aview.domain.ServiceVO">
 		SELECT * FROM TBL_CUSTOMER WHERE BNO = #{bno}
 	</select>

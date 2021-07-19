@@ -1,6 +1,5 @@
 package com.Aview.mapper;
 
-import java.util.List;
 
 import com.Aview.domain.AcademyVO;
 import com.Aview.domain.StudentVO;

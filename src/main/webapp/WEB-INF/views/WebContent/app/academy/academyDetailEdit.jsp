@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-    <%@ include file = "../../header.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ include file="../../header.jsp"%>
 <!DOCTYPE HTML>
 <html>
 <style>
@@ -134,7 +134,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 							<li>학원 상세 설명<br>
 							<textarea name="board_content"  rows="6" style="resize:none;" placeholder="학원 상세 설명"></textarea>
 							<br>
-							<li>학원 태그<br>
+							<li>학원 간단 소개<br>
 							<input type="hidden" name="board_id" value="${session_id}" />
 							<input type="text" name="board_tag" />
 							<br>
@@ -157,9 +157,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 							<li>대표 강사님 사진<br><input type='file' id='teacher_Photo' name='teacher_Photo'></br></li>
 							<li>경력사항<br><textarea name='teacher_Career' id='teacher_Career' rows='6' style='resize:none;' placeholder='경력사항 입력'></textarea></li>
 							<li>대표 강사님 소개<br><textarea name='teacher_intro' id='teacher_intro' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
-							<li>영상 업로드<br><input type='file' id='teacher_Video' name='teacher_Video'><br></li>
 							<div id="teacher" name="teacher" style="list-style-type: none;"></div>
-
 							<!-- 추가하기 , 삭제하기 -->
 							<INPUT TYPE="button" VALUE="강사 추가하기" OnClick="teacher1.style.visibility='visible'"/>
 							<INPUT TYPE="button" VALUE="삭제하기" OnClick="teacher1.style.visibility='hidden'"/>

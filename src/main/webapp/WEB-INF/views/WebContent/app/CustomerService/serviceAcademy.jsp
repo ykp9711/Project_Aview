@@ -150,23 +150,21 @@ select {
 			<div style="width: 100%; float: left;">
 
 				<select name="type" style="width: 15%; float: left;">
-					<option value="" ${pageMaker.cri.type == null ? 'selected' : ''}>검색
-						기준</option>
+					<option value="" ${pageMaker.cri.type == null ? 'selected' : ''}>검색기준</option>
 					<option value="T" ${pageMaker.cri.type == 'T' ? 'selected' : ''}>제목</option>
 					<option value="C" ${pageMaker.cri.type == 'C' ? 'selected' : ''}>내용</option>
 					<option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>작성자</option>
-					<option value="TC" ${pageMaker.cri.type == 'TC' ? 'selected' : ''}>제목
-						또는 내용</option>
-					<option value="TW" ${pageMaker.cri.type == 'TW' ? 'selected' : ''}>제목
-						또는 작성자</option>
-					<option value="TCW"
-						${pageMaker.cri.type == 'TCW' ? 'selected' : ''}>제목 또는 내용
-						또는 작성자</option>
-				</select> &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="keyword"
-					name="keyword" value="${pageMaker.cri.keyword}"
-					style="width: 65%; float: center;" /> <a href="javascript:void(0)"
-					class="search button primary icon solid fa-search"
-					style="width: 15%; float: right;">검색</a>
+					<option value="TC" ${pageMaker.cri.type == 'TC' ? 'selected' : ''}>제목 또는 내용</option>
+					<option value="TW" ${pageMaker.cri.type == 'TW' ? 'selected' : ''}>제목 또는 작성자</option>
+					<option value="TCW" ${pageMaker.cri.type == 'TCW' ? 'selected' : ''}>제목 또는 내용 또는 작성자</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp; 
+				<input type="text" id="keyword" name="keyword" value="${pageMaker.cri.keyword}" style="width: 65%; float: center;" />
+				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+				<a href="javascript:void(0)"
+				   class="search button primary icon solid fa-search"
+				   style="width: 15%; float: right;">검색
+				</a>
 			</div>
 		</form>
 		<br>
@@ -220,8 +218,30 @@ select {
 					
 					history.replaceState({}, null, null);
 				})
+</script>
+<script>
+			var searchForm = $("#searchForm");
+			
+			$("#searchForm a").on("click", function(e){
+				e.preventDefault();
 				
-			</script>
+				//val()은 해당 값이 있으면 true, 없으면 false
+				if(!searchForm.find("option:selected").val()){
+					alert("검색 종류를 선택하세요");
+					return false;
+				}
+				
+				if(!searchForm.find("input[name='keyword']").val()){
+					alert("키워드를 입력하세요")
+					return false;
+				}
+				
+				searchForm.find("input[name='pageNum']").val("1");
+				searchForm.submit();
+			})
+
+</script>
+
 <!-- Footer -->
 <%@ include file="../../footer.jsp"%>
 </html>

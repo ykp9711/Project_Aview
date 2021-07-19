@@ -12,7 +12,7 @@ public interface ServiceMapper {
 	
 	public List<ServiceVO> getList(Criteria cri);
 	
-	public int getTotal();
+	public int getTotal(Criteria cri);
 	
 	public ServiceVO get(int bno);
 	
