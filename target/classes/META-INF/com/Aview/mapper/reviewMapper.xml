@@ -12,9 +12,10 @@
 	FROM
 		(SELECT /*+ INDEX_DESC(TBL_REVIEW PK_REVIEW) */ ROWNUM RN, BNO, TITLE, CONTENT, WRITER , REGDATE , UPDATEDATE 
 		FROM TBL_REVIEW
+		
 		<![CDATA[
 		WHERE ROWNUM <= #{amount} * #{pageNum})
-	WHERE RN >= (#{pageNum} * #{amount}) - 9 
+		WHERE RN >= (#{pageNum} * #{amount}) - 9 
 		]]> 
 	</select>
 	

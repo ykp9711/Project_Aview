@@ -76,7 +76,7 @@ select {
 <!-- 공지사항 -->
 <section id="main" class="wrapper style1">
 	<header class="major">
-		<h2>리뷰게시판</h2>
+		<h2>학원 목록</h2>
 	</header>
 </section>
 <!-- Table -->
@@ -84,24 +84,26 @@ select {
 	<section id="content">
 		<br> <br>
 		<h3>
-			<a href="/list/registerGo" class="button small">글 등록</a>
+			<a href="/board/academyRegister" class="button small">학원 등록 하기</a>
 		</h3>
 		<div class="table-wrapper">
-			게시글 개수 : ${total}
+			등록된 학원 : ${total}<br>
 			<table>
 				<tr class="tHead">
-					<th class="bno">번호</th>
+					<th class="photo">사진</th>
 					<th class="title">제목</th>
 					<th class="writer">작성자</th>
 					<th class="regDate">작성일</th>
+					<th class="react">답변 여부</th>
 
 				</tr>
 				<c:forEach var="list" items="${list}">
 					<tr class="tBody">
 						<td class="bno">${list.rn}</td>
-						<td class="title"><a href="/list/getReview?bno=${list.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">${list.title}</a></td>
+						<td class="title"><a class="goGet" href="${list.bno}">${list.title}</a></td>
 						<td class="writer">${list.writer}</td>
 						<td class="regDate">${list.regDate}</td>
+						<td class="react">${list.react}</td>
 					</tr>
 				</c:forEach>
 
@@ -184,6 +186,62 @@ select {
 <script>
 	var contextPath = "${pageContext.request.contextPath}";
 </script>
+<script>
+				var pageForm = $("#pageForm");
+				
+				$(".changePage").on("click", function(e){
+					e.preventDefault();
+					//form태그(pageForm)에서 name이 pageNum인 input 태그를 찾는다.
+					//해당 input 태그에 value값을 사용자가 클릭한 a태그의 href값으로 변경한다.
+					//즉, 사용자가 클릭 a태그의 href값은 이동해야 할 pageNum이기 때문에 input태그에 담아서 컨트롤러로 전송해야 한다.
+					pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+					pageForm.submit();
+				})
+				
+				$(".goGet").on("click", function(e){
+					e.preventDefault();
+					pageForm.append("<input type='hidden' name='bno' value='" + $(this).attr("href") + "'>")
+					pageForm.attr("action", "/serviceList/get");
+					pageForm.submit();
+				})
+				
+				/* alert("${result}"); */
+				result = "${result}"
+				$(document).ready(function(){
+					if(result == '' || history.state){
+						return;
+					}
+					
+					if(parseInt(result) > 0){
+						alert("게시글 " + parseInt(result) + "번이 등록되었습니다.");
+					}
+					
+					history.replaceState({}, null, null);
+				})
+</script>
+<script>
+			var searchForm = $("#searchForm");
+			
+			$("#searchForm a").on("click", function(e){
+				e.preventDefault();
+				
+				//val()은 해당 값이 있으면 true, 없으면 false
+				if(!searchForm.find("option:selected").val()){
+					alert("검색 종류를 선택하세요");
+					return false;
+				}
+				
+				if(!searchForm.find("input[name='keyword']").val()){
+					alert("키워드를 입력하세요")
+					return false;
+				}
+				
+				searchForm.find("input[name='pageNum']").val("1");
+				searchForm.submit();
+			})
+
+</script>
+
 <!-- Footer -->
 <%@ include file="../../footer.jsp"%>
 </html>
