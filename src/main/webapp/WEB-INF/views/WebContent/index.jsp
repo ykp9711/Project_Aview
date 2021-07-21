@@ -35,7 +35,7 @@
 				</div>
  				<div class="inner" style="margin-top:100px;"> 
 					<ul class="actions special">
-						<li><a href="/board/search" class="button primary">학원 알아보기</a></li>
+						<li><a href="/board/academyBoard" class="button primary">학원 알아보기</a></li>
 					</ul>
 					<br>
 				</div>

@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ include file="../../header.jsp"%>
+   pageEncoding="UTF-8"%>
 <!--
    Future Imperfect by Pixelarity
    pixelarity.com | hello@pixelarity.com
@@ -20,6 +17,7 @@
    href="${pageContext.request.contextPath}/assets/css/main.css" />
 </head>
 <body class="is-preload">
+   <%@ include file="/header.jsp"%>
    <!-- Wrapper -->
    <div id="wrapper style1">
 
@@ -168,4 +166,4 @@
 
 </body>
 </html>
-<%@ include file="../../footer.jsp"%>
+<%@ include file = "/footer.jsp" %>
