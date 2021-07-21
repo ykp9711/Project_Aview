@@ -84,26 +84,25 @@ select {
 	<section id="content">
 		<br> <br>
 		<h3>
-			<a href="/board/academyRegister" class="button small">학원 등록 하기</a>
+			<a href="/board/academyDetailEdit" class="button small">학원 등록 하기</a>
 		</h3>
 		<div class="table-wrapper">
-			등록된 학원 : ${total}<br>
+			등록된 학원 : ${total}<br><br>
 			<table>
 				<tr class="tHead">
 					<th class="photo">사진</th>
-					<th class="title">제목</th>
-					<th class="writer">작성자</th>
-					<th class="regDate">작성일</th>
-					<th class="react">답변 여부</th>
+					<th class="title">학원 이름</th>
+					<th class="kind">학원 종류</th>
+					<th class="area">학원 장소</th>
 
 				</tr>
 				<c:forEach var="list" items="${list}">
 					<tr class="tBody">
-						<td class="bno">${list.rn}</td>
-						<td class="title"><a class="goGet" href="${list.bno}">${list.title}</a></td>
-						<td class="writer">${list.writer}</td>
-						<td class="regDate">${list.regDate}</td>
-						<td class="react">${list.react}</td>
+						<td class="ano">${list.ano}</td>
+						<td class="photo">${list.academyPhoto}</td>
+						<td class="title"><a class="goGet" href="${list.ano}">${list.title}</a></td>
+						<td class="kind">${list.academyKind}</td>
+						<td class="area">${list.academyArea}</td>
 					</tr>
 				</c:forEach>
 
@@ -152,11 +151,11 @@ select {
 				<select name="type" style="width: 15%; float: left;">
 					<option value="" ${pageMaker.cri.type == null ? 'selected' : ''}>검색기준</option>
 					<option value="T" ${pageMaker.cri.type == 'T' ? 'selected' : ''}>제목</option>
-					<option value="C" ${pageMaker.cri.type == 'C' ? 'selected' : ''}>내용</option>
-					<option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>작성자</option>
-					<option value="TC" ${pageMaker.cri.type == 'TC' ? 'selected' : ''}>제목 또는 내용</option>
-					<option value="TW" ${pageMaker.cri.type == 'TW' ? 'selected' : ''}>제목 또는 작성자</option>
-					<option value="TCW" ${pageMaker.cri.type == 'TCW' ? 'selected' : ''}>제목 또는 내용 또는 작성자</option>
+					<option value="C" ${pageMaker.cri.type == 'C' ? 'selected' : ''}>종류</option>
+					<option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>장소</option>
+					<option value="TC" ${pageMaker.cri.type == 'TC' ? 'selected' : ''}>제목 또는 종류</option>
+					<option value="TW" ${pageMaker.cri.type == 'TW' ? 'selected' : ''}>제목 또는 장소</option>
+					<option value="TCW" ${pageMaker.cri.type == 'TCW' ? 'selected' : ''}>제목 또는 종류 또는 장소</option>
 				</select> &nbsp;&nbsp;&nbsp;&nbsp; 
 				<input type="text" id="keyword" name="keyword" value="${pageMaker.cri.keyword}" style="width: 65%; float: center;" />
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">

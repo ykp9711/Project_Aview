@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ include file="../../header.jsp"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ include file = "../../header.jsp" %>
 <!DOCTYPE HTML>
 <html>
 <style>
@@ -50,7 +50,6 @@
   /* body{font-size:9pt;}
 th{text-align:right;background:#f6f6f6;}
 table{border:1px solid #f2f2f2;width:100%;} */
-#teacher1 , #teacher2,  #teacher3 , #teacher4, #teacher5{position:relative; left:0; top:0; z-index:3; visibility:hidden;}
 
 /* 시설 사진 추가 태그 숨기기 , 보이기 */
 #facility1 , #facility2,  #facility3 , #facility4, #facility5{position:relative; left:0; top:0; z-index:3; visibility:hidden;}  
@@ -134,7 +133,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 							<li>학원 상세 설명<br>
 							<textarea name="board_content"  rows="6" style="resize:none;" placeholder="학원 상세 설명"></textarea>
 							<br>
-							<li>학원 간단 소개<br>
+							<li>학원 태그<br>
 							<input type="hidden" name="board_id" value="${session_id}" />
 							<input type="text" name="board_tag" />
 							<br>
@@ -152,117 +151,401 @@ table{border:1px solid #f2f2f2;width:100%;} */
        
 					<div class="row gtr-uniform">
 						<div class="col-6 col-12-xsmall" style="margin:0 auto;color:black;">
-							<li>대표 강사님 이름<br>
-							<textarea name="teacher_text" id="teacher_text" rows="1" style="resize:none;" placeholder="선생님 이름 입력"  maxlength="5"></textarea>
-							<li>대표 강사님 사진<br><input type='file' id='teacher_Photo' name='teacher_Photo'></br></li>
-							<li>경력사항<br><textarea name='teacher_Career' id='teacher_Career' rows='6' style='resize:none;' placeholder='경력사항 입력'></textarea></li>
-							<li>대표 강사님 소개<br><textarea name='teacher_intro' id='teacher_intro' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
-							<div id="teacher" name="teacher" style="list-style-type: none;"></div>
+							<li>강사 이름<br>
+							<input type="text" name="teacher_name" id="teacher_name"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date">생년월일</label>
+									생년월일<br>
+							<select name="year" id="year" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month" id="month" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date" id="date" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo' name='teacher_Photo'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro' id='teacher_intro' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
 							<!-- 추가하기 , 삭제하기 -->
-							<INPUT TYPE="button" VALUE="강사 추가하기" OnClick="teacher1.style.visibility='visible'"/>
-							<INPUT TYPE="button" VALUE="삭제하기" OnClick="teacher1.style.visibility='hidden'"/>
+							<input type="button" value="강사 추가하기" onclick="t_block1()"/>
+							<input type="button" value="삭제하기" onclick="t_none1()"/>
 							
 							
-							<!-- 강사 추가 1번째  input 자리 -->
-							<div ID='teacher1'>
+							<!-- 강사 추가 1번 -->
+							<div ID='teacher1' style="display: none;">
 
 							<div class="col-6 col-12-xsmall"
 							style="margin: 0 auto; color: black;">
 							<hr><br> <!-- 줄 생성 -->
-							<li>서브 강사님 이름<br>
-							<textarea name="teacher_text1" id="teacher_text1" rows="1" 
-							style="resize: none;"placeholder="선생님 이름 입력" maxlength="5"></textarea>
-							<li>서브 강사님 사진<br>
-							<input type='file' id='teacher_Photo1' name='teacher_Photo1'></br></li>
-							<li>경력사항<br>
-							<textarea name='teacher_Career1' id='teacher_Career1' rows='6'
-									style='resize: none;' placeholder='경력사항 입력'></textarea></li>
-							<li>서브 강사님 소개<br>
-							<textarea name='teacher_intro1' id='teacher_intro1' rows='5'
-									style='resize: none;' placeholder='선생님 소개 입력'></textarea></li>
-							<li>영상 업로드<br>
-							<input type='file' id='teacher_Video1' name='teacher_Video1'><br></li>
-							<div id="teacher" name="teacher" style="list-style-type: none;"></div>
-							<INPUT TYPE="button" VALUE="강사 추가하기" OnClick="teacher2.style.visibility='visible'"/>
-							<INPUT TYPE="button" VALUE="삭제하기" OnClick="teacher2.style.visibility='hidden'"/>
+							<li>강사2 이름 <br>
+							<input type="text" name="teacher_name2" id="teacher_name2"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date2">생년월일</label>
+									생년월일<br>
+							<select name="year2" id="year2" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month2" id="month2" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date2" id="date2" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo2' name='teacher_Photo2'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro2' id='teacher_intro2' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block2()"/>
+							<input type="button" value="삭제하기" onclick="t_none2()"/>
 							</div>
-							
-							
-						 		
-							<!-- 강사 추가 2번째  input 자리 -->
-							<div ID='teacher2'>
-							
+							</div>
+					
+
+							<!-- 강사 추가 2번 -->
+							<div ID='teacher2' style="display: none;">
+
 							<div class="col-6 col-12-xsmall"
 							style="margin: 0 auto; color: black;">
 							<hr><br> <!-- 줄 생성 -->
-							<li>서브 강사님 이름<br><textarea name="teacher_text2" id="teacher_text2" rows="1" 
-							style="resize: none;" placeholder="선생님 이름 입력" maxlength="5"></textarea>
-							<li>서브 강사님 사진<br>
-							<input type='file' id='teacher_Photo2' name='teacher_Photo2'></br></li>
-							<li>경력사항<br>
-							<textarea name='teacher_Career2' id='teacher_Career2' rows='6'
-									style='resize: none;' placeholder='경력사항 입력'></textarea></li>
-							<li>서브 강사님 소개<br>
-							<textarea name='teacher_intro2' id='teacher_intro2' rows='5'
-									style='resize: none;' placeholder='선생님 소개 입력'></textarea></li>
-							<li>영상 업로드<br>
-							<input type='file' id='teacher_Video2' name='teacher_Video2'><br></li>
-							<div id="teacher" name="teacher" style="list-style-type: none;"></div>
-							
-							<input TYPE="button" VALUE="강사 추가하기"  OnClick="teacher3.style.visibility='visible'">
-							<input TYPE="button" VALUE="삭제하기"  OnClick="teacher3.style.visibility='hidden'">
+							<li>강사3 이름 <br>
+							<input type="text" name="teacher_name3" id="teacher_name3"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date3">생년월일</label>
+									생년월일<br>
+							<select name="year3" id="year3" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month3" id="month3" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date3" id="date3" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo3' name='teacher_Photo3'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro3' id='teacher_intro3' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block3()"/>
+							<input type="button" value="삭제하기" onclick="t_none3()"/>
 							</div>
 							</div>
 							
-									<!-- 강사 추가 3번째  input 자리 -->
-							<div ID='teacher3'>
-							
+							<!-- 강사 추가 3번 -->
+							<div ID='teacher3' style="display: none;">
+
 							<div class="col-6 col-12-xsmall"
 							style="margin: 0 auto; color: black;">
 							<hr><br> <!-- 줄 생성 -->
-							<li>서브 강사님 이름<br><textarea name="teacher_text3" id="teacher_text3" rows="1" 
-							style="resize: none;" placeholder="선생님 이름 입력" maxlength="5"></textarea>
-							<li>서브 강사님 사진<br>
-							<input type='file' id='teacher_Photo3' name='teacher_Photo3'></br></li>
-							<li>경력사항<br>
-							<textarea name='teacher_Career3' id='teacher_Career3' rows='6'
-									style='resize: none;' placeholder='경력사항 입력'></textarea></li>
-							<li>서브 강사님 소개<br>
-							<textarea name='teacher_intro3' id='teacher_intro3' rows='5'
-									style='resize: none;' placeholder='선생님 소개 입력'></textarea></li>
-							<li>영상 업로드<br>
-							<input type='file' id='teacher_Video3' name='teacher_Video3'><br></li>
-							<div id="teacher" name="teacher" style="list-style-type: none;"></div>
-							
+							<li>강사4 이름 <br>
+							<input type="text" name="teacher_name4" id="teacher_name4"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date4">생년월일</label>
+									생년월일<br>
+							<select name="year4" id="year4" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month4" id="month4" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date4" id="date4" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo4' name='teacher_Photo4'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro4' id='teacher_intro4' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
 
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block4()"/>
+							<input type="button" value="삭제하기" onclick="t_none4()"/>
+							</div>
+							</div>
+							<!-- 강사 추가 5번 -->
+							<div ID='teacher4' style="display: none;">
+
+							<div class="col-6 col-12-xsmall"
+							style="margin: 0 auto; color: black;">
+							<hr><br> <!-- 줄 생성 -->
+							<li>강사5 이름 <br>
+							<input type="text" name="teacher_name5" id="teacher_name5"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date5">생년월일</label>
+									생년월일<br>
+							<select name="year5" id="year5" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month5" id="month5" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date5" id="date5" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo5' name='teacher_Photo5'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro5' id='teacher_intro5' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block5()"/>
+							<input type="button" value="삭제하기" onclick="t_none5()"/>
+							</div>
+							</div>
+							<!-- 강사 추가 6번 -->
+							<div ID='teacher5' style="display: none;">
+
+							<div class="col-6 col-12-xsmall"
+							style="margin: 0 auto; color: black;">
+							<hr><br> <!-- 줄 생성 -->
+							<li>강사6 이름 <br>
+							<input type="text" name="teacher_name6" id="teacher_name6"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date6">생년월일</label>
+									생년월일<br>
+							<select name="year6" id="year6" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month6" id="month6" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date6" id="date6" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo6' name='teacher_Photo6'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro6' id='teacher_intro6' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block6()"/>
+							<input type="button" value="삭제하기" onclick="t_none6()"/>
 							</div>
 							</div>
 							
-										<!-- 강사 추가 4번째  input 자리 -->
+							<!-- 강사 추가 7번 -->
+							<div ID='teacher6' style="display: none;">
 
+							<div class="col-6 col-12-xsmall"
+							style="margin: 0 auto; color: black;">
+							<hr><br> <!-- 줄 생성 -->
+							<li>강사7 이름 <br>
+							<input type="text" name="teacher_name7" id="teacher_name7"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date7">생년월일</label>
+									생년월일<br>
+							<select name="year7" id="year7" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month7" id="month7" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date7" id="date7" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo7' name='teacher_Photo7'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro7' id='teacher_intro7' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block7()"/>
+							<input type="button" value="삭제하기" onclick="t_none7()"/>
+							</div>
+							</div>
+														<!-- 강사 추가 8번 -->
+							<div ID='teacher7' style="display: none;">
+
+							<div class="col-6 col-12-xsmall"
+							style="margin: 0 auto; color: black;">
+							<hr><br> <!-- 줄 생성 -->
+							<li>강사8 이름 <br>
+							<input type="text" name="teacher_name8" id="teacher_name8"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date8">생년월일</label>
+									생년월일<br>
+							<select name="year8" id="year8" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month8" id="month8" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date8" id="date8" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo8' name='teacher_Photo8'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro8' id='teacher_intro8' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block8()"/>
+							<input type="button" value="삭제하기" onclick="t_none8()"/>
+							</div>
+							</div>
+							<!-- 강사 추가 9번 -->
+							<div ID='teacher8' style="display: none;">
+
+							<div class="col-6 col-12-xsmall"
+							style="margin: 0 auto; color: black;">
+							<hr><br> <!-- 줄 생성 -->
+							<li>강사9 이름 <br>
+							<input type="text" name="teacher_name9" id="teacher_name9"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date9">생년월일</label>
+									생년월일<br>
+							<select name="year9" id="year9" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month9" id="month9" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date9" id="date9" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo9' name='teacher_Photo9'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro9' id='teacher_intro9' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+						
+							<!-- 추가하기 , 삭제하기 -->
+							<input type="button" value="강사 추가하기" onclick="t_block9()"/>
+							<input type="button" value="삭제하기" onclick="t_none9()"/>
+							</div>
+							</div>
 							
-						</div>
-					</div>
-				</div>
+								<!-- 강사 추가 10번 -->
+							<div ID='teacher9' style="display: none;">
+
+							<div class="col-6 col-12-xsmall"
+							style="margin: 0 auto; color: black;">
+							<hr><br> <!-- 줄 생성 -->
+							<li>강사10 이름 <br>
+							<input type="text" name="teacher_name10" id="teacher_name10"  placeholder="강사 이름 입력"  maxlength="5"></textarea>
+							<label for ="date10">생년월일</label>
+									생년월일<br>
+							<select name="year10" id="year10" style="width:30%; display:inline;">
+								<option value="">==년도==</option>
+								<%for(int i=0; i<120; i++) {%>
+									<option value"<%=2020-i %>"><%=2020-i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="month10" id="month10" style="width:25%; display:inline;">
+								<option value="">==월==</option>
+								<%for(int i=1; i<=12; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							&nbsp;
+							<select name="date10" id="date10" style="width:25%; display:inline;">
+								<option value="">==일==</option>
+								<%for(int i=1; i<=31; i++) {%>
+									<option value"<%=i %>"><%=i %></option>
+								<%} %>
+							</select>
+							<li>강사 사진<br><input type='file' id='teacher_Photo10' name='teacher_Photo10'></br></li>			
+							<li>강사 소개<br><textarea name='teacher_intro10' id='teacher_intro10' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea></li>
+
+							</div>
+							</div>
+
+					
 				
 				
     </div>
+    </div>
+    </div>
+    
     <div id="tab3" class="tabcontent">
         <h3>교육 시설 안내</h3>
         
 					<div class="row gtr-uniform">
 						<div class="col-6 col-12-xsmall" style="margin:0 auto;color:black;">
-							학원이름 : <strong>코리아 it 아카데미 학원</strong>
-							<!-- <br>
-							학원 시설 설명
-							<textarea name="facility_intro" id="facility_intro" rows="3" style="resize:none;" placeholder="학원 시설 사진"></textarea> -->
-							<br>
-							학원 시설 사진 <br>
-							<input type="file" name="aca_facility" id="aca_facility"/>
-							<br>
-							<div id="facility" name="facility" style="list-style-type: none;"></div>
-							<input TYPE="button" VALUE="사진 추가"  OnClick="teacher4.style.visibility='visible'">
-							<input TYPE="button" VALUE="삭제하기"  OnClick="teacher4.style.visibility='hidden'">
+							학원 시설 사진 (추가 할 사진을 한번에 넣어주세요)<br>
+							    <form name="fileForm" action="requestupload2" method="post" enctype="multipart/form-data">
+       								 <input multiple="multiple" type="file" name="file" />
+       								 <input type="submit" value="전송" />
+   								 </form>
+
 						</div>
 					</div>
 				
@@ -299,10 +582,6 @@ table{border:1px solid #f2f2f2;width:100%;} */
 		list.innerHTML = list.innerHTML + "<hr><li>선생님 이름<br><input type='text'/></li><br>선생님 사진<br><input type='file' id='teacherPhoto2' name='teacherPhoto2'></br><br>경력사항<br><textarea name='facility_intro2' id='facility_intro2' rows='6' style='resize:none;' placeholder='경력사항 입력'></textarea><br><br>선생님 소개<br><textarea name='facility_intro3' id='facility_intro3' rows='6' style='resize:none;' placeholder='선생님 소개'></textarea><br><br>영상 업로드<br><input type='file' id='teacherVideo' name='teacherVideo'><br>"
 	} */
 	
-function addfacility(){
-		var list = document.getElementById("facility")
-		list.innerHTML = list.innerHTML + "<hr><br>학원 시설 사진<br><input type='file' id='aca_facility2' name='aca_facility2'></br><br>학원 시설 사진<br><input type='file' id='aca_facility3' name='aca_facility3'></br><br>학원 시설 사진<br><input type='file' id='aca_facility4' name='aca_facility4'></br>"
-	}
 	
 function checkInput(sel,item){
     if($(sel).val().trim().length == 0){
@@ -340,6 +619,72 @@ $(document).ready(function(){
 	            $('#' + activeTab).addClass('current');
 	        })
 	    });
+</script>
+
+<script>
+function t_block1(){
+	teacher1.style.display="block";
+}
+function t_none1(){
+	teacher1.style.display="none";
+}
+
+function t_block2(){
+	teacher2.style.display="block";
+}
+function t_none2(){
+	teacher2.style.display="none";
+}
+
+function t_block3(){
+	teacher3.style.display="block";
+}
+function t_none3(){
+	teacher3.style.display="none";
+}
+
+function t_block4(){
+	teacher4.style.display="block";
+}
+function t_none4(){
+	teacher4.style.display="none";
+}
+
+function t_block5(){
+	teacher5.style.display="block";
+}
+function t_none5(){
+	teacher5.style.display="none";
+}
+
+function t_block6(){
+	teacher6.style.display="block";
+}
+function t_none6(){
+	teacher6.style.display="none";
+}
+
+function t_block7(){
+	teacher7.style.display="block";
+}
+function t_none7(){
+	teacher7.style.display="none";
+}
+
+function t_block8(){
+	teacher8.style.display="block";
+}
+function t_none8(){
+	teacher8.style.display="none";
+}
+
+function t_block9(){
+	teacher9.style.display="block";
+}
+function t_none9(){
+	teacher9.style.display="none";
+}
+
 </script>
 <%@ include file = "../../footer.jsp" %>
 </html>
