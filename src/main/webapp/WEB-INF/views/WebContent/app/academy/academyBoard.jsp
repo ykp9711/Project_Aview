@@ -86,30 +86,29 @@ select {
 		<h3>
 			<a href="/board/academyDetailEdit" class="button small">학원 등록 하기</a>
 		</h3>
-		<div class="table-wrapper">
-			등록된 학원 : ${total}<br><br>
-			<table>
-				<tr class="tHead">
-					<th class="photo">사진</th>
-					<th class="title">학원 이름</th>
-					<th class="kind">학원 종류</th>
-					<th class="area">학원 장소</th>
+		      <div class="table-wrapper">
+         등록된 학원 : ${total}<br><br>
+         <table style="border: 1px; solid;">
+            <tr class="tHead">
+               <th class="photo">사진</th>
+               <th class="title">제목 / 태그</th>
+               <th class="kind">학원 종류</th>
+               <th class="area">학원 장소</th>
 
-				</tr>
-				<c:forEach var="list" items="${list}">
-					<tr class="tBody">
-						<td class="ano">${list.ano}</td>
-						<td class="photo">${list.academyPhoto}</td>
-						<td class="title"><a class="goGet" href="${list.ano}">${list.title}</a></td>
-						<td class="kind">${list.academyKind}</td>
-						<td class="area">${list.academyArea}</td>
-					</tr>
-				</c:forEach>
+            </tr>
+            <c:forEach var="list" items="${list}">
+               <tr>
+                  <td class="photo" >${list.academyPhoto}</td>
+                  <td class="title">${list.academyTitle}</td>
+                  <td class="kind">${list.academyKind}</td>
+                  <td class="area">${list.academyArea}</td>
+               </tr>
 
-				</tbody>
-			</table>
-		</div>
+            </c:forEach>
 
+            </tbody>
+         </table>
+      </div>
 		<div class="big-width" style="text-align: center">
 			<%-- 이전버튼 --%>
 			<c:if test="${pageMaker.prev}">

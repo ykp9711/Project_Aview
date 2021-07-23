@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Aview.mapper.BoardMapper">
+
+   <insert id="register">
+      INSERT INTO TBL_ACADEMY_BOARD
+      (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG) VALUES
+      (SEQ_ACADEMY_BOARD.NEXTVAL, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag})
+   </insert>
+	
+<select id="list" resultType="com.Aview.domain.AcademyBoardVO">
+	SELECT * FROM TBL_ACADEMY_BOARD
+</select>
+</mapper>
