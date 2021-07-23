@@ -4,13 +4,15 @@ import lombok.Data;
 
 @Data
 public class AcademyBoardVO {
-	private Long ano;
-	private String academyArea;
-	private String academyKind;
-	private String academyPhoto;
-	private String academyTitle;
-	private String academyId;
-	private String academyContent;
-	private String academyIntro;
-	private String academyYoutube;
+   private int ano;
+   private String academyArea;
+   private String academyKind;
+   private String academyPhoto;
+   private String academyTitle;
+   private String academyName;
+   private String academyId;
+   private String academyContent;
+   private String academyIntro;
+   private String academyYoutube;
+   private String academyTag;
 }

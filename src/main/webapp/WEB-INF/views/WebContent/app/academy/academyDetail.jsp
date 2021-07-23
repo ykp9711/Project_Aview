@@ -14,7 +14,7 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/assets/css/main.css" />
+   href="/resources/assets/css/main.css" />
 </head>
 <body class="is-preload">
    <%@ include file="/header.jsp"%>
@@ -156,13 +156,13 @@
    
 
    <!-- Scripts -->
-   <script src="assets/js/jquery.min.js"></script>
-   <script src="assets/js/jquery.scrollex.min.js"></script>
-   <script src="assets/js/jquery.scrolly.min.js"></script>
-   <script src="assets/js/browser.min.js"></script>
-   <script src="assets/js/breakpoints.min.js"></script>
-   <script src="assets/js/util.js"></script>
-   <script src="assets/js/main.js"></script>
+   <script src="/resources/assets/js/jquery.min.js"></script>
+   <script src="/resources/assets/js/jquery.scrollex.min.js"></script>
+   <script src="/resources/assets/js/jquery.scrolly.min.js"></script>
+   <script src="/resources/assets/js/browser.min.js"></script>
+   <script src="/resources/assets/js/breakpoints.min.js"></script>
+   <script src="/resources/assets/js/util.js"></script>
+   <script src="/resources/assets/js/main.js"></script>
 
 </body>
 </html>
