@@ -17,7 +17,7 @@
 	<body class="is-preload">
 
 			<!-- Header -->
-				<%@ include file = "/header.jsp" %>
+				<%@ include file = "../../header.jsp" %>
 
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
@@ -27,29 +27,29 @@
 		<!-- 아이디 찾기 -->
 				<div class="container">
 					<section id="find_Id">
-						<form id="findId" name="findId" method="post" action="${pageContext.request.contextPath}/member/MemberFindIdOk.me">
+						<form id="findId" name="findId" method="post" action="/member/sms">
 						<div class="row gtr-uniform">
 							<div class="col-6 col-12-small" style="margin:0 auto;">
-								<label>성</label>
-									<input type="text" maxlength="12" name="u_last_name" id="u_last_name" placeholder="성 입력" required>
+								<label>아이디</label>
+									<input type="text" maxlength="12" name="id" id="id" placeholder="이름 입력" required>
 								<br>
-								<label>이름</label>
-									<input type="text" maxlength="12" name="u_first_name" id="u_first_name" placeholder="이름 입력" required>
-								<br>
-								<label>이메일 입력</label>
-									<input type="text" name="u_email" id="u_email" placeholder="@까지 포함된 email을 입력" required>
-								<br>
+	
 								<label>휴대전화</label>
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-small">
-											<input type="text" name="u_phone" id="u_phone" value="" placeholder="-를 제외하고 숫자만 입력" required>
+											<input type="text" name="phone" id="phone" value="" placeholder="-를 제외하고 숫자만 입력" required>
 										</div>
-										<!-- <div class="col-6 col-12-small">	
-											<input type="submit" value="인증번호 받기"  class="primary"/>
+										<div class="col-6 col-12-small">	
+											<input type="submit" class="send primary" value="인증번호 받기"/>
 										</div></div><br>
 										<label for="AuthenticationCode">인증번호</label>
-											<input type="text" name="fI_code" id="fI_code" placeholder="인증번호를 입력" required> -->
+										<div id="checkBox" style="display: none;">
+											<input type="text" name="code" id="code"  "placeholder="인증번호를 입력" required>
+											<input type="submit" name="check" id="check" value="확인" required>
+										</div>
+					</form>
 								</div>
+						
 								<br><Br>
 								
 								<!-- Button -->
@@ -61,13 +61,13 @@
 											<a href onclick="window.open('${pageContext.request.contextPath}/app/code/checkId.jsp','ID존재 확인','width=600,height=600,location=no,status=no,scrollbars=yes');" class="button">비밀번호 찾기</a>
 										</li>
 									</ul></div></div>
-						</form>
 					</section>
 					</div>
 			</section>
+			<input type="hidden" id="realCode" name="realCode"/>
 
 		<!-- Footer -->
-			<%@ include file = "/footer.jsp" %>
+			<%@ include file = "../../footer.jsp" %>
 
 		<!-- Scripts -->
 			<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -75,7 +75,7 @@
 
 <script>
 //id 서브밋 클릭
-$(function(){
+/* $(function(){
 		
 		$("#submit_Id").on('click',function(){
 		//성 없으면
@@ -113,8 +113,43 @@ $(function(){
 		//다 만족하면 true, 결과 페이지 이동
 			return true;
 		});
-	});</script>
+	}); */</script>
 
+	
+	<script>
+	$('.send').on("click", function(e){
+		e.preventDefault();
+		checkBox.style.display="block";
+		var phone = $('#phone').val(); // 입력한 핸드폰 번호
+		var data = {phone : phone} // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+		$.ajax({ type : "get",
+			url : "/member/sms",
+			data : data, 
+			success : function(result){ 
+				$("#realCode").val(result);
+			
+			}// success 종료
+		}); // ajax 종료
+		 });// function 종료
+	</script>
+	
+	<script>
+		$("#check").on("click", function(e){
+			e.preventDefault();
+			var phone = $("#phone").val();
+			var code = $("#code").val(); // 입력한 코드
+			var realCode =$("#realCode").val() // 전송된 코드
+			console.log(phone)
+			console.log(code)
+			console.log(realCode)
+			if(code.trim() == realCode.trim()){
+				location.href="/member/pwInfo?phone="+phone;
+				return false;
+			}else
+				alert("인증번호가 틀렸습니다")
+				
+		})
+	</script>
 	
 	</body>
 </html>

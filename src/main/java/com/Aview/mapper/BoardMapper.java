@@ -10,7 +10,9 @@ import com.Aview.domain.Criteria;
 public interface BoardMapper {
 	public int register(AcademyBoardVO vo);
 	
-	public List<AcademyBoardVO> list();
+	public List<AcademyBoardVO> getList(Criteria cri);
+	
+	public int getTotal();
 	
 	/*
 	 * public int getTotal(Criteria cri);

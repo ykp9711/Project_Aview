@@ -22,7 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+
+import org.apache.ibatis.annotations.Param;
+import org.json.simple.JSONObject;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+
 import com.Aview.domain.AcademyVO;
+import com.Aview.domain.FindPwVO;
 import com.Aview.domain.StudentVO;
 import com.Aview.mapper.MemberMapper;
 import com.Aview.service.MemberService;
@@ -217,4 +225,61 @@ public class MemberController {
 			 return null;
 			}
 		}
+		// 학생 ID찾기
+		@GetMapping("/stuFindId")
+		public String StuFindId() {
+			return "/WebContent/app/member/findId";
+		}
+		
+		// 학생 PW찾기
+		@GetMapping("/stuFindPw")
+		public String StuFindPw() {
+			 return "/WebContent/app/member/findPw";
+		}
+		
+		@GetMapping("/sms")
+		@ResponseBody
+		public String ExampleSend(String phone) {
+			log.info("들어옴");
+			    String api_key = "";
+			    String api_secret = "";
+			    String ramdom[] = {"a","b","c","d","e","f","g","h","i","j","k","l","n","m","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"};
+			    String code = "";
+			    for(int i=0; i<4; i++) {
+			    	int num = (int)(Math.random()*35);
+			    	code+= ramdom[num];
+			    }
+				/*
+				 * String phone[] = vo.getPhone().split("-"); String number =
+				 * phone[0]+phone[1]+phone[2];
+				 */
+			    Message coolsms = new Message(api_key, api_secret);
+
+			   
+			    HashMap<String, String> params = new HashMap<String, String>();
+			    params.put("to", phone.replace("-", "")); // 수신번호 010-1234-5678 01012345678
+			    params.put("from", "01085631665"); // 발신번호
+			    params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
+			    params.put("text", code); // 문자내용    
+			    params.put("app_version", "JAVA SDK v2.2"); // application name and version
+
+
+			    try {
+			      JSONObject obj = (JSONObject) coolsms.send(params);
+			      System.out.println(obj.toString());
+			    } catch (CoolsmsException e) {
+			      System.out.println(e.getMessage());
+			      System.out.println(e.getCode());
+			    }
+			    return code;
+			  }
+		// 인증성공 시 비밀번호 보여줌
+		@GetMapping("pwInfo")
+		public String pwInfo(@Param("phone") String phone, Model mo) {
+			String number = phone.replace("-","");
+			mo.addAttribute("info", mapper.getPw(number));
+			return "/WebContent/app/member/findPwResult";
+		}
+		
+			
 }
