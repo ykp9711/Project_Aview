@@ -15,4 +15,5 @@ public class AcademyBoardVO {
    private String academyIntro;
    private String academyYoutube;
    private String academyTag;
+   private int rn;
 }

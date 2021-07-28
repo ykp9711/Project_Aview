@@ -8,7 +8,22 @@
       (SEQ_ACADEMY_BOARD.NEXTVAL, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag})
    </insert>
 	
-<select id="list" resultType="com.Aview.domain.AcademyBoardVO">
-	SELECT * FROM TBL_ACADEMY_BOARD
-</select>
+	<select id="getList" resultType="com.Aview.domain.AcademyBoardVO">
+SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
+	FROM
+		(SELECT /*+ INDEX_DESC(TBL_ACADEMY_BOARD PK_ACADEMY_BOARD) */ ROWNUM RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
+		FROM TBL_ACADEMY_BOARD
+		<![CDATA[
+		WHERE ROWNUM <= #{amount} * #{pageNum})
+		WHERE RN >= (#{pageNum} * #{amount}) - 9 
+		]]> 
+	</select>
+	
+	<select id="getTotal" resultType="_int">
+		SELECT COUNT(*) FROM TBL_ACADEMY_BOARD WHERE
+		<![CDATA[
+		ANO > 0
+		]]>
+		<!-- 뒤에 AND가 오니깐 무조건 TRUE인 조건을 하나 붙혀서 오류를 해결한다. -->
+	</select>
 </mapper>

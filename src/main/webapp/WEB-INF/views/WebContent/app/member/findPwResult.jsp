@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!-- Header -->
-<%@ include file = "/header.jsp" %>
+<%@ include file = "../../header.jsp" %>
 
 	<!-- Main -->
 			<head>
@@ -12,8 +12,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
 			</head>
-				<c:set var="find_Pw" value="${requestScope.find_Pw}"/>
-				<c:set var="f_id" value="${requestScope.f_id}"/>
+				
 	<!--pw찾기 결과페이지 main-->
 		<section id="main" class="wrapper style1">
  				<div class="container" >
@@ -22,9 +21,9 @@
  					<section id = "findId_result">
 					<h3>
  					<label>
- 					<span style="font-size:140%">${f_id}</span>
+ 					<span style="font-size:140%">${info.sid}</span>
  					<span style="font-size:100%">님이 찾으신 PW는 : </span>
- 					<span style="font-size:140%">${find_Pw}</span>
+ 					<span style="font-size:140%">${info.spwd}</span>
  					<span style="font-size:100%">입니다</span>&nbsp;&nbsp;
  					</label>
  					</h3>
@@ -38,7 +37,7 @@
 
 			
 	<!-- Footer -->
-<%@ include file = "/footer.jsp" %>
+<%@ include file = "../../footer.jsp" %>
 
 <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>var contextPath = "${pageContext.request.contextPath}";</script>

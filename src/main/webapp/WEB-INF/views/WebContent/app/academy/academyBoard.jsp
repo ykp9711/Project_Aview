@@ -89,7 +89,8 @@ select {
 		      <div class="table-wrapper">
          등록된 학원 : ${total}<br><br>
          <table style="border: 1px; solid;">
-            <tr class="tHead">
+            	<tr class="tHead">
+            	<th class="photo">글번호</th>
                <th class="photo">사진</th>
                <th class="title">제목 / 태그</th>
                <th class="kind">학원 종류</th>
@@ -98,6 +99,7 @@ select {
             </tr>
             <c:forEach var="list" items="${list}">
                <tr>
+               	  <td class="photo" >${list.rn}</td>
                   <td class="photo" >${list.academyPhoto}</td>
                   <td class="title">${list.academyTitle}</td>
                   <td class="kind">${list.academyKind}</td>
@@ -112,20 +114,17 @@ select {
 		<div class="big-width" style="text-align: center">
 			<%-- 이전버튼 --%>
 			<c:if test="${pageMaker.prev}">
-				<a class="changePage" href="${pageMaker.startPage - 1}">&lt;</a>
+				<a class="changePage" href="${pageMaker.startPage-1}">&lt</a>
 			</c:if>
-
-
+			
 			<%-- 페이지 구현 --%>
-			<c:forEach var="num" begin="${pageMaker.startPage}"
-				end="${pageMaker.endPage}">
+			<c:forEach var= "num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 				<c:choose>
 					<c:when test="${pageMaker.cri.pageNum eq num}">${num}</c:when>
 					<c:otherwise>
 						<a class="changePage" href="${num}">${num}</a>
 					</c:otherwise>
 				</c:choose>
-
 			</c:forEach>
 
 			<%-- 다음버튼 --%>

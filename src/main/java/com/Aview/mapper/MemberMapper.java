@@ -31,4 +31,7 @@ public interface MemberMapper {
 	public int stuUpdate(StudentVO stu);
 	
 	public int acaUpdate(AcademyVO aca);
+	
+	//비번찾기
+	public StudentVO getPw(String number);
 }

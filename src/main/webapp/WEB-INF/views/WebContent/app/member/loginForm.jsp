@@ -53,7 +53,8 @@
 					<input type="password" name="spwd" placeholder="패스워드">
 				
 					<p align="right">
-						<a href="find_id.jsp" style="font-size: 13px">아이디및 비밀번호 찾기</a>
+						<a href="/member/stuFindId" style="font-size: 13px">아이디 찾기</a>
+						<a href="/member/stuFindPw" style="font-size: 13px">비밀번호 찾기</a>
 					</p>
 					<br>
 					<ul class="actions">
