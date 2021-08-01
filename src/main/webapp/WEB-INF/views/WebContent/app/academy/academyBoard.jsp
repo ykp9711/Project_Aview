@@ -148,12 +148,12 @@ select {
 
 				<select name="type" style="width: 15%; float: left;">
 					<option value="" ${pageMaker.cri.type == null ? 'selected' : ''}>검색기준</option>
-					<option value="T" ${pageMaker.cri.type == 'T' ? 'selected' : ''}>제목</option>
-					<option value="C" ${pageMaker.cri.type == 'C' ? 'selected' : ''}>종류</option>
-					<option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>장소</option>
-					<option value="TC" ${pageMaker.cri.type == 'TC' ? 'selected' : ''}>제목 또는 종류</option>
-					<option value="TW" ${pageMaker.cri.type == 'TW' ? 'selected' : ''}>제목 또는 장소</option>
-					<option value="TCW" ${pageMaker.cri.type == 'TCW' ? 'selected' : ''}>제목 또는 종류 또는 장소</option>
+					<option value="T" ${pageMaker.cri.type == 'T' ? 'selected' : ''}>제목/태그</option>
+					<option value="C" ${pageMaker.cri.type == 'C' ? 'selected' : ''}>학원종류</option>
+					<option value="W" ${pageMaker.cri.type == 'W' ? 'selected' : ''}>학원장소 </option>
+					<option value="TC" ${pageMaker.cri.type == 'TC' ? 'selected' : ''}>제목/태그 또는 학원종류</option>
+					<option value="TW" ${pageMaker.cri.type == 'TW' ? 'selected' : ''}>제목/태그 또는 학원장소</option>
+					<option value="TCW" ${pageMaker.cri.type == 'TCW' ? 'selected' : ''}>제목/태그 또는 학원종류 또는 학원장소</option>
 				</select> &nbsp;&nbsp;&nbsp;&nbsp; 
 				<input type="text" id="keyword" name="keyword" value="${pageMaker.cri.keyword}" style="width: 65%; float: center;" />
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">

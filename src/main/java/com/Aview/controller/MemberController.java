@@ -1,6 +1,7 @@
 package com.Aview.controller;
 
 import java.io.PrintWriter;
+
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -281,5 +282,104 @@ public class MemberController {
 			return "/WebContent/app/member/findPwResult";
 		}
 		
+		@GetMapping("/findIDaca")
+		public String findIDacaGo() {
+			return "/WebContent/app/member/findIdAca";
+		}
+		
+		@GetMapping("/acaCheckId")
+		public String acaCheckIdGo() {
+			return "/WebContent/app/code/checkId";
+		}
+		
+		@GetMapping("/acaFindPw")
+		public String acaCheckPwGo() {
+			return "/WebContent/app/code/checkUserPw";
+		}
+
+		
+		@PostMapping("/checkIdAca")
+		public String checkIdAcaGo(Model model, @Param("aid") String aid, HttpServletResponse resp) throws Exception {
+			model.addAttribute("aid", aid);
+			log.info(aid);
+			if(mapper.acaAcademyCheck2(aid)==1) {
+				return "/WebContent/app/code/checkUserPw";
+			}
+			else
+				resp.setCharacterEncoding("UTF-8");
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("text/html;charset=utf-8");
+				out.println("<script>");
+				out.println("alert('없는 아이디입니다.')");
+				out.println("location.href='/member/acaCheckId'");
+				out.println("</script>");
+				return null;
+		}
+		
+		@GetMapping("/acaIdResult")
+		public String acaIdResultGo(Model model, @Param("aname") String aname, HttpServletResponse resp) throws Exception{
+				model.addAttribute("aname", aname);
+				log.info(aname);
+				aca = mapper.getResult(aname);
+				model.addAttribute("id", aca);
+				return "/WebContent/app/member/IdResultAca";
+		}
+		
+		@GetMapping("/stuIdResult")
+		public String stuIdResultGo(Model model, @Param("semail") String semail, HttpServletResponse resp) throws Exception{
+				model.addAttribute("semail", semail);
+				log.info(semail);
+				stu = mapper.getResultstu(semail);
+				model.addAttribute("id", stu);
+				return "/WebContent/app/member/IdResultAca";
+		}
+		
+		@PostMapping("/acafindId")
+		public String acafindIdGo(AcademyVO aca, Model model, @Param("aname") String aname, HttpServletResponse resp) throws Exception {
+			log.info(aname);
+			log.info(aca);
+			model.addAttribute("aname", aname);
+
+			if(mapper.acafindId(aca)==1) {
+				return "redirect:/member/acaIdResult?";
+			}
+			else
+				resp.setCharacterEncoding("UTF-8");
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("text/html;charset=utf-8");
+				out.println("<script>");
+				out.println("alert('모든 항목을 작성해주세요.')");
+				out.println("location.href='/member/findIDaca'");
+				out.println("</script>");
+				return null;
+		}
+		
+		@PostMapping("/stufindId")
+		public String stufindIdGo(StudentVO stu, Model model, HttpServletResponse resp) throws Exception {
+//			log.info(semail);
+//			log.info(stu);
+//			model.addAttribute("semail", semail);
+
+			if(mapper.stufindId(stu)==1) {
+				return "redirect:/member/stuIdResult?";
+			}
+			else
+				resp.setCharacterEncoding("UTF-8");
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("text/html;charset=utf-8");
+				out.println("<script>");
+				out.println("alert('모든 항목을 작성해주세요.')");
+				out.println("location.href='/member/stuFindId'");
+				out.println("</script>");
+				return null;
+		}
+		
+//		// 인증성공 시 비밀번호 보여줌
+//		@GetMapping("pwInfo")
+//		public String pwInfoAca(@Param("phone") String phone, Model mo) {
+//			String number = phone.replace("-","");
+//			mo.addAttribute("info", mapper.getPwAca(number));
+//			return "/WebContent/app/member/findPwResultAca";
+//		}
 			
 }

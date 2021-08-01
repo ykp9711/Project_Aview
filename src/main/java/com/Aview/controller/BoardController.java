@@ -66,9 +66,9 @@ public class BoardController {
    
    @GetMapping("/academyBoard") 
    public String serviceGo(Model mo, Criteria cri) {
-     mo.addAttribute("list", mapper.getList(cri));
-     mo.addAttribute("total", mapper.getTotal());
-     mo.addAttribute("pageMaker", new PageDTO(cri, mapper.getTotal()));
+	   mo.addAttribute("list", mapper.getList(cri));
+		mo.addAttribute("pageMaker", new PageDTO(cri, mapper.getTotal(cri)));
+		mo.addAttribute("total", mapper.getTotal(cri));
       return "/WebContent/app/academy/academyBoard";
    }
 }

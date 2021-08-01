@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ include file="../../header.jsp"%>
 <!DOCTYPE HTML>
 <!--
 	Drift by Pixelarity
@@ -9,7 +11,7 @@
 -->
 <html>
 	<head>
-		<title>Untitled</title>
+		<title>Find ID ACADEMYUSER</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
@@ -17,24 +19,26 @@
 	<body class="is-preload">
 
 			<!-- Header -->
-				<%@ include file = "../../header.jsp" %>
 
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2>아이디 찾기</h2>
+					<h2>학원 아이디 찾기</h2>
 				</header>
 		<!-- 아이디 찾기 -->
 				<div class="container">
 					<section id="find_Id">
-						<form id="findId" name="findId" method="post" action="/member/stufindId">
+						<form id="findId" name="findId" method="post" action="/member/acafindId">
 						<div class="row gtr-uniform">
 							<div class="col-6 col-12-small" style="margin:0 auto;">
+								<label>학원 이름</label>
+									<input type="text" maxlength="12" name="aname" id="aname" placeholder="성 입력" required>
+								<br>
 								<label>이메일 입력</label>
-									<input type="text" name="semail" id="semail" placeholder="@까지 포함된 email을 입력" required>
+									<input type="text" name="aemail" id="aemail" placeholder="@까지 포함된 email을 입력" required>
 								<br>
 								<label>휴대전화</label>
-											<input type="text" name="sphone" id="sphone" value="" placeholder="-를 제외하고 숫자만 입력" required>
+											<input type="text" name="aphone" id="aphone" value="" placeholder="-를 제외하고 숫자만 입력" required>
 										
 			
 								
@@ -46,7 +50,7 @@
 											<input type="submit" id="submitId" name="submitId" value="아이디 찾기" class="primary" onClick="location.href='javascript:formSubmit()'">
 										</li>
 										<li style="margin: 0 auto;">
-											<a href onclick="window.open('/member/stuFindPw','비밀번호 찾기','width=600,height=600,location=no,status=no,scrollbars=yes');" class="button">비밀번호 찾기</a>
+											<a href onclick="window.open('/member/acaCheckId','ID존재 확인','width=600,height=600,location=no,status=no,scrollbars=yes');" class="button">비밀번호 찾기</a>
 										</li>
 									</ul>
 									</div>
@@ -55,9 +59,8 @@
 					</section>
 					</div>
 
-
 		<!-- Footer -->
-			<%@ include file = "../../footer.jsp" %>
+<%@ include file="../../footer.jsp"%>
 
 		<!-- Scripts -->
 			<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
