@@ -12,7 +12,7 @@ public interface BoardMapper {
 	
 	public List<AcademyBoardVO> getList(Criteria cri);
 	
-	public int getTotal();
+	public int getTotal(Criteria cri);
 	
 	/*
 	 * public int getTotal(Criteria cri);

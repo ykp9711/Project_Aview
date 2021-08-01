@@ -1,38 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<!DOCTYPE html>
+<html>
 <!--
    Drift by Pixelarity
    pixelarity.com | hello@pixelarity.com
    License: pixelarity.com/license
 -->
 <!-- Header -->
-
+<%@ include file="../../header.jsp"%>
 		<head>
-		<title>ReturnCycle</title>
+		<title>Check ID-Aview</title>
 		<meta charset="utf-8" />
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet"
 			href="${pageContext.request.contextPath}/assets/css/main.css" />
-		</head>
-		
+		</head>	
 		<!-- Main -->
-		<section id="main" class="wrapper style1">
-			<header class="major">
-				<h2>ReturnCycle ID CHECK</h2>
-</header>
+
+				
+
+
+<section id="main" class="wrapper style1">
 <div class="container">
 
 	<!-- login -->
-	<section id="CheckId">
-		<form name="CheckIdForm" action="${pageContext.request.contextPath}/member/MemberCheck.me"
-			method="post">
+	<section id="main" class="wrapper style1">
+		<form name="CheckIdForm" action="/member/checkIdAca?" method="post">
 			<div class="row gtr-uniform">
 				<div class="col-6 col-12-small" style="margin: 0 auto;">
+				<h2>AVIEW ID CHECK</h2>
 					<label for="checkId">찾으실 ID를 입력해주세요</label> <input type="text" maxlength="12"
-						name="u_id" id="u_id" value="" placeholder="아이디 입력" required />
+						name="aid" id="aid" value="" placeholder="아이디 입력" required />
 				</div>
 			</div>
 			<br>
@@ -48,14 +49,7 @@
 				</section>
 			</div>
 		</section>
-		<body onkeydown="javascript:EnterLogin();"></body>
 		<script>
-			function EnterLogin() {
-				var keyCode = window.event.keyCode;
-				if (keyCode == 13) {
-					loginForm.submit();
-				}
-			}
 			
 			$("#submitId").on('click',function(){
 				//성 없으면
@@ -66,4 +60,6 @@
 					}
 			});
 		</script>
+<%@ include file="../../footer.jsp"%>
+</html>
 		<!-- footer -->

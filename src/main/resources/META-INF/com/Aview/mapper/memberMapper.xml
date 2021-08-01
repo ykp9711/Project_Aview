@@ -60,6 +60,29 @@ SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd}
 		SELECT * FROM TBL_STUDENT WHERE SPHONE = #{number}
 	</select>
 	
+	<select id="getPwAca" resultType="com.Aview.domain.AcademyVO">
+		SELECT * FROM TBL_ACADEMY WHERE SPHONE = #{number}
+	</select>
+
+	<select id="acaAcademyCheck2" resultType="_int">
+		SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid}
+	</select>
+	
+	<select id="getResult" resultType="com.Aview.domain.AcademyVO">
+		SELECT * FROM TBL_ACADEMY WHERE ANAME = #{aname}
+	</select>
+	
+	<select id="getResultstu" resultType="com.Aview.domain.StudentVO">
+		SELECT * FROM TBL_STUDENT WHERE SEMAIL = #{semail}
+	</select>
+	
+	<select id="acafindId" resultType="_int">
+		SELECT COUNT(*) FROM TBL_ACADEMY WHERE ANAME = #{aname} AND AEMAIL = #{aemail} AND APHONE = #{aphone}
+	</select>
+	
+	<select id="stufindId" resultType="_int">
+		SELECT COUNT(*) FROM TBL_STUDENT WHERE SEMAIL = #{semail} AND SPHONE = #{sphone}
+	</select>
 </mapper>
 
 

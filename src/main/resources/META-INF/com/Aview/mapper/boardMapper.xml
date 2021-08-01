@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Aview.mapper.BoardMapper">
 
+	<sql id="criteria">
+		<if test="type != null and keyword != null">
+			<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<!-- 전달받은 객체(Criteria)에서 collection에 적당한 typeArr의 getter()를 mapping한다. -->
+			<!-- 즉, Criteria 필드에 getTypeArr()을 사용하여 반복횟수와 값을 결정한다. -->
+				<foreach item="type" collection="typeArr">
+					<trim prefix="OR">
+						<choose>
+							<when test="type == 'T'.toString()">
+								(ACADEMYTITLE LIKE '%' || #{keyword} || '%')
+							</when>
+							<when test="type == 'C'.toString()">
+								(ACADEMYKIND LIKE '%' || #{keyword} || '%')
+							</when>
+							<when test="type == 'W'.toString()">
+								(ACADEMYAREA LIKE '%' || #{keyword} || '%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim> 
+		</if>
+	</sql>
+	
    <insert id="register">
       INSERT INTO TBL_ACADEMY_BOARD
       (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG) VALUES
@@ -12,15 +36,17 @@
 SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
 	FROM
 		(SELECT /*+ INDEX_DESC(TBL_ACADEMY_BOARD PK_ACADEMY_BOARD) */ ROWNUM RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
-		FROM TBL_ACADEMY_BOARD
+		FROM TBL_ACADEMY_BOARD WHERE
+		<include refid="criteria"></include>
 		<![CDATA[
-		WHERE ROWNUM <= #{amount} * #{pageNum})
+		ROWNUM <= #{amount} * #{pageNum})
 		WHERE RN >= (#{pageNum} * #{amount}) - 9 
 		]]> 
 	</select>
 	
 	<select id="getTotal" resultType="_int">
 		SELECT COUNT(*) FROM TBL_ACADEMY_BOARD WHERE
+		<include refid="criteria"></include>
 		<![CDATA[
 		ANO > 0
 		]]>
