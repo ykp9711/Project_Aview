@@ -69,26 +69,25 @@ table{border:1px solid #f2f2f2;width:100%;} */
    </head>
       <!-- Main -->
       
-      <ul class="tab">
-        <li class="current" data-tab="tab1"><a href="#">학원소개등록</a></li>
-        <li data-tab="tab2"><a href="#">메인강사등록</a></li>
-        <li data-tab="tab3"><a href="#">교육 시설 안내</a></li>
-        <li data-tab="tab4"><a href="#">Travel</a></li>
-    </ul>
    <section class="wrapper style1">
-      <header class="major">
-         <h2>학원 등록</h2>
-      </header>
       <div class="container">
-     
       <!-- Join -->
          <article id = "AcademyUpload">
-         
-         <div id="tab1">
+         <div id="tab1" class="tabcontent current">
+         			<ul class="tab">
+		        <li class="current" data-tab="tab1"><a href="#">학원소개등록</a></li>
+		        <li data-tab="tab2"><a href="#tab2">메인강사등록</a></li>
+		        <li data-tab="tab3"><a href="#tab3">교육 시설 안내</a></li>
+		        <li data-tab="tab4"><a href="#tab4">Travel</a></li>
+		    </ul>
             <form name="joinForm" action="/board/register" method="post">   
                <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
-                        <br><br><br>
+ 						<br><br>
+						    <header class="major">
+						         <h2>학원 등록</h2>
+						      </header>
+                        <br>
                         <label>학원 이름</label>
                            <input type="text" maxlength="12" name="academyName" id="academyName" value="" required>
                            <p id="Academy_text"></p>
@@ -154,8 +153,6 @@ table{border:1px solid #f2f2f2;width:100%;} */
                                 <%-- <a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a> --%>
                         </li>
                      </ul>
-                  </div>
-                  </div>
                   
                      </form>
                      </div>
@@ -164,17 +161,25 @@ table{border:1px solid #f2f2f2;width:100%;} */
                </section>
                
  <section class="wrapper style1">
-      <header class="major">
-         <h2>메인 강사 등록</h2>
-      </header>
+
       <div class="container">
       <!-- Join -->
          <article id = "AcademyUpload">
          <div id="tab2" class="tabcontent current">
+               <ul class="tab">
+        <li class="current" data-tab="tab1"><a href="#">학원소개등록</a></li>
+        <li data-tab="tab2"><a href="#tab2">메인강사등록</a></li>
+        <li data-tab="tab3"><a href="#tab3">교육 시설 안내</a></li>
+        <li data-tab="tab4"><a href="#tab4">Travel</a></li>
+    </ul>
             <form name="joinForm" action="/member/acajoin" method="post">   
                <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
-                     <br><br><br>
+                     <br><br>
+                      <header class="major">
+				         	<h2>메인 강사 등록</h2>
+				      </header>
+                     <br>
                         <label>강사 이름</label>
                            <input type="text" maxlength="12" name="aname" value="" required>
                            <p id="Academy_text"></p>
@@ -186,7 +191,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
                           <br>
                         <label>강사 사진</label>
                            <input type='file' id='teacher_Photo' name='teacher_Photo'>
-                          <br>
+                          <br><br>
                         <label>강사 소개</label>
                           <textarea name='teacher_intro' id='teacher_intro' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea>
 
@@ -195,7 +200,8 @@ table{border:1px solid #f2f2f2;width:100%;} */
                   <!-- 강사 추가 1번 -->
                   <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
-                     <br><br><br>
+                     <br><br>
+                     <h2>2번 강사</h2><br>
                         <label>강사 이름</label>
                            <input type="text" maxlength="12" name="aname" value="" required>
                            <p id="Academy_text"></p>
@@ -207,19 +213,19 @@ table{border:1px solid #f2f2f2;width:100%;} */
                           <br>
                         <label>강사 사진</label>
                            <input type='file' id='teacher_Photo' name='teacher_Photo'>
-                          <br>
+                          <br><br>
                         <label>강사 소개</label>
                           <textarea name='teacher_intro' id='teacher_intro' rows='5' style='resize:none;' placeholder='선생님 소개 입력'></textarea>
 
                       </div>
-                  </div>
+                      
+                  </div><br><br>
                   <ul class="actions">
                         <li style="margin:0 auto;">
-                           <input type="submit" value="등록하기" class="primary"/>
+                           <input type="submit" value="등록하기" class="primary"/>&nbsp;&nbsp;
                            <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
-                           <input type="reset" value="다시작성" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>
+                           <input type="reset" value="강사 추가" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>
                                 <!-- <a href="javascript:joinForm.reset()">다시작성</a>&nbsp;&nbsp; -->
-                                <a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a>
                         </li>
                      </ul>
                      </form>
@@ -229,36 +235,36 @@ table{border:1px solid #f2f2f2;width:100%;} */
                </section>
                
       <section class="wrapper style1">
-      <header class="major">
-         <h2>교육 시설 안내</h2>
-      </header>
       <div class="container">
      
       <!-- Join -->
          <article id = "AcademyUpload">
          <div id="tab3" class="tabcontent current">
+               <ul class="tab">
+        <li class="current" data-tab="tab1"><a href="#">학원소개등록</a></li>
+        <li data-tab="tab2"><a href="#tab2">메인강사등록</a></li>
+        <li data-tab="tab3"><a href="#tab3">교육 시설 안내</a></li>
+        <li data-tab="tab4"><a href="#tab4">Travel</a></li>
+    </ul>
             <form name="joinForm" action="/member/acajoin" method="post">   
                <div class="row gtr-uniform">
                      <div class="col-6 col-12-small" style="margin:0 auto;">
-                        <label>학원 시설 사진 (추가 할 사진을 한번에 넣어주세요)</label>
-                           <form name="fileForm" action="requestupload2" method="post" enctype="multipart/form-data">
-                           <input multiple="multiple" type="file" name="file" />
-                           <input type="submit" value="전송" />
-                      </form>
+                     <br><br>
+                           <header class="major">
+					         <h2>교육 시설 안내</h2>
+					      </header><br>
+                        <h3>학원 시설 사진 (추가 할 사진을 한번에 넣어주세요)</h3><br>
+                           <input multiple="multiple" type="file" name="file" />&nbsp;
                            <p id="Academy_text"></p>
-                       
+<br><br><br>
                      <ul class="actions">
                         <li style="margin:0 auto;">
-                           <input type="submit" value="가입하기" class="primary"/>
-                           <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
-                           <input type="reset" value="다시작성" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>
-                                <!-- <a href="javascript:joinForm.reset()">다시작성</a>&nbsp;&nbsp; -->
-                                <a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a>
+                           <input type="submit" value="가입하기" class="primary"/><br>
+
                         </li>
                      </ul>
                   </div>
                   </div>
-                  
                      </form>
                      </div>
                      </article>

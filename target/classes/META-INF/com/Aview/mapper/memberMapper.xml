@@ -61,7 +61,7 @@ SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd}
 	</select>
 	
 	<select id="getPwAca" resultType="com.Aview.domain.AcademyVO">
-		SELECT * FROM TBL_ACADEMY WHERE SPHONE = #{number}
+		SELECT * FROM TBL_ACADEMY WHERE APHONE = #{number}
 	</select>
 
 	<select id="acaAcademyCheck2" resultType="_int">

@@ -19,27 +19,23 @@
 			href="${pageContext.request.contextPath}/assets/css/main.css" />
 		</head>	
 		<!-- Main -->
-		<section id="main" class="wrapper style1">
+			<section id="main" class="wrapper style1">
 			<header class="major">
 				<h2>비밀번호 찾기</h2>
 				<h4>전화번호 인증</h4>
 </header>
 <div class="container">
-
-	<!-- login -->
 	<section id="CodeCheck">
-		<form name="CodeCheckForm" action="/member/codeReceive" method="post">
+		<form name="CodeCheckForm" action="/member/sms" method="post">
 			<div class="row gtr-uniform">
 				<div class="col-6 col-12-small" style="margin: 0 auto;">
-					<label for="phone">전화 번호</label> <input type="text" maxlength="12"
-						name="aphone" id="aphone" value="" placeholder="-제외 하고 전화번호 입력" required /><br>
-						<input type="submit" class="send primary" value="인증번호 받기"/>
-					<%-- <a href onclick="window.open('${pageContext.request.contextPath}/code/CodeOk.cd','인증번호 받기','width=600,height=600,location=no,status=no,scrollbars=yes');" class="button">인증번호 받기</a> --%>
-			</div></div>
-		</form>
-		<form name="CodeCheckForm2" action="/member/codeCheck" method="post">
+					<label for="phone">전화 번호</label> 
+					<input type="text" maxlength="12" name="phone" id="phone" value="" placeholder="-제외 하고 전화번호 입력" required /><br>
+					<input type="submit" class="send primary" value="인증번호 받기"/>
+				</div>
+			</div><br>
 		<div class="row gtr-uniform">
-			<div class="col-6 col-12-small" style="margin: 0 auto;">
+			<div id="checkBox" class="col-6 col-12-small" style="margin: 0 auto;">
 				<label for="AuthenticationCode">인증번호</label> 
 				<input type="text" maxlength="12" name="tempcode" id="tempcode" value="" placeholder="인증번호 입력" required /><br>
 				<input type="submit" name="check" id="check" value="확인" required>
@@ -49,7 +45,11 @@
 		</form>
 	</section>
 </div>
-		</section>
+			<input type="hidden" id="realCode" name="realCode"/>
+</section>
+			
+			<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
+			<script>var contextPath = "${pageContext.request.contextPath}";</script>
 		 <script>
 		 $('.send').on("click", function(e){
 				e.preventDefault();
@@ -71,13 +71,13 @@
 				$("#check").on("click", function(e){
 					e.preventDefault();
 					var phone = $("#phone").val();
-					var code = $("#code").val(); // 입력한 코드
+					var code = $("#tempcode").val(); // 입력한 코드
 					var realCode =$("#realCode").val() // 전송된 코드
 					console.log(phone)
 					console.log(code)
 					console.log(realCode)
 					if(code.trim() == realCode.trim()){
-						location.href="/member/pwInfo?phone="+phone;
+						location.href="/member/pwInfoAca?phone="+phone;
 						return false;
 					}else
 						alert("인증번호가 틀렸습니다")
