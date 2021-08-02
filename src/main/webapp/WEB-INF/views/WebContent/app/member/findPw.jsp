@@ -20,52 +20,34 @@
 				<%@ include file = "../../header.jsp" %>
 
 		<!-- Main -->
-			<section id="main" class="wrapper style1">
+	<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2>아이디 찾기</h2>
+					<h2>비밀번호 찾기</h2>
+					<h4>전화번호 인증</h4>
 				</header>
 		<!-- 아이디 찾기 -->
 				<div class="container">
-					<section id="find_Id">
-						<form id="findId" name="findId" method="post" action="/member/sms">
+				<section id="CodeCheck">
+					<form name="CodeCheckForm" action="/member/sms" method="post">
 						<div class="row gtr-uniform">
-							<div class="col-6 col-12-small" style="margin:0 auto;">
-								<label>아이디</label>
-									<input type="text" maxlength="12" name="id" id="id" placeholder="이름 입력" required>
-								<br>
-	
-								<label>휴대전화</label>
-									<div class="row gtr-uniform">
-										<div class="col-6 col-12-small">
-											<input type="text" name="phone" id="phone" value="" placeholder="-를 제외하고 숫자만 입력" required>
-										</div>
-										<div class="col-6 col-12-small">	
-											<input type="submit" class="send primary" value="인증번호 받기"/>
-										</div></div><br>
-										<label for="AuthenticationCode">인증번호</label>
-										<div id="checkBox" style="display: none;">
-											<input type="text" name="code" id="code"  "placeholder="인증번호를 입력" required>
-											<input type="submit" name="check" id="check" value="확인" required>
-										</div>
-					</form>
+							<div class="col-6 col-12-small" style="margin: 0 auto;">
+								<label>전화 번호</label>
+								<input type="text" name="phone" id="phone" value="" placeholder="-를 제외하고 숫자만 입력" required/><br>
+								<input type="submit" class="send primary" value="인증번호 받기"/>
+							</div>
+						</div><br>
+							<div class="row gtr-uniform">
+								<div id="checkBox" class="col-6 col-12-small" style="margin: 0 auto;">
+									<label for="AuthenticationCode">인증번호</label> 
+									<input type="text" maxlength="12" name="code" id="code" value="" placeholder="인증번호 입력" required /><br>
+									<input type="submit" name="check" id="check" value="확인" required>
 								</div>
-						
-								<br><Br>
-								
-								<!-- Button -->
-									<ul class="actions">
-										<li style="margin: 0 auto;">
-											<input type="submit" id="submit_Id" name="submit_Id" value="아이디 찾기" class="primary" onClick="location.href='javascript:formSubmit()'">
-										</li>
-										<li style="margin: 0 auto;">
-											<a href onclick="window.open('${pageContext.request.contextPath}/app/code/checkId.jsp','ID존재 확인','width=600,height=600,location=no,status=no,scrollbars=yes');" class="button">비밀번호 찾기</a>
-										</li>
-									</ul></div></div>
+							</div><br>
+					</form>
 					</section>
 					</div>
-			</section>
 			<input type="hidden" id="realCode" name="realCode"/>
-
+</section>
 		<!-- Footer -->
 			<%@ include file = "../../footer.jsp" %>
 
@@ -150,6 +132,24 @@
 				
 		})
 	</script>
-	
+			<script>
+		$("#requireCode").on('click',function(){
+			//전화번호 없으면
+				if($("#c_phone").val() == ""){
+					alert("전화번호를 입력 하세요.");
+					$("#c_phone").focus();
+					return false;
+				}
+		});
+			
+		$("#submitCode").on('click',function(){
+			//인증번호 없으면
+				if($("#tempcode").val() == ""){
+					alert("인증번호를 입력 하세요.");
+					$("#tempcode").focus();
+					return false;
+				}
+		});
+		</script>
 	</body>
 </html>

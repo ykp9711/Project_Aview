@@ -282,6 +282,13 @@ public class MemberController {
 			return "/WebContent/app/member/findPwResult";
 		}
 		
+		@GetMapping("pwInfoAca")
+		public String pwInfoAca(@Param("phone") String phone, Model mo) {
+			String number = phone.replace("-","");
+			mo.addAttribute("info", mapper.getPwAca(number));
+			return "/WebContent/app/member/findPwResultAca";
+		}
+		
 		@GetMapping("/findIDaca")
 		public String findIDacaGo() {
 			return "/WebContent/app/member/findIdAca";
@@ -331,7 +338,7 @@ public class MemberController {
 				log.info(semail);
 				stu = mapper.getResultstu(semail);
 				model.addAttribute("id", stu);
-				return "/WebContent/app/member/IdResultAca";
+				return "/WebContent/app/member/IdResultStu";
 		}
 		
 		@PostMapping("/acafindId")
@@ -341,7 +348,7 @@ public class MemberController {
 			model.addAttribute("aname", aname);
 
 			if(mapper.acafindId(aca)==1) {
-				return "redirect:/member/acaIdResult?";
+				return "redirect:/member/acaIdResult";
 			}
 			else
 				resp.setCharacterEncoding("UTF-8");
@@ -355,13 +362,13 @@ public class MemberController {
 		}
 		
 		@PostMapping("/stufindId")
-		public String stufindIdGo(StudentVO stu, Model model, HttpServletResponse resp) throws Exception {
-//			log.info(semail);
-//			log.info(stu);
-//			model.addAttribute("semail", semail);
+		public String stufindIdGo(StudentVO stu, Model model,@Param("semail") String semail, HttpServletResponse resp) throws Exception {
+			log.info(semail);
+			log.info(stu);
+			model.addAttribute("semail", semail);
 
 			if(mapper.stufindId(stu)==1) {
-				return "redirect:/member/stuIdResult?";
+				return "redirect:/member/stuIdResult";
 			}
 			else
 				resp.setCharacterEncoding("UTF-8");
