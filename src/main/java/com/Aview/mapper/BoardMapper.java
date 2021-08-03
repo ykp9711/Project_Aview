@@ -14,9 +14,11 @@ public interface BoardMapper {
 	
 	public int getTotal(Criteria cri);
 	
-	/*
-	 * public int getTotal(Criteria cri);
-	 * 
-	 * public List<AcademyBoardVO> getList(Criteria cri);
-	 */
+	public AcademyBoardVO getAcademy(int ano);
+	
+	public int acaId(String id); // 세션 id를 보내 학원아이디인지 확인
+	
+	public int modifyBoard(AcademyBoardVO vo); // 게시글 수정
+	
+	public void removeBoard(int ano); // 게시글 삭제
 }

@@ -84,7 +84,9 @@ select {
 	<section id="content">
 		<br> <br>
 		<h3>
+		<c:if test="${acaid eq 'acaOk'}">
 			<a href="/board/academyDetailEdit" class="button small">학원 등록 하기</a>
+			</c:if>
 		</h3>
 		      <div class="table-wrapper">
          등록된 학원 : ${total}<br><br>
@@ -101,7 +103,7 @@ select {
                <tr>
                	  <td class="photo" >${list.rn}</td>
                   <td class="photo" >${list.academyPhoto}</td>
-                  <td class="title">${list.academyTitle}</td>
+                  <td class="title"><a href="/board/getBoard?ano=${list.ano}">${list.academyTitle}</a></td>
                   <td class="kind">${list.academyKind}</td>
                   <td class="area">${list.academyArea}</td>
                </tr>

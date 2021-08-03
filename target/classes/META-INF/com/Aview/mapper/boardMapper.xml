@@ -28,11 +28,11 @@
 	
    <insert id="register">
       INSERT INTO TBL_ACADEMY_BOARD
-      (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG) VALUES
-      (SEQ_ACADEMY_BOARD.NEXTVAL, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag})
+      (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG, ACADEMYMAPPHOTO, MAPDETAIL) VALUES
+      (SEQ_ACADEMY_BOARD.NEXTVAL, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag}, #{academyMapPhoto}, #{mapDetail})
    </insert>
 	
-	<select id="getList" resultType="com.Aview.domain.AcademyBoardVO">
+<select id="getList" resultType="com.Aview.domain.AcademyBoardVO">
 SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
 	FROM
 		(SELECT /*+ INDEX_DESC(TBL_ACADEMY_BOARD PK_ACADEMY_BOARD) */ ROWNUM RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
@@ -52,4 +52,21 @@ SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID
 		]]>
 		<!-- 뒤에 AND가 오니깐 무조건 TRUE인 조건을 하나 붙혀서 오류를 해결한다. -->
 	</select>
+	<select id="getAcademy" resultType="com.Aview.domain.AcademyBoardVO">
+	SELECT * FROM TBL_ACADEMY_BOARD WHERE ANO=#{ano}
+	 </select>
+
+	<select id="acaId" resultType="_int">
+	SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID =#{id}
+ 	</select>
+ 	
+ 	<update id="modifyBoard">
+ 		UPDATE TBL_ACADEMY_BOARD
+		SET ACADEMYAREA=#{academyArea}, ACADEMYKIND=#{academyKind}, ACADEMYPHOTO=#{academyPhoto}, ACADEMYTITLE=#{academyTitle}, ACADEMYID=#{academyId}, ACADEMYNAME=#{academyName}, ACADEMYCONTENT=#{academyContent}, ACADEMYINTRO=#{academyIntro}, ACADEMYYOUTUBE=#{academyYoutube}, ACADEMYTAG=#{academyTag}, ACADEMYMAPPHOTO=#{academyMapPhoto}, MAPDETAIL=#{mapDetail}, REGDATE=SYSDATE
+		WHERE ANO = #{ano}
+ 	</update>
+ 	
+ 	<delete id="removeBoard">
+ 		DELETE FROM TBL_ACADEMY_BOARD WHERE ANO = #{ano}
+ 	</delete>
 </mapper>
