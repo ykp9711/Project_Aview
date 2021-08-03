@@ -88,7 +88,9 @@ table{border:1px solid #f2f2f2;width:100%;} */
 					<li data-tab="tab3"><a href="#tab3">교육 시설 안내</a></li>
 					<li data-tab="tab4"><a href="#tab4">Travel</a></li>
 				</ul>
-				<form name="joinForm" action="/board/register" method="post">
+				<form name="modifyForm" action="/board/modifyBoard" method="post">
+				<input type="hidden" name="ano" value="${board.ano}">
+				<input type="hidden" name="academyId" value="${board.academyId}">
 					<div class="row gtr-uniform">
 						<div class="col-6 col-12-small" style="margin: 0 auto;">
 							<br>
@@ -144,9 +146,9 @@ table{border:1px solid #f2f2f2;width:100%;} */
 												<header>
 													<div class="title">
 														<label>게시글 제목</label> <input type="text" maxlength="12"
-															name="academyTitle" id="academyTitle" value="" required>
+															name="academyTitle" id="academyTitle" value="${board.academyTitle}" required>
 														<br> <label>게시글 목록 사진(썸네일)</label> <input type='file'
-															name="academyPhoto" id="academyPhoto">
+															name="academyPhoto" id="academyPhoto" value="${board.academyPhoto}">
 
 													</div>
 													<div class="meta">
@@ -155,29 +157,29 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														</time>
 														<label style="float: left;">학원 이름</label> <span
 															class="name"> <input type="text" maxlength="12"
-															name="academyName" id="academyName" value="" required>
+															name="academyName" id="academyName" value="${board.academyName}" required>
 														</span>
 													</div>
 												</header>
 												<div style="width: 750px; word-break: break-all;">
 													<label for="pw2">학원 소개 영상 유튜브 링크</label> <input type="text"
 														 name="academyYoutube" id="academyYoutube"
-														value=""> <br> <label>학원 상세 설명</label>
+														value="https://www.youtube.com/embed/${board.academyYoutube}"> <br> <label>학원 상세 설명</label>
 													<textarea name="academyContent" id="academyContent"
-														rows="6" style="resize: none;" placeholder="학원 상세 설명"></textarea>
+														rows="6" style="resize: none;" placeholder="학원 상세 설명">${board.academyContent}</textarea>
 													<br> <label>학원 태그(검색어로 사용됩니다.)</label> <input type="text"
-														maxlength="12" name="academyTag" id="academyTag" value=""
+														maxlength="12" name="academyTag" id="academyTag" value="${board.academyTag}"
 														required>
 												</div>
 												<br>
 												<hr>
 																							<h4>지점 상세 지도</h4>
-											<input type='file'name="academyMapPhoto" id="academyMapPhoto">
+											<input type='file'name="academyMapPhoto" id="academyMapPhoto" value="academyMapPhoto">
 											<figure>
 												<img src="images/역삼역.JPG" alt="" />
 											</figure>
 											<label>위치 상세설명</label>
-												<input type="text" name="mapDetail" id="mapDetail" width="50%">
+												<input type="text" name="mapDetail" id="mapDetail" width="50%" value="${board.mapDetail}">
 											</article>
 
 										</div>
@@ -185,11 +187,9 @@ table{border:1px solid #f2f2f2;width:100%;} */
 								</div>
 							</div>
 							<ul class="actions">
-								<li style="margin: 0 auto;"><input type="submit"
-									value="등록하기" class="primary" /> <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
-									<input type="reset" value="다시작성" id="joinReset"
-									onClick="location.href='javascript:joinForm.reset()'" /> <!-- <a href="javascript:joinForm.reset()">다시작성</a>&nbsp;&nbsp; -->
-									<%-- <a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a> --%>
+								<li style="margin: 0 auto;">
+								<input type="submit" value="수정완료" class="primary" /> 
+									<input type="reset" value="다시작성" id="joinReset"onClick="location.href='javascript:joinForm.reset()'" /> 
 								</li>
 							</ul>
 						</div>

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,8 +43,7 @@ public class BoardController {
    @PostMapping("/register")
    public String BoardRegister(AcademyBoardVO av, HttpServletResponse resp, HttpSession session) throws Exception{
       av.setAcademyId((String)session.getAttribute("session_id"));
-      log.info("여기");
-      log.info(av);
+      av.setAcademyIntro("임시값"); // intro는 후에 사용하게되면 이 부분 지우고 사용
       resp.setCharacterEncoding("UTF-8");
       if(mapper.register(av)==1) {
          PrintWriter out = resp.getWriter();
@@ -64,11 +64,73 @@ public class BoardController {
       }
    }
    
-   @GetMapping("/academyBoard") 
-   public String serviceGo(Model mo, Criteria cri) {
+
+@GetMapping("/academyBoard") 
+   public String serviceGo(Model mo, Criteria cri, HttpSession session) throws Exception{
+	   String id="";
+	   id = (String)session.getAttribute("session_id");
+	   
+	   log.info("여기----------");
+	   log.info(id);
+
+	   try {
+		 if(id.trim() != null || id.trim()!="" || !id.trim().equals("")) { }
+	   if(mapper.acaId(id) == 1) {
+
+		   mo.addAttribute("acaid", "acaOk");
+	   } // try문에서 id값이 null이라 NullPointerException 발생 시 catch로 이동 , id값에 session_id값이 들어가 있어서 에러가 안뜨면 try문 실행 후 
+	     // finally로 이동해서 계속 진행
+	   }catch (NullPointerException e) {
+		   mo.addAttribute("list", mapper.getList(cri));
+			mo.addAttribute("pageMaker", new PageDTO(cri, mapper.getTotal(cri)));
+			mo.addAttribute("total", mapper.getTotal(cri));
+	      return "/WebContent/app/academy/academyBoard";
+	}finally {
 	   mo.addAttribute("list", mapper.getList(cri));
 		mo.addAttribute("pageMaker", new PageDTO(cri, mapper.getTotal(cri)));
 		mo.addAttribute("total", mapper.getTotal(cri));
       return "/WebContent/app/academy/academyBoard";
+	}
+   }
+   //게시판 상세보기
+   @GetMapping("/getBoard")
+   public String getBoard(@Param("ano") int ano, Model mo) {
+	   AcademyBoardVO vo = mapper.getAcademy(ano);
+	 
+		   if(vo.getAcademyYoutube().length() >=32) {
+			   String youtube = vo.getAcademyYoutube().substring(32);
+			   String realYoutube = "https://www.youtube.com/embed/"+youtube;
+	   vo.setAcademyYoutube(realYoutube);
+		   }
+	   	mo.addAttribute("board", vo);
+	   return "/WebContent/app/academy/getAcademy";
+}
+   
+   //게시판 수정 이동
+   @GetMapping("/modifyBoard")
+   public String modify(@Param("ano") int ano, Model mo) {
+	   mo.addAttribute("board", mapper.getAcademy(ano));
+	   return "/WebContent/app/academy/modifyAcademy";
+   }
+   @PostMapping("/modifyBoard")
+   public String modifyBoard(AcademyBoardVO vo, HttpServletResponse resp) throws Exception{
+		  log.info(vo);
+		  vo.setAcademyIntro("임시값");
+	  mapper.modifyBoard(vo);
+	  resp.setCharacterEncoding("UTF-8");
+	  PrintWriter out = resp.getWriter();
+      resp.setContentType("text/html;charset=utf-8");
+      out.println("<script>");
+      out.println("alert('글 수정이 완료되었습니다..')");
+       out.println("</script>");
+       return "redirect:/board/getBoard?ano="+vo.getAno();
+   }
+   
+   @GetMapping("/removeBoard")
+   public String removeBoard(@Param("ano") int ano, HttpServletResponse resp) throws Exception{
+	   mapper.removeBoard(ano);
+
+	   return "redirect:/board/academyBoard";
+	   
    }
 }
