@@ -81,14 +81,14 @@ table{border:1px solid #f2f2f2;width:100%;} */
 	<div class="container">
 		<!-- Join -->
 		<article id="AcademyUpload">
-			<div id="tab1" class="tabcontent current">
+			<div id="tab1">
 				<ul class="tab">
 					<li class="current" data-tab="tab1"><a href="#">학원소개등록</a></li>
 					<li data-tab="tab2"><a href="#tab2">메인강사등록</a></li>
 					<li data-tab="tab3"><a href="#tab3">교육 시설 안내</a></li>
 					<li data-tab="tab4"><a href="#tab4">Travel</a></li>
 				</ul>
-				<form name="joinForm" action="/board/register" method="post">
+				<form name="joinForm" action="/board/register" method="post" enctype="multipart/form-data">
 					<div class="row gtr-uniform">
 						<div class="col-6 col-12-small" style="margin: 0 auto;">
 							<br>
@@ -146,7 +146,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<label>게시글 제목</label> <input type="text" maxlength="12"
 															name="academyTitle" id="academyTitle" value="" required>
 														<br> <label>게시글 목록 사진(썸네일)</label> <input type='file'
-															name="academyPhoto" id="academyPhoto">
+															name="file">
 
 													</div>
 													<div class="meta">
@@ -172,7 +172,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 												<br>
 												<hr>
 																							<h4>지점 상세 지도</h4>
-											<input type='file'name="academyMapPhoto" id="academyMapPhoto">
+											
 											<figure>
 												<img src="images/역삼역.JPG" alt="" />
 											</figure>
@@ -321,42 +321,6 @@ table{border:1px solid #f2f2f2;width:100%;} */
 <!-- Footer -->
 <%@ include file="../../footer.jsp"%>
 
-<script>
-	function check_number_write() {
-		console.log(document.getElementById("check_number").readonly);
-		document.getElementById("check_number").readOnly = false;
-	}
-	/*    function addTeacher(){
-	 var list = document.getElementById("teacher")
-	 list.innerHTML = list.innerHTML + "<hr><li>선생님 이름<br><input type='text'/></li><br>선생님 사진<br><input type='file' id='teacherPhoto2' name='teacherPhoto2'></br><br>경력사항<br><textarea name='facility_intro2' id='facility_intro2' rows='6' style='resize:none;' placeholder='경력사항 입력'></textarea><br><br>선생님 소개<br><textarea name='facility_intro3' id='facility_intro3' rows='6' style='resize:none;' placeholder='선생님 소개'></textarea><br><br>영상 업로드<br><input type='file' id='teacherVideo' name='teacherVideo'><br>"
-	 } */
-
-	function checkInput(sel, item) {
-		if ($(sel).val().trim().length == 0) {
-			alert(item + ' 입력하세요');
-			$(sel).focus();
-			return false;
-		}
-		return true;
-
-	}
-	/* 선생님 이름 제한 */
-	$(document).ready(
-			function() {
-				$('#teacher_text').keyup(
-						function() {
-							if ($(this).val().length > $(this)
-									.attr('maxlength')) {
-								alert('제한 길이 초과');
-								$(this).val(
-										$(this).val().substr(0,
-												$(this).attr('maxlength')));
-							}
-						});
-			});
-
-	//버튼 숨기기
-	//계획삭제
 
 	$(function() {
 		$('ul.tab li').click(function() {

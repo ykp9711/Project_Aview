@@ -61,8 +61,8 @@
                   <hr>
                   <footer>
                      <ul class="actions">
-                        <li><a href="facility.jsp" class="button large">강사 소개</a></li>
-                        <li><a href="facility.jsp" class="button large">시설 소개</a></li>
+                        <li><a href="/board/test" class="button large">강사 소개</a></li>
+                        <li><a href="test.jsp" class="button large">시설 소개</a></li>
                         <li><a href="facility.jsp" class="button large">학원 리뷰</a></li>
                   </footer>
                </article>

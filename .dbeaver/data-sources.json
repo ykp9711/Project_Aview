@@ -24,7 +24,8 @@
 					"@dbeaver-use-meta-optimizer@": "false",
 					"@dbeaver-meta-use-alternative-table-query@": "false",
 					"@dbeaver-connection-type@": "BASIC",
-					"@dbeaver-sid-service@": "SERVICE"
+					"@dbeaver-sid-service@": "SERVICE",
+					"oracle.meta-search-in-synonyms": "false"
 				},
 				"auth-model": "oracle_native",
 				"handlers": {}
@@ -41,7 +42,8 @@
 			"description": "Regular development database",
 			"auto-commit": true,
 			"confirm-execute": false,
-			"confirm-data-change": false
+			"confirm-data-change": false,
+			"auto-close-transactions": false
 		}
 	}
 }
