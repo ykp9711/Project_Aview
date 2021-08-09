@@ -90,23 +90,24 @@ select {
 		</h3>
 		      <div class="table-wrapper">
          등록된 학원 : ${total}<br><br>
-         <table style="border: 1px; solid;">
-            	<tr class="tHead">
-            	<th class="photo">글번호</th>
-               <th class="photo">사진</th>
+         <table style="border: 1px; solid; text-align: center;">
+            	<tr class="tHead" >
+            	<th >글번호</th>
+               <th  style="text-align: center;">사진</th>
                <th class="title">제목 / 태그</th>
                <th class="kind">학원 종류</th>
                <th class="area">학원 장소</th>
 
             </tr>
             <c:forEach var="list" items="${list}">
-               <tr>
-               	  <td class="photo" >${list.rn}</td>
-                  <td class="photo" >${list.academyPhoto}</td>
+               <tr style="height: 100px;">
+               	  <td>${list.rn}</td>
+                  <td style="text-align: center; width: 100px;" ><img src="/resources/FileImage/${list.academyPhoto}" style="width:200px; height:100px;"></td>
                   <td class="title"><a href="/board/getBoard?ano=${list.ano}">${list.academyTitle}</a></td>
                   <td class="kind">${list.academyKind}</td>
-                  <td class="area">${list.academyArea}</td>
+                  <td class="area" >${list.academyArea}</td>
                </tr>
+
 
             </c:forEach>
 
