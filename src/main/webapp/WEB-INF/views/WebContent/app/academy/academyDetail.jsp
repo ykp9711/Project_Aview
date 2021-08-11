@@ -17,7 +17,7 @@
    href="/resources/assets/css/main.css" />
 </head>
 <body class="is-preload">
-   <%@ include file="/header.jsp"%>
+<%@ include file="../../header.jsp"%>
    <!-- Wrapper -->
    <div id="wrapper style1">
 
@@ -166,4 +166,4 @@
 
 </body>
 </html>
-<%@ include file = "/footer.jsp" %>
+<%@ include file="../../footer.jsp"%>

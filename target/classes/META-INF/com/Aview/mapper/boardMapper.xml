@@ -31,6 +31,12 @@
       (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG, ACADEMYMAPPHOTO, MAPDETAIL) VALUES
       (SEQ_ACADEMY_BOARD.NEXTVAL, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag}, #{academyMapPhoto}, #{mapDetail})
    </insert>
+   
+      <insert id="registerTeacher">
+      INSERT INTO TBL_TEACHER
+      (TNO,TNAME1, TAGE1, TSEX1, TEACHERPHOTO1, TEACHERINTRO1) VALUES
+      (SEQ_TEACHER.NEXTVAL, #{tname1}, #{tage1}, #{tsex1}, #{teacherPhoto1}, #{teacherIntro1})
+   </insert>
 	
 <select id="getList" resultType="com.Aview.domain.AcademyBoardVO">
 SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
@@ -54,6 +60,10 @@ SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID
 	</select>
 	<select id="getAcademy" resultType="com.Aview.domain.AcademyBoardVO">
 	SELECT * FROM TBL_ACADEMY_BOARD WHERE ANO=#{ano}
+	 </select>
+	 
+	 	<select id="getTeacher" resultType="com.Aview.domain.AcademyTeacherVO">
+	SELECT * FROM TBL_ACADEMY_BOARD WHERE ANO=#{tno}
 	 </select>
 
 	<select id="acaId" resultType="_int">

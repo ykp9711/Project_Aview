@@ -37,7 +37,10 @@ public class filetestcontroller {
 	
 	@PostMapping("/upload")
 	public String uploadFile(MultipartFile[] file, HttpServletRequest request, FileVO vo) throws Exception {
-		    String uploadPath = "C:\\Users\\ykp\\git\\Project_Aview\\src\\main\\webapp\\resources\\FileImage";
+		    //String uploadPath = "C:\\Users\\ykp\\git\\Project_Aview\\src\\main\\webapp\\resources\\FileImage"; //경필 저장 주소
+		    String uploadPath = "C:\\Users\\YJG\\git\\Project_Aview\\src\\main\\webapp\\resources\\FileImage"; //정근 저장 주소
+		    
+		    
 
 		    File target = new File(uploadPath);
 	        if(!target.exists()) target.mkdirs(); // 파일 경로에 폴더 없으면 새로운 폴더 생성
