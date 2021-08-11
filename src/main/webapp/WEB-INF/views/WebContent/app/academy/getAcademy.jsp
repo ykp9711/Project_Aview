@@ -21,20 +21,26 @@
    <%@ include file="../../header.jsp"%>
    <!-- Wrapper -->
    <br><br>
-   <c:if test="${board.academyId eq session_id}">
-   <div style="margin-left:42%;">
-   <button class="button large modify">게시글 수정</button>
-   <button class="button large remove">게시글 삭제</button>
-   </div>
-   </c:if>
-   <div id="wrapper style1">
-      <!-- Main -->
-      <div id="main" class="container">
+      <div id="wrapper style1">
+            <div id="main" class="container">
          <div class="row">
+   <c:if test="${board.academyId eq session_id}">
+   
+   <div style="margin-left:0%;">
+   <button class="button large modify">게시글 수정</button>
+   &nbsp;&nbsp;
+   <button class="button large remove">게시글 삭제</button><br><br>
+   </div><br>
+   </c:if>
+
+
+      <!-- Main -->
+
             <!-- Post -->
-            <div style="width: 70%; float: right;">
+            <div style="width: 100%; float: right;">
 
                <article class="post">
+               
                   <header>
                      <div class="title">
                         <h2>
@@ -60,10 +66,13 @@
                   <br>
                   <hr>
                   <footer>
+                   <div style="margin-left:50%;">
                      <ul class="actions">
-                        <li><a href="/board/test" class="button large">강사 소개</a></li>
+                        <li><a href="/board/getTeacher" class="button large">강사 소개</a></li>
                         <li><a href="test.jsp" class="button large">시설 소개</a></li>
                         <li><a href="facility.jsp" class="button large">학원 리뷰</a></li>
+                      </ul>
+                    </div>
                   </footer>
                </article>
                <hr>

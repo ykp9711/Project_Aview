@@ -87,6 +87,7 @@ select {
 		<c:if test="${acaid eq 'acaOk'}">
 			<a href="/board/academyDetailEdit" class="button small">학원 등록 하기</a>
 			</c:if>
+		<a href="/board/academyDetail" class="button small">양식</a>
 		</h3>
 		      <div class="table-wrapper">
          등록된 학원 : ${total}<br><br>

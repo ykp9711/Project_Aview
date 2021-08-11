@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.Aview.domain.AcademyBoardVO;
+import com.Aview.domain.AcademyTeacherVO;
 import com.Aview.domain.Criteria;
 
 public interface BoardMapper {
@@ -21,4 +22,9 @@ public interface BoardMapper {
 	public int modifyBoard(AcademyBoardVO vo); // 게시글 수정
 	
 	public void removeBoard(int ano); // 게시글 삭제
+	
+	public int registerTeacher(AcademyTeacherVO tv);
+	
+	public AcademyTeacherVO getTeacher(int tno);
+
 }
