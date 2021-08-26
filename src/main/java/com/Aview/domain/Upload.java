@@ -23,7 +23,6 @@ public class Upload {
 		  
 		   File target = new File(uploadPath);
 	       if(!target.exists()) target.mkdirs(); // 파일 경로에 폴더 없으면 새로운 폴더 생성
-	       
 	       for(int i=0; i<file.length; i++) { // 파일 갯수만큼 반복
 	      	 	
 	           String orgFileName = file[i].getOriginalFilename();  //파일 실제이름 

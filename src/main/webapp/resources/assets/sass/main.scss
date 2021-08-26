@@ -23,8 +23,8 @@
 		xsmall:   ( null,    480px  )
 	));
 
-// Reset.
-// Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
+// button.
+// Based on meyerweb.com/eric/tools/css/button (v2.0 | 20110126 | License: public domain)
 
 	html, body, div, span, applet, object,
 	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -755,7 +755,7 @@
 					}
 
 					input[type="submit"],
-					input[type="reset"],
+					input[type="button"],
 					input[type="button"],
 					button,
 					.button {
@@ -913,7 +913,7 @@
 /* Button */
 
 	input[type="submit"],
-	input[type="reset"],
+	input[type="button"],
 	input[type="button"],
 	.button {
 		@include vendor('appearance', 'none');
@@ -1796,7 +1796,7 @@
 		/* Button */
 
 			input[type="submit"],
-			input[type="reset"],
+			input[type="button"],
 			input[type="button"],
 			.button {
 				font-size: 0.8em !important;
@@ -1910,7 +1910,7 @@
 		/* Button */
 
 			input[type="submit"],
-			input[type="reset"],
+			input[type="button"],
 			input[type="button"],
 			.button {
 				padding: 0;

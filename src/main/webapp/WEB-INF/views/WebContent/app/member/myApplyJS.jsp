@@ -133,7 +133,7 @@ $(document).ready(function(){
 	}
 });
 		
-$("#reset_recycle").on('click',function(){
+$("#button_recycle").on('click',function(){
 	$("#a_plastic").val(0);
 	$("#a_vinyl").val(0);
 	$("#a_can").val(0);

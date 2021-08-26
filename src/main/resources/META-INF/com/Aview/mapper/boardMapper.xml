@@ -29,7 +29,7 @@
    <insert id="register">
       INSERT INTO TBL_ACADEMY_BOARD
       (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG, ACADEMYMAPPHOTO, MAPDETAIL) VALUES
-      (SEQ_ACADEMY_BOARD.NEXTVAL, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag}, #{academyMapPhoto}, #{mapDetail})
+      (#{ano}, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag}, #{academyMapPhoto}, #{mapDetail})
    </insert>
    
       <insert id="registerTeacher">
@@ -79,4 +79,16 @@ SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID
  	<delete id="removeBoard">
  		DELETE FROM TBL_ACADEMY_BOARD WHERE ANO = #{ano}
  	</delete>
+ 	
+ 		<insert id="academyPhoto">
+		INSERT INTO TBL_ACADEMY_PHOTO(ANO, PHOTO) VALUES(#{ano},#{photo})
+	</insert>
+ 	
+ 	<select id="getBoardSeq" resultType="_int">
+ 		SELECT SEQ_ACADEMY_BOARD.NEXTVAL FROM DUAL
+ 	</select>
+ 	
+ 	<select id="getFacility" resultType="com.Aview.domain.AcademyFacilityVO">
+ 		SELECT PHOTO FROM TBL_ACADEMY_PHOTO WHERE ANO = #{ano}
+ 	</select>
 </mapper>

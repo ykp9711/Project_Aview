@@ -1,10 +1,12 @@
 package com.Aview.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.Aview.domain.AcademyBoardVO;
+import com.Aview.domain.AcademyFacilityVO;
 import com.Aview.domain.AcademyTeacherVO;
 import com.Aview.domain.Criteria;
 
@@ -23,8 +25,15 @@ public interface BoardMapper {
 	
 	public void removeBoard(int ano); // 게시글 삭제
 	
-	public int registerTeacher(AcademyTeacherVO tv);
+	public void academyPhoto(AcademyFacilityVO fv); // 시설사진 등록
 	
-	public AcademyTeacherVO getTeacher(int tno);
+	public int getBoardSeq(); // 글 등록시 ano 값 가져옴
+	
+	public List<AcademyFacilityVO> getFacility(int ano); // 시설물 정보 가져옴
+	
+	public void academyTeacher(List<AcademyTeacherVO> tv);
+	
+	
+
 
 }

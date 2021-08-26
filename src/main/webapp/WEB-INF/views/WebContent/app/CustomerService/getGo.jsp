@@ -53,7 +53,7 @@
 			                              	<h3>
 			                              	
 			                              	<!--  <input type="submit" value="수정하기" class="primary"/>&nbsp&nbsp-->
-			                              	<input type="reset" class="button" value="다시작성" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>&nbsp;
+			                              	<input type="button" class="button" value="다시작성" id="joinbutton" onClick="location.href='javascript:joinForm.button()'"/>&nbsp;
 			                              	<button class="button small" onclick="window.open('/serviceList/checkPw?pw=${list.password}&bno=${list.bno}', 'width=300, height=300')">수정하기</button>
 			                              	
 			                              	</h3>

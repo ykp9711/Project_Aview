@@ -52,7 +52,7 @@
 			                              <li>
 			                              	<h3>
 			                              	<input type="submit" value="수정완료" class="primary"/>&nbsp;
-			                              	<input type="reset" class="button" value="다시작성" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>
+			                              	<input type="button" class="button" value="다시작성" id="joinbutton" onClick="location.href='javascript:joinForm.button()'"/>
 			                              	</h3>
 			                              </li>
 			                           </ul>

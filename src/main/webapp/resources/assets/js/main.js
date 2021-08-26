@@ -77,8 +77,8 @@
 					delay: 500,
 					hideOnClick: true,
 					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
+					buttonScroll: true,
+					buttonForms: true,
 					side: 'left',
 					target: $body,
 					visibleClass: 'navPanel-visible'
