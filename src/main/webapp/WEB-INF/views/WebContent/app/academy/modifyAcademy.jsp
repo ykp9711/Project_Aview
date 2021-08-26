@@ -189,7 +189,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 							<ul class="actions">
 								<li style="margin: 0 auto;">
 								<input type="submit" value="수정완료" class="primary" /> 
-									<input type="reset" value="다시작성" id="joinReset"onClick="location.href='javascript:joinForm.reset()'" /> 
+									<input type="button" value="다시작성" id="joinbutton"onClick="location.href='javascript:joinForm.button()'" /> 
 								</li>
 							</ul>
 						</div>
@@ -260,8 +260,8 @@ table{border:1px solid #f2f2f2;width:100%;} */
 					<ul class="actions">
 						<li style="margin: 0 auto;"><input type="submit" value="등록하기"
 							class="primary" />&nbsp;&nbsp; <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
-							<input type="reset" value="강사 추가" id="joinReset"
-							onClick="location.href='javascript:joinForm.reset()'" /> <!-- <a href="javascript:joinForm.reset()">다시작성</a>&nbsp;&nbsp; -->
+							<input type="button" value="강사 추가" id="joinbutton"
+							onClick="location.href='javascript:joinForm.button()'" /> <!-- <a href="javascript:joinForm.button()">다시작성</a>&nbsp;&nbsp; -->
 						</li>
 					</ul>
 				</form>

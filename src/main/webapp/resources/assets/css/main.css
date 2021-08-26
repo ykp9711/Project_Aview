@@ -2254,7 +2254,7 @@ input, select, textarea {
 					}
 
 					ul.actions:not(.fixed) li input[type="submit"],
-					ul.actions:not(.fixed) li input[type="reset"],
+					ul.actions:not(.fixed) li input[type="button"],
 					ul.actions:not(.fixed) li input[type="button"],
 					ul.actions:not(.fixed) li button,
 					ul.actions:not(.fixed) li .button {
@@ -2262,7 +2262,7 @@ input, select, textarea {
 					}
 
 						ul.actions:not(.fixed) li input[type="submit"].icon:before,
-						ul.actions:not(.fixed) li input[type="reset"].icon:before,
+						ul.actions:not(.fixed) li input[type="button"].icon:before,
 						ul.actions:not(.fixed) li input[type="button"].icon:before,
 						ul.actions:not(.fixed) li button.icon:before,
 						ul.actions:not(.fixed) li .button.icon:before {
@@ -2407,7 +2407,7 @@ input, select, textarea {
 /* Button */
 
 	input[type="submit"],
-	input[type="reset"],
+	input[type="button"],
 	input[type="button"],
 	.button {
 		-moz-appearance: none;
@@ -2439,7 +2439,7 @@ input, select, textarea {
 	}
 
 		input[type="submit"]:hover,
-		input[type="reset"]:hover,
+		input[type="button"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
 			background-color: rgba(144, 144, 144, 0.075);
@@ -2447,35 +2447,35 @@ input, select, textarea {
 		}
 
 		input[type="submit"]:active,
-		input[type="reset"]:active,
+		input[type="button"]:active,
 		input[type="button"]:active,
 		.button:active {
 			background-color: rgba(144, 144, 144, 0.2);
 		}
 
 		input[type="submit"].icon:before,
-		input[type="reset"].icon:before,
+		input[type="button"].icon:before,
 		input[type="button"].icon:before,
 		.button.icon:before {
 			margin-right: 0.5em;
 		}
 
 		input[type="submit"].fit,
-		input[type="reset"].fit,
+		input[type="button"].fit,
 		input[type="button"].fit,
 		.button.fit {
 			width: 100%;
 		}
 
 		input[type="submit"].small,
-		input[type="reset"].small,
+		input[type="button"].small,
 		input[type="button"].small,
 		.button.small {
 			font-size: 0.8em;
 		}
 
 		input[type="submit"].large,
-		input[type="reset"].large,
+		input[type="button"].large,
 		input[type="button"].large,
 		.button.large {
 			font-size: 1em;
@@ -2485,7 +2485,7 @@ input, select, textarea {
 		}
 
 		input[type="submit"].primary,
-		input[type="reset"].primary,
+		input[type="button"].primary,
 		input[type="button"].primary,
 		.button.primary {
 			background-color: #62bd83;
@@ -2493,22 +2493,22 @@ input, select, textarea {
 		}
 
 			input[type="submit"].primary:hover,
-			input[type="reset"].primary:hover,
+			input[type="button"].primary:hover,
 			input[type="button"].primary:hover,
 			.button.primary:hover {
 				background-color: #74C591;
 			}
 
 			input[type="submit"].primary:active,
-			input[type="reset"].primary:active,
+			input[type="button"].primary:active,
 			input[type="button"].primary:active,
 			.button.primary:active {
 				background-color: #50B575;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
-		input[type="reset"].disabled,
-		input[type="reset"]:disabled,
+		input[type="button"].disabled,
+		input[type="button"]:disabled,
 		input[type="button"].disabled,
 		input[type="button"]:disabled,
 		.button.disabled,
@@ -3412,7 +3412,7 @@ input, select, textarea {
 		/* Button */
 
 			input[type="submit"],
-			input[type="reset"],
+			input[type="button"],
 			input[type="button"],
 			.button {
 				font-size: 0.8em !important;
@@ -3518,7 +3518,7 @@ input, select, textarea {
 		/* Button */
 
 			input[type="submit"],
-			input[type="reset"],
+			input[type="button"],
 			input[type="button"],
 			.button {
 				padding: 0;

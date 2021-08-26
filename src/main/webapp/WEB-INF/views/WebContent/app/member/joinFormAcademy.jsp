@@ -206,8 +206,8 @@
                         <li style="margin:0 auto;">
                            <input type="submit" value="가입하기" class="primary"/>
                            <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
-                           <input type="reset" value="다시작성" id="joinReset" onClick="location.href='javascript:joinForm.reset()'"/>
-                                <!-- <a href="javascript:joinForm.reset()">다시작성</a>&nbsp;&nbsp; -->
+                           <input type="button" value="다시작성" id="joinbutton" onClick="location.href='javascript:joinForm.button()'"/>
+                                <!-- <a href="javascript:joinForm.button()">다시작성</a>&nbsp;&nbsp; -->
                                 <%-- <a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a> --%>
                         </li>
                      </ul>

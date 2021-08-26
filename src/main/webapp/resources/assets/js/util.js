@@ -77,11 +77,11 @@
 				// Hide panel on swipe.
 					hideOnSwipe: false,
 
-				// Reset scroll position on hide.
-					resetScroll: false,
+				// button scroll position on hide.
+					buttonScroll: false,
 
-				// Reset forms on hide.
-					resetForms: false,
+				// button forms on hide.
+					buttonForms: false,
 
 				// Side of viewport the panel will appear.
 					side: null,
@@ -121,14 +121,14 @@
 					// Post-hide stuff.
 						window.setTimeout(function() {
 
-							// Reset scroll position.
-								if (config.resetScroll)
+							// button scroll position.
+								if (config.buttonScroll)
 									$this.scrollTop(0);
 
-							// Reset forms.
-								if (config.resetForms)
+							// button forms.
+								if (config.buttonForms)
 									$this.find('form').each(function() {
-										this.reset();
+										this.button();
 									});
 
 						}, config.delay);
@@ -452,7 +452,7 @@
 						});
 
 				})
-				.on('reset', function(event) {
+				.on('button', function(event) {
 
 					event.preventDefault();
 
@@ -470,7 +470,7 @@
 							switch (this.type) {
 
 								case 'submit':
-								case 'reset':
+								case 'button':
 									break;
 
 								case 'password':

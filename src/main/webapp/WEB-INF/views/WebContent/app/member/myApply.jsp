@@ -120,12 +120,12 @@
 				</section>
 						
 				<section id="u_info2">
-					<input type="button" id="reset_recycle" name="reset_recycle" value="수량 초기화" style="font-size:110%; float:right">
+					<input type="button" id="button_recycle" name="button_recycle" value="수량 초기화" style="font-size:110%; float:right">
 					<br>
 					<br>
 					<h3>수거할 재활용품</h3>
 					<strong style="font-size:120%">수거가 필요한 수 만큼 아이콘을 클릭, 희망 방문 날짜를 선택해 주세요!</strong>
-					<!-- <input type="reset" value="수량 초기화" style="font-size:110%; margin-left:1rem; float:right;"> -->
+					<!-- <input type="button" value="수량 초기화" style="font-size:110%; margin-left:1rem; float:right;"> -->
 					<input type="date" pattern="yyyy-MM-dd HH" name="a_wdate" id="a_wdate" style="font-size: 110%;border: 0px;padding-top: 0.3rem;font-family: 'Noto Sans KR', sans-serif;text-align: end;outline-color: #62BD83;">
 					<select name="a_wtime" id="a_wtime" style="width: auto;display: inline;border: 0px;background-color: #fff;">
 							<option value="시간 선택 안함">시간 선택 안함</option>
