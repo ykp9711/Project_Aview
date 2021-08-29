@@ -31,7 +31,9 @@ public interface BoardMapper {
 	
 	public List<AcademyFacilityVO> getFacility(int ano); // 시설물 정보 가져옴
 	
-	public void academyTeacher(List<AcademyTeacherVO> tv);
+	public void academyTeacher(AcademyTeacherVO vo); // 강사 소개
+	
+	public List<AcademyTeacherVO> getAcademyTeacher(int ano);
 	
 	
 

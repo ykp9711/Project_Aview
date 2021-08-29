@@ -69,7 +69,7 @@
                    <div style="margin-left:50%;">
                    <div style="margin-left: -60%;">
                      <ul class="actions">
-                        <li><a href="/board/getTeacher" class="button large">강사 소개</a></li>
+                        <li><a href="/board/Teacher?ano=${board.ano}" class="button large">강사 소개</a></li>
                         <li><a href="/board/getFacility?ano=${board.ano}" class="button large">시설 소개</a></li>
                         <li><a href="facility.jsp" class="button large">학원 리뷰</a></li>
                       </ul>
