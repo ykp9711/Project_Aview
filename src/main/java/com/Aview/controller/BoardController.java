@@ -57,11 +57,7 @@ public class BoardController {
    @Autowired
    BoardMapper mapper;
    
-   @GetMapping("/academyDetail")
-   public String academyGo() {
-      return "/WebContent/app/academy/getTeacher";
-   }
-   
+
    @GetMapping("/academyDetailEdit")
    public String academyEditGo() {
       return "/WebContent/app/academy/academyDetailEdit";
@@ -70,12 +66,20 @@ public class BoardController {
    
    @Transactional
    @PostMapping("/register")
-   public String BoardRegister(MultipartFile[] file, @ModelAttribute AcademyBoardVO av,AcademyFacilityVO fv ,HttpServletResponse resp, HttpSession session ,  HttpServletRequest req, MultipartFile[] acaPhoto) throws Exception{
+   public String BoardRegister(MultipartFile[] file, @ModelAttribute AcademyBoardVO av,AcademyFacilityVO fv ,HttpServletResponse resp, HttpSession session ,  HttpServletRequest req, MultipartFile[] acaPhoto,
+		   AcademyTeacherVO1 tv1,AcademyTeacherVO2 tv2, AcademyTeacherVO3 tv3 , AcademyTeacherVO4 tv4, AcademyTeacherVO5 tv5,
+		   AcademyTeacherVO6 tv6, AcademyTeacherVO7 tv7 , AcademyTeacherVO8 tv8
+		   ,MultipartFile teacherPhoto1[], MultipartFile teacherPhoto2[], MultipartFile teacherPhoto3[], MultipartFile teacherPhoto4[] , MultipartFile teacherPhoto5[],
+		   MultipartFile teacherPhoto6[], MultipartFile teacherPhoto7[], MultipartFile teacherPhoto8[]) throws Exception{
+	   
 	   int ano = mapper.getBoardSeq(); // 게시판 ano를 가져옴
-	   av.setAno(ano); 
-	   fv.setAno(ano);
+	   AcademyTeacherVO vo = new AcademyTeacherVO();
+	   av.setAno(ano); // 학원소개 ano 
+	   fv.setAno(ano); // 학원시설 ano
+	   vo.setAno(ano); // 강사사진 ano
 	   fv.setPhoto("noPhoto.jpg"); // 시설 사진 초기네임
 	   av.setAcademyPhoto("noThumbnail.jpg"); // 학원 썸네일 이미지 초기네임
+	    
 
 	   // -------------   학원 썸네일 사진 업로드 ----------//
 	   if(file[0].getSize() != 0) {
@@ -96,6 +100,120 @@ public class BoardController {
       resp.setCharacterEncoding("UTF-8");
       if(mapper.register(av)==1) {
     	  
+     //------------------------ 학원 강사 업로드       
+    	  if(!tv1.getName().equals("")) { // 1번 강사
+    		  List<String> photo = new ArrayList<>(); // 사진 Upload메소드를 통해 나오는 파일이름을 담기위한 리스트
+			  vo.setName(tv1.getName()); // 1번강사 정보들을 AcademyTeacherVO에 담아준다
+			  vo.setGender(tv1.getGender());
+			  vo.setIntro(tv1.getIntro());
+			  if(teacherPhoto1[0].getSize() !=0) { // 파일첨부를 했다면 첫번째 index가 0이 아님으로 파일을 첨부한 것 이다.
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto1);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg"); // 파일을 첨부하지 않았으면 notTeacher.jpg 문자열 저장
+			  }
+			  mapper.academyTeacher(vo); // vo객체를 db에 저장해준다
+		  }
+    	  
+    	  if(!tv2.getName2().equals("")) { // 2번 강사
+    		  List<String> photo = new ArrayList<>();
+			  vo.setName(tv2.getName2());
+			  vo.setGender(tv2.getGender2());
+			  vo.setIntro(tv2.getIntro2());
+			  if(teacherPhoto2[0].getSize() !=0) {
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto2);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg");
+			  }
+			  mapper.academyTeacher(vo);
+		  }
+    	  
+    	  if(!tv3.getName3().equals("")) { // 3번 강사
+    		  List<String> photo = new ArrayList<>();
+			  vo.setName(tv3.getName3());
+			  vo.setGender(tv3.getGender3());
+			  vo.setIntro(tv3.getIntro3());
+			  if(teacherPhoto3[0].getSize() !=0) {
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto3);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg");
+			  }
+			  mapper.academyTeacher(vo);
+		  }
+    	  
+    	  if(!tv4.getName4().equals("")) { // 4번 강사
+    		  List<String> photo = new ArrayList<>();
+			  vo.setName(tv4.getName4());
+			  vo.setGender(tv4.getGender4());
+			  vo.setIntro(tv4.getIntro4());
+			  if(teacherPhoto4[0].getSize() !=0) {
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto4);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg");
+			  }
+			  mapper.academyTeacher(vo);
+		  }
+    	  
+    	  if(!tv5.getName5().equals("")) { // 5번 강사
+    		  List<String> photo = new ArrayList<>();
+			  vo.setName(tv5.getName5());
+			  vo.setGender(tv5.getGender5());
+			  vo.setIntro(tv5.getIntro5());
+			  if(teacherPhoto5[0].getSize() !=0) {
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto5);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg");
+			  }
+			  mapper.academyTeacher(vo);
+		  }
+    	    
+    	  if(!tv6.getName6().equals("")) { // 6번 강사
+    		  List<String> photo = new ArrayList<>();
+			  vo.setName(tv6.getName6());
+			  vo.setGender(tv6.getGender6());
+			  vo.setIntro(tv6.getIntro6());
+			  if(teacherPhoto6[0].getSize() !=0) {
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto6);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg");
+			  }
+			  mapper.academyTeacher(vo);
+		  }
+    	  
+    	  if(!tv7.getName7().equals("")) { // 7번 강사
+    		  List<String> photo = new ArrayList<>();
+			  vo.setName(tv7.getName7());
+			  vo.setGender(tv7.getGender7());
+			  vo.setIntro(tv7.getIntro7());
+			  if(teacherPhoto7[0].getSize() !=0) {
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto7);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg");
+			  }
+			  mapper.academyTeacher(vo);
+		  }
+    	  
+    	  if(!tv8.getName8().equals("")) { // 8번 강사
+    		  List<String> photo = new ArrayList<>();
+			  vo.setName(tv8.getName8());
+			  vo.setGender(tv8.getGender8());
+			  vo.setIntro(tv8.getIntro8());
+			  if(teacherPhoto8[0].getSize() !=0) {
+			  photo = (ArrayList<String>) up.FileUpload(teacherPhoto8);
+			  vo.setPhoto(photo.get(0));
+			  }else {
+				  vo.setPhoto("noTeacher.jpg");
+			  }
+			  mapper.academyTeacher(vo);
+		  }
+    	  
+    	  
    	   //--------------- 학원 시설사진 업로드 ----------------// 시설의 ano가 게시글 ano를 참조하기때문에 게시글이 생성된 후 시설 사진을 업로드 해줘야 에러가 안뜬다.
    	   if(acaPhoto[0].getSize() != 0) {
 
@@ -111,6 +229,7 @@ public class BoardController {
    		mapper.academyPhoto(fv);
    	}
    	 //---------------------------------------------------//  
+   	   
    	   
          PrintWriter out = resp.getWriter();
          resp.setContentType("text/html;charset=utf-8");
@@ -129,35 +248,14 @@ public class BoardController {
           return null;
       }
    }
-   
-   @PostMapping("/registerTeacher")
-   public void BoardRegisterTeacher(MultipartFile file[], AcademyTeacherVO1 tv) throws Exception{
-	 
-		/*
-		 * ArrayList<String> fileName = new ArrayList<>(); List<AcademyTeacherVO>
-		 * teacherList = new ArrayList<>(); AcademyTeacherVO vo = new
-		 * AcademyTeacherVO(); // fileName = (ArrayList<String>) up.FileUpload(file);
-		 	 tv.setPhoto(fileName.get(0)); */
-
-		 log.info(tv);
-			/*
-			 * if(tv2 != null) { vo.setName(tv2.getName2()); vo.setAge(tv2.getAge2());
-			 * vo.setGender(tv2.getGender2()); vo.setPhoto(tv2.getPhoto2());
-			 * vo.setIntro(tv2.getIntro2()); teacherList.add(vo); log.info("2번째 들어옴");
-			 * log.info(teacherList);
-			 */
-	 }
 
    
-
+   // 내 정보
 @GetMapping("/academyBoard") 
    public String serviceGo(Model mo, Criteria cri, HttpSession session) throws Exception{
 	   String id="";
 	   id = (String)session.getAttribute("session_id");
 	   
-	   log.info("여기----------");
-	   log.info(id);
-
 	   try {
 		 if(id.trim() != null || id.trim()!="" || !id.trim().equals("")) { }
 	   if(mapper.acaId(id) == 1) {
@@ -194,11 +292,16 @@ public class BoardController {
    //시설 상세보기
    @GetMapping("/getFacility")
    public String getFacility(@Param("ano") int ano, Model mo) {
-	   log.info(mapper.getFacility(ano));
 	   mo.addAttribute("board", mapper.getFacility(ano));
 	   return "/WebContent/app/academy/getFacility";
    }
    
+   //강사 상세보기
+   @GetMapping("/Teacher")
+   public String getTeacher(@Param("ano") int ano , Model mo) {
+	   mo.addAttribute("teacher", mapper.getAcademyTeacher(ano));
+	   return "/WebContent/app/academy/getTeacher";
+   }
    
    //게시판 수정 이동
    @GetMapping("/modifyBoard")

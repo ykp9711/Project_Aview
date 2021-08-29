@@ -91,4 +91,13 @@ SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID
  	<select id="getFacility" resultType="com.Aview.domain.AcademyFacilityVO">
  		SELECT PHOTO FROM TBL_ACADEMY_PHOTO WHERE ANO = #{ano}
  	</select>
+ 	
+ 	<insert id="academyTeacher">
+ 		INSERT INTO TBL_TEACHER(ANO, NAME, GENDER, PHOTO, INTRO)VALUES(#{ano}, #{name}, #{gender},#{photo}, #{intro})
+ 		
+ 	</insert>
+ 	
+ 	<select id="getAcademyTeacher" resultType="com.Aview.domain.AcademyTeacherVO">
+ 		SELECT * FROM TBL_TEACHER WHERE ANO = #{ano} 
+ 	</select>
 </mapper>

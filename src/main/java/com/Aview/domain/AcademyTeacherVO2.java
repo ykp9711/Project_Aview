@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @CheckForNull
 public class AcademyTeacherVO2 {
-		private int ano;
+
 		private String name2;
 		private int age2;
 		private String gender2;

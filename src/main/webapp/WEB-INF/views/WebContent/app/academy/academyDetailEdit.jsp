@@ -8,7 +8,6 @@
 	margin: 0 auto;
 	text-align: center;
 }
-
 .tab {
 	list-style: none;
 	margin: 0;
@@ -36,16 +35,13 @@
 	padding: 6px 12px;
 	color: #fff;
 }
-
 ul.tab li.current {
 	background-color: rgb(0, 154, 200);
 	color: #222;
 }
-
 .tabcontent.current {
 	display: block;
 }
-
 /*강사 사진 및 동영상  태그 숨기기 , 보이기*/
 /* body{font-size:9pt;}
 th{text-align:right;background:#f6f6f6;}
@@ -70,7 +66,8 @@ table{border:1px solid #f2f2f2;width:100%;} */
 
 <!-- Header -->
 <body class="is-preload">
-
+<!-- Header -->
+	   <%@ include file="../../header.jsp"%>
 
 
 
@@ -187,7 +184,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 					<ul class="actions">
 						<li style="margin: 0 auto;"><input type="submit" value="등록하기"
 							class="primary" /> <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
-							<input type="button" value="다시작성" id="joinbutton"
+							<input type="reset" value="다시작성" class="button" id="joinbutton"
 							onClick="location.href='javascript:joinForm.button()'" /> <!-- <a href="javascript:joinForm.button()">다시작성</a>&nbsp;&nbsp; -->
 							<%-- <a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a> --%>
 						</li>
@@ -214,14 +211,11 @@ table{border:1px solid #f2f2f2;width:100%;} */
 				</div>
 			</div>
 		</div>
-		<input type="submit" value="가입하기" class="primary" /><br>
+		<input type="submit" value="글 등록" class="primary" /><br>
 		</li>
-	</form>
-
-
-	<!-- 강사등록   -->
+		
+		<!-- 강사등록   -->
 	<div id="tab2" class="tabcontent">
-		<form id="teacherForm" name="teacherForm" action="/board/registerTeacher" method="post"	enctype="multipart/form-data">
 			<div class="row gtr-uniform" style="color: black;">
 				<div class="col-6 col-12-small" style="margin: 0 auto;">
 					<br> <br>
@@ -234,14 +228,14 @@ table{border:1px solid #f2f2f2;width:100%;} */
 								<div style="width: 70%;">
 									<article class="post" style="margin-left: -30%;">
 										<label>강사 이름</label> <input type="text" maxlength="12"	name="name">
-										<label>나이</label> <input type="text" maxlength="12" name="age"> <br>
+										 <br>
 										 <label for="hint">성별</label> <select name="gender">
 											<option value="성별" style="color: black">성별</option>
 											<option value="남성" style="color: black">남성</option>
 											<option value="여성" style="color: black">여성</option>
 										</select> <br> 
 										<label>강사 사진</label>
-										 <input type="file" name="file">
+										 <input type="file" name="teacherPhoto1">
 										<br> <br>
 										<div class="select_img2">
 											<img src="" />
@@ -253,239 +247,220 @@ table{border:1px solid #f2f2f2;width:100%;} */
 										<p>
 											✔ 강사는 최대 8명까지 등록 가능합니다.<br>
 										<ul class="actions">
-											<li style="margin: 0 auto;"><input value="강사 추가"
-												onClick="t_block1()" />&nbsp;&nbsp;</li>
+											<li style="margin: 0 auto;"><input type="button" value="강사 추가" class="primary" onClick="t_block1()" />&nbsp;&nbsp;</li>
 										</ul>
 									</article>
+							<!-- 2번 강사 -->
 
-									<!-- 2번 강사 -->
-									<div id="teacher1" style="display: none;">
-										<article class="post" style="margin-left: -30%;">
-											<h3>2번 강사</h3>
-											<hr>
-											<input type="text" name="ano" id="ano">
+							<div ID='teacher1' style="display: none;">
+
+							<article class="post" style="margin-left: -30%;">
+																					<h3>2번 강사</h3><hr>
 											<label>강사 이름</label> <input type="text" maxlength="12"
-												name="name2" id="name2" value=""> <label>나이</label>
-											<input type="text" maxlength="12" name="age2" id="age2"
-												value=""> <br> <label for="hint">성별</label> <select
-												name="gender2" id="gender2">
-												<option value="성별" style="color: black">성별</option>
-												<option value="남성" style="color: black">남성</option>
-												<option value="여성" style="color: black">여성</option>
-											</select> <br> <label>강사 사진</label> <input type='file'
-												name="file2" id="file3"> <br> <br>
-											<div class="select_img3">
-												<img src="" />
-											</div>
-											<br> <label>강사 소개</label>
-											<textarea name="intro2" rows='5' style='resize: none;'
-												placeholder='선생님 소개 입력' id="intro2"> </textarea>
-											<hr>
-											<p>
-												✔ 강사는 최대 8명까지 등록 가능합니다.<br>
-											<ul class="actions">
-												<li style="margin: 0 auto;"><input type="button"
-													value="강사 추가" onClick="t_block2()" />&nbsp;&nbsp; <input
-													type="button" value="삭제하기" onclick="t_none1()" /></li>
-											</ul>
-										</article>
-									</div>
-									<!-- 3번 강사 -->
-									<div id="teacher2" style="display: none;">
-										<article class="post" style="margin-left: -30%;">
-											<h3>3번 강사</h3>
-											<hr>
+								name="name2">
+							 <br> 
+							<label for="hint">성별</label> 
+							 <select name="gender2">
+							 	<option value="성별" style="color: black">성별</option>
+							 	<option value="남성" style="color: black">남성</option>
+							 	<option value="여성" style="color: black">여성</option>
+							 </select>
+							<br> <label>강사 사진</label> <input type='file'name="teacherPhoto2"> <br>
+							<br><div class="select_img3"><img src="" /></div>
+							<br> <label>강사 소개</label>
+							<textarea name="intro2" rows='5'
+								style='resize: none;' placeholder='선생님 소개 입력'></textarea>
+							<hr>
+							<p>✔ 강사는 최대 8명까지 등록 가능합니다.<br>
+														<ul class="actions">
+								<li style="margin: 0 auto;">
+								<input type="button" value="강사 추가" class="primary" onClick="t_block2()" />&nbsp;&nbsp;
+								<input type="reset" value="삭제하기" class="button" onclick="t_none1()"/> 
+								</li>
+							</ul>
+							</article>
+							</div>
+							<!-- 3번 강사 -->
+							<div ID='teacher2' style="display: none;">
+							<article class="post" style="margin-left: -30%;">
+							<h3>3번 강사</h3><hr>
 											<label>강사 이름</label> <input type="text" maxlength="12"
-												name="name3" value=""> <label>나이</label> <input
-												type="text" maxlength="12" name="age3" value=""> <br>
-											<label for="hint">성별</label> <select name="gender3">
-												<option value="성별" style="color: black">성별</option>
-												<option value="남성" style="color: black">남성</option>
-												<option value="여성" style="color: black">여성</option>
-											</select> <br> <label>강사 사진</label> <input type='file'
-												name="file3"> <br> <br>
-											<div class="select_img3">
-												<img src="" />
-											</div>
-											<br> <label>강사 소개</label>
-											<textarea name="intro3" rows='5' style='resize: none;'
-												placeholder='선생님 소개 입력'></textarea>
-											<hr>
-											<p>
-												✔ 강사는 최대 8명까지 등록 가능합니다.<br>
-											<ul class="actions">
-												<li style="margin: 0 auto;"><input type="button"
-													value="강사 추가" onClick="t_block3()" />&nbsp;&nbsp; <input
-													type="button" value="삭제하기" onclick="t_none2()" /></li>
-											</ul>
-										</article>
-									</div>
-									<!-- 4번 강사 -->
-									<div id="teacher3" style="display: none;">
-										<article class="post" style="margin-left: -30%;">
-											<h3>4번 강사</h3>
-											<hr>
-											<label>강사 이름</label> <input type="text" maxlength="12"
-												name="name4" value=""> <label>나이</label> <input
-												type="text" maxlength="12" name="age4" value=""> <br>
-											<label for="hint">성별</label> <select name="gender4">
-												<option value="성별" style="color: black">성별</option>
-												<option value="남성" style="color: black">남성</option>
-												<option value="여성" style="color: black">여성</option>
-											</select> <br> <label>강사 사진</label> <input type='file'
-												name="file4"> <br> <br>
-											<div class="select_img3">
-												<img src="" />
-											</div>
-											<br> <label>강사 소개</label>
-											<textarea name="intro4" rows='5' style='resize: none;'
-												placeholder='선생님 소개 입력'></textarea>
-											<hr>
-											<p>
-												✔ 강사는 최대 8명까지 등록 가능합니다.<br>
-											<ul class="actions">
-												<li style="margin: 0 auto;"><input type="button"
-													value="강사 추가" onClick="t_block4()" />&nbsp;&nbsp; <input
-													type="button" value="삭제하기" onclick="t_none3()" /></li>
-											</ul>
-										</article>
-									</div>
-									<!-- 5번 강사 -->
-									<div id="teacher4" style="display: none;">
-										<article class="post" style="margin-left: -30%;">
-											<h3>5번 강사</h3>
-											<hr>
-											<label>강사 이름</label> <input type="text" maxlength="12"
-												name="name5" value=""> <label>나이</label> <input
-												type="text" maxlength="12" name="age5" value=""> <br>
-											<label for="hint">성별</label> <select name="gender5">
-												<option value="성별" style="color: black">성별</option>
-												<option value="남성" style="color: black">남성</option>
-												<option value="여성" style="color: black">여성</option>
-											</select> <br> <label>강사 사진</label> <input type='file'
-												name="file5"> <br> <br>
-											<div class="select_img3">
-												<img src="" />
-											</div>
-											<br> <label>강사 소개</label>
-											<textarea name="intro5" rows='5' style='resize: none;'
-												placeholder='선생님 소개 입력'></textarea>
-											<hr>
-											<p>
-												✔ 강사는 최대 8명까지 등록 가능합니다.<br>
-											<ul class="actions">
-												<li style="margin: 0 auto;"><input type="button"
-													value="강사 추가" onClick="t_block5()" />&nbsp;&nbsp; <input
-													type="button" value="삭제하기" onclick="t_none4()" /></li>
-											</ul>
-										</article>
-									</div>
-									<!-- 6번 강사 -->
-									<div id="teacher5" style="display: none;">
-										<article class="post" style="margin-left: -30%;">
-											<h3>6번 강사</h3>
-											<hr>
-											<label>강사 이름</label> <input type="text" maxlength="12"
-												name="name6" value=""> <label>나이</label> <input
-												type="text" maxlength="12" name="age6" value=""> <br>
-											<label for="hint">성별</label> <select name="gender6">
-												<option value="성별" style="color: black">성별</option>
-												<option value="남성" style="color: black">남성</option>
-												<option value="여성" style="color: black">여성</option>
-											</select> <br> <label>강사 사진</label> <input type='file'
-												name="file6"> <br> <br>
-											<div class="select_img3">
-												<img src="" />
-											</div>
-											<br> <label>강사 소개</label>
-											<textarea name="intro6" rows='5' style='resize: none;'
-												placeholder='선생님 소개 입력'></textarea>
-											<hr>
-											<p>
-												✔ 강사는 최대 8명까지 등록 가능합니다.<br>
-											<ul class="actions">
-												<li style="margin: 0 auto;"><input type="button"
-													value="강사 추가" onClick="t_block6()" />&nbsp;&nbsp; <input
-													type="button" value="삭제하기" onclick="t_none5()" /></li>
-											</ul>
-										</article>
-									</div>
-									<!-- 7번 강사 -->
-									<div id="teacher6" style="display: none;">
-										<article class="post" style="margin-left: -30%;">
-											<h3>7번 강사</h3>
-											<hr>
-											<label>강사 이름</label> <input type="text" maxlength="12"
-												name="name7" value=""> <label>나이</label> <input
-												type="text" maxlength="12" name="age7" value=""> <br>
-											<label for="hint">성별</label> <select name="gender7">
-												<option value="성별" style="color: black">성별</option>
-												<option value="남성" style="color: black">남성</option>
-												<option value="여성" style="color: black">여성</option>
-											</select> <br> <label>강사 사진</label> <input type='file'
-												name="file7"> <br> <br>
-											<div class="select_img3">
-												<img src="" />
-											</div>
-											<br> <label>강사 소개</label>
-											<textarea name="intro7" rows='5' style='resize: none;'
-												placeholder='선생님 소개 입력'></textarea>
-											<hr>
-											<p>
-												✔ 강사는 최대 8명까지 등록 가능합니다.<br>
-											<ul class="actions">
-												<li style="margin: 0 auto;"><input type="button"
-													value="강사 추가" onClick="t_block7()" />&nbsp;&nbsp; <input
-													type="button" value="삭제하기" onclick="t_none6()" /></li>
-											</ul>
-										</article>
-									</div>
-									<!-- 8번 강사 -->
-									<div id="teacher7" style="display: none;">
-										<article class="post" style="margin-left: -30%;">
-											<h3>8번 강사</h3>
-											<hr>
-											<label>강사 이름</label> <input type="text" maxlength="12"
-												name="name8" value=""> <label>나이</label> <input
-												type="text" maxlength="12" name="age8" value=""> <br>
-											<label for="hint">성별</label> <select name="gender8" d>
-												<option value="성별" style="color: black">성별</option>
-												<option value="남성" style="color: black">남성</option>
-												<option value="여성" style="color: black">여성</option>
-											</select> <br> <label>강사 사진</label> <input type='file'
-												name="file8"> <br> <br>
-											<div class="select_img3">
-												<img src="" />
-											</div>
-											<br> <label>강사 소개</label>
-											<textarea name="intro8" rows='5' style='resize: none;'
-												placeholder='선생님 소개 입력'></textarea>
-											<hr>
-											<p>
-												✔ 강사는 최대 8명까지 등록 가능합니다.<br>
-											<ul class="actions">
-												<li style="margin: 0 auto;"><input type="button"
-													value="삭제하기" onclick="t_none7()" /></li>
-											</ul>
-										</article>
-									</div>
+								name="name3" id="name3" value="">
+							 <br> 
+							<label for="hint">성별</label> 
+							 <select name="gender3" id="gender3">
+							 	<option value="성별" style="color: black">성별</option>
+							 	<option value="남성" style="color: black">남성</option>
+							 	<option value="여성" style="color: black">여성</option>
+							 </select>
+							<br> <label>강사 사진</label> <input type='file' name="teacherPhoto3"> <br>
+								<br><div class="select_img4"><img src="" /></div>
+							<br> <label>강사 소개</label>
+							<textarea name="intro3" id="intro3" rows='5'
+								style='resize: none;' placeholder='선생님 소개 입력'></textarea>
+							<hr>
+							<p>✔ 강사는 최대 8명까지 등록 가능합니다.<br>
+																																			
+														<ul class="actions">
+								<li style="margin: 0 auto;">
+								<input type="button" value="강사 추가" class="primary" onClick="t_block3()" />&nbsp;&nbsp;
+								<input type="reset" value="삭제하기" class="button" onclick="t_none2()"/> 
+								</li>
+							</ul>
+							</article>
+							</div>
+							<!-- 4번 강사 -->
+							<div ID='teacher3' style="display: none;">
+							<article class="post" style="margin-left: -30%;">
+							<h3>4번 강사</h3><hr>
+											<label>강사 이름</label> <input type="text" name="name4" >
+							 <br> 
+							<label for="hint">성별</label> 
+							 <select name="gender4">
+							 	<option value="성별" style="color: black">성별</option>
+							 	<option value="남성" style="color: black">남성</option>
+							 	<option value="여성" style="color: black">여성</option>
+							 </select>
+							<br> <label>강사 사진</label> <input type='file' name="teacherPhoto4"> <br>
+								<br><div class="select_img5"><img src="" /></div>
+							<br> <label>강사 소개</label>
+							<textarea name="intro4" rows='5'
+								style='resize: none;' placeholder='선생님 소개 입력'></textarea>
+							<hr>
+							<p>✔ 강사는 최대 8명까지 등록 가능합니다.</p><br>
+																																			
+														<ul class="actions">
+								<li style="margin: 0 auto;">
+								<input type="button" class="primary" value="강사 추가" onClick="t_block4()" />&nbsp;&nbsp;
+								<input type="reset" value="삭제하기" class="button" onclick="t_none3()"/> 
+								</li>
+							</ul>
+							</article>
+							</div>		
+							<!-- 5번 강사 -->
+							<div ID='teacher4' style="display: none;">
+							<article class="post" style="margin-left: -30%;">
+							<h3>5번 강사</h3><hr>
+											<label>강사 이름</label> <input type="text" name="name5" >
+							 <br> 
+							<label for="hint">성별</label> 
+							 <select name="gender5">
+							 	<option value="성별" style="color: black">성별</option>
+							 	<option value="남성" style="color: black">남성</option>
+							 	<option value="여성" style="color: black">여성</option>
+							 </select>
+							<br> <label>강사 사진</label> <input type='file' name="teacherPhoto5"> <br>
+								<br><div class="select_img6"><img src="" /></div>
+							<br> <label>강사 소개</label>
+							<textarea name="intro5" rows='5'
+								style='resize: none;' placeholder='선생님 소개 입력'></textarea>
+							<hr>
+							<p>✔ 강사는 최대 8명까지 등록 가능합니다.<br>
+																																			
+														<ul class="actions">
+								<li style="margin: 0 auto;">
+								<input type="button" class="primary"  value="강사 추가" onClick="t_block5()" />&nbsp;&nbsp;
+								<input type="reset" value="삭제하기" class="button" onclick="t_none4()"/> 
+								</li>
+							</ul>
+							</article>
+							</div>	
+							
+							<!-- 6번 강사 -->
+							<div ID='teacher5' style="display: none;">
+							<article class="post" style="margin-left: -30%;">
+							<h3>6번 강사</h3><hr>
+											<label>강사 이름</label> <input type="text" maxlength="12"name="name6" >
+						 <br> 
+							<label for="hint">성별</label> 
+							 <select name="gender6">
+							 	<option value="성별" style="color: black">성별</option>
+							 	<option value="남성" style="color: black">남성</option>
+							 	<option value="여성" style="color: black">여성</option>
+							 </select>
+							<br> <label>강사 사진</label> <input type='file' name="teacherPhoto6"> <br>
+								<br><div class="select_img7"><img src="" /></div>
+							<br> <label>강사 소개</label>
+							<textarea name="intro6" rows='5'
+								style='resize: none;' placeholder='선생님 소개 입력'></textarea>
+							<hr>
+							<p>✔ 강사는 최대 8명까지 등록 가능합니다.<br>
+																																			
+														<ul class="actions">
+								<li style="margin: 0 auto;">
+								<input type="button" class="primary" value="강사 추가" onClick="t_block6()" />&nbsp;&nbsp;
+								<input type="reset" value="삭제하기" class="button" onclick="t_none5()"/> 
+								</li>
+							</ul>
+							</article>
+							</div>																
+							<!-- 7번 강사 -->
+							<div ID='teacher6' style="display: none;">
+							<article class="post" style="margin-left: -30%;">
+							<h3>7번 강사</h3><hr>
+											<label>강사 이름</label> <input type="text" name="name7" >
+<br> 
+							<label for="hint">성별</label> 
+							 <select name="gender7">
+							 	<option value="성별" style="color: black">성별</option>
+							 	<option value="남성" style="color: black">남성</option>
+							 	<option value="여성" style="color: black">여성</option>
+							 </select>
+							<br> <label>강사 사진</label> <input type='file' name="teacherPhoto7"> <br>
+								<br><div class="select_img8"><img src="" /></div>
+							<br> <label>강사 소개</label>
+							<textarea name="intro7" rows='5'
+								style='resize: none;' placeholder='선생님 소개 입력'></textarea>
+							<hr>
+							<p>✔ 강사는 최대 8명까지 등록 가능합니다.<br>
+																																			
+														<ul class="actions">
+								<li style="margin: 0 auto;">
+								<input type="button" class="primary" value="강사 추가" onClick="t_block7()" />&nbsp;&nbsp;
+								<input type="reset" value="삭제하기" class="button" onclick="t_none6()"/> 
+								</li>
+							</ul>
+							</article>
+							</div>												
+
+							<!-- 8번 강사 -->
+							<div ID='teacher7' style="display: none;">
+							<article class="post" style="margin-left: -30%;">
+							<h3>8번 강사</h3><hr>
+									<label>강사 이름</label> <input type="text" name="name8" >
+							 <select name="gender8">
+							 	<option value="성별" style="color: black">성별</option>
+							 	<option value="남성" style="color: black">남성</option>
+							 	<option value="여성" style="color: black">여성</option>
+							 </select>
+							<br> <label>강사 사진</label> <input type='file' name="teacherPhoto8"> <br>
+								<br><div class="select_img9"><img src="" /></div>
+							<br> <label>강사 소개</label>
+							<textarea name="intro8" rows='5'
+								style='resize: none;' placeholder='선생님 소개 입력'></textarea>
+							<hr>
+							<p>✔ 강사는 최대 8명까지 등록 가능합니다.<br>
+																																			
+														<ul class="actions">
+								<li style="margin: 0 auto;">
+								
+								<input type="reset" value="삭제하기" class="button" onclick="t_none7()"/> 
+								</li>
+							</ul>
+							</article>
+							</div>													
 								</div>
 							</div>
 						</div>
 					</div>
-					<ul class="actions">
-						<li style="margin: 0 auto;"><a href="" class="test">테스트</a>&nbsp;&nbsp;
-						</li>
-						<li><input type="submit" value="전송"></li>
-					</ul>
+
 
 				</div>
 			</div>
-			<input type="submit" value="등록2" />
-		</form>
-
 
 	</div>
+	</form>
+
 
 
 	<div id="tab4" class="tabcontent">
@@ -532,7 +507,6 @@ table{border:1px solid #f2f2f2;width:100%;} */
 			console.log(document.getElementById("check_number").readonly);
 			document.getElementById("check_number").readOnly = false;
 		}
-
 		function checkInput(sel, item) {
 			if ($(sel).val().trim().length == 0) {
 				alert(item + ' 입력하세요');
@@ -540,9 +514,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 				return false;
 			}
 			return true;
-
 		}
-
 		//버튼 숨기기
 		//계획삭제
 		$(function() {
@@ -559,67 +531,60 @@ table{border:1px solid #f2f2f2;width:100%;} */
 	<script>
 		function t_block1() {
 			teacher1.style.display = "block";
+			$("input[name=name2]").focus();
 		}
 		function t_none1() {
 			teacher1.style.display = "none";
 		}
-
 		function t_block2() {
 			teacher2.style.display = "block";
-			$("#teacher_name3").focus()
+			$("input[name=name3]").focus();
 		}
 		function t_none2() {
 			teacher2.style.display = "none";
 		}
-
 		function t_block3() {
 			teacher3.style.display = "block";
-			$("#teacher_name4").focus()
+			$("input[name=name4]").focus();
 		}
 		function t_none3() {
 			teacher3.style.display = "none";
 		}
-
 		function t_block4() {
 			teacher4.style.display = "block";
-			$("#teacher_name5").focus()
+			$("input[name=name5]").focus();
 		}
 		function t_none4() {
 			teacher4.style.display = "none";
 		}
-
 		function t_block5() {
 			teacher5.style.display = "block";
-			$("#teacher_name6").focus()
+			$("input[name=name6]").focus();
 		}
 		function t_none5() {
 			teacher5.style.display = "none";
 		}
-
 		function t_block6() {
 			teacher6.style.display = "block";
-			$("#teacher_name7").focus()
+			$("input[name=name7]").focus();
 		}
 		function t_none6() {
 			teacher6.style.display = "none";
 		}
-
 		function t_block7() {
 			teacher7.style.display = "block";
-			$("#teacher_name8").focus()
+			$("input[name=name8]").focus();
 		}
 		function t_none7() {
 			teacher7.style.display = "none";
 		}
-
 		function t_block8() {
 			teacher8.style.display = "block";
-			$("#teacher_name9").focus()
+			$("#name9").focus()
 		}
 		function t_none8() {
 			teacher8.style.display = "none";
 		}
-
 		function t_block9() {
 			teacher9.style.display = "block";
 			$("#teacher_name10").focus()
@@ -744,15 +709,8 @@ table{border:1px solid #f2f2f2;width:100%;} */
 			var form = $("#teacherForm");
 			var ano = $("#ano");
 			
-			ano.val(1);
-			name.val("null");
-			age.val(); // varchar2 
-			intro.val("null");
-			file.val("null");
-			gender.val("null");
+
 			form.submit();
-
-
 		})
 	</script>
 </body>
