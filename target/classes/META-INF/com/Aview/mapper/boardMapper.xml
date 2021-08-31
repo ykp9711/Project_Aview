@@ -26,10 +26,10 @@
 		</if>
 	</sql>
 	
-   <insert id="register">
+      <insert id="register">
       INSERT INTO TBL_ACADEMY_BOARD
-      (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG, ACADEMYMAPPHOTO, MAPDETAIL) VALUES
-      (#{ano}, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag}, #{academyMapPhoto}, #{mapDetail})
+      (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG, ACADEMYMAPPHOTO, ACAZIPCODE, ACAADDRESS, ACAADDRESSDETAIL) VALUES
+      (#{ano}, #{academyArea}, #{academyKind}, #{academyPhoto}, #{academyTitle}, #{academyId}, #{academyContent}, #{academyName}, #{academyIntro}, #{academyYoutube}, #{academyTag}, #{academyMapPhoto}, #{AcaZipcode}, #{AcaAddress}, #{AcaAddressDetail})
    </insert>
    
       <insert id="registerTeacher">

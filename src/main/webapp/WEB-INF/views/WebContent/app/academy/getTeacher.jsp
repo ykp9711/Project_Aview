@@ -9,8 +9,32 @@
 -->
 <!DOCTYPE HTML>
 <html>
-<style>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
 
+/* 폰트 적용 */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+html {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 노말라이즈 */
+body, ul, li, h1, h2, h3, h4, h5 {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+a {
+    color:inherit;
+    text-decoration:none;
+}
 
 </style>
 <head>
@@ -26,29 +50,53 @@
 
    <%@ include file="../../header.jsp"%>
    <!-- Wrapper -->
-<article style="width: 70%; margin: 0 auto;">
+   <br><br><br>
+	<section id="three" class="wrapper style1">
+		<header class="major">
+			<h2>강사 소개</h2>
+		</header>
+		<div id="main" class="container">
+									<div class="row">
+										<!-- Post -->
+
+										<div style="width: 70%;">
+<div class="container">
+
+				<div class="col-4 col-6-medium col-12-small">
+					<article class="box post" style="width : 100%;">
+<article style="width: 70%; height:1200px; margin: 0 auto;">
   <c:forEach var="teacher" items="${teacher}">
-<table style="width: 20%; margin-left: 10%; margin-top:10%; float: left;">
+<div style="float: left; margin: 2px;">
+<table class="tg">
 <thead>
   <tr>
-    <th></th>
-    <th colspan="3" style="height:200px;"><img src="/resources/FileImage/${teacher.photo}"></th>
-    <th></th>
+    <th class="tg-0lax" colspan="2"><img style="width:200px; height:200px;" src="/resources/FileImage/${teacher.photo}"/></th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td colspan="2" style="text-align: center;">이름</td>
-    <td  style="text-align: center;">${teacher.name}</td>
+    <td style="text-align: center; width: 40%;" class="tg-0lax">이 름</td>
+    <td style="text-align: center;" class="tg-0lax">${teacher.name}</td>
   </tr>
   <tr>
-    <td colspan="3">${teacher.intro}</td>
+    <td style="height: 200px;" class="tg-0lax" colspan="2">${teacher.intro}</td>
   </tr>
 </tbody>
 </table>
+</div>
+&nbsp;
 </c:forEach>
 
-</article>
+</article>					
+
+				
+				</article>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				</section>
 	
 
    <!-- Scripts -->

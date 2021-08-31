@@ -168,14 +168,26 @@ table{border:1px solid #f2f2f2;width:100%;} */
 										</div>
 										<br>
 										<hr>
-										<h4>지점 상세 지도</h4>
-
-										<figure>
-											<img src="images/역삼역.JPG" alt="" />
-										</figure>
-										<label>위치 상세설명</label> <input type="text" name="mapDetail"
-											id="mapDetail" width="50%">
-									</article>
+										<h4>지점 상세 위치</h4><br>
+												
+											<label for ="postal_code">우편번호</label>
+														<div class="row gtr-uniform">
+															<div class="col-6 col-12-small">
+																<input type="text" name="AcaZipcode" id="AcaZipcode" value=""  required>
+															</div>	
+					 										 <div class="col-6 col-12-small">	
+																<input type="button" name="findZipcode" id="findZipcode" value="우편번호 찾기" style="display: inline;">
+														</div>
+													</div>		
+											<br>		
+												<label for ="address">주소</label>
+													<input type="text" name="AcaAddress" id="AcaAddress" value=""  required>
+											<br>
+												<label for ="detail_address">상세주소</label>
+													<input type="text" name="AcaAddressDetail" id="AcaAddressDetail" value=""required placeholder="자세하게 작성해주세요.">
+													<br>
+											
+											</article>
 
 								</div>
 							</div>
@@ -711,7 +723,21 @@ table{border:1px solid #f2f2f2;width:100%;} */
 			
 
 			form.submit();
+			
 		})
 	</script>
+	
+	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script>
+			 $("#findZipcode").click(function(){
+		         new daum.Postcode({
+		            oncomplete:function(data) {
+		               jQuery("#AcaZipcode").val(data.zonecode);
+		               jQuery("#AcaAddress").val(data.address);
+		               jQuery("#AcaAddressDetail").focus();
+		            }
+		         }).open();
+		      });
+		      </script>
 </body>
 </html>
