@@ -51,6 +51,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/board/*")
 public class BoardController {
+	//커밋 테스트
    @Autowired
    Upload up;
 	
