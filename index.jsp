@@ -17,7 +17,7 @@
 	<body class="landing is-preload">
 
 		<!-- Header -->
-			<%@ include file="header.jsp" %>
+			<%@ include file="../../header.jsp" %>
 
 		<!-- Banner -->
 		

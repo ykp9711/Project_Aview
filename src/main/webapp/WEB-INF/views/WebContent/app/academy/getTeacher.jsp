@@ -65,6 +65,10 @@ a {
 				<div class="col-4 col-6-medium col-12-small">
 					<article class="box post" style="width : 100%;">
 <article style="width: 70%; height:1200px; margin: 0 auto;">
+
+<c:if test="${fn:length(teacher) <1}">
+등록된 강사가 없습니다.
+</c:if>
   <c:forEach var="teacher" items="${teacher}">
 <div style="float: left; margin: 2px;">
 <table class="tg">

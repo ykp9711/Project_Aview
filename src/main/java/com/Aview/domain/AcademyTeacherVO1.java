@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class AcademyTeacherVO1 {
 
-	private String name;
-	private String gender;
-	private String photo;
-	private String intro;
+	private String name1;
+	private String gender1;
+	private String photo1;
+	private String intro1;
 
 }

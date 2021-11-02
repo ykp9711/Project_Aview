@@ -19,7 +19,7 @@
 		<!-- Main -->
 	<section id="main" class="wrapper style1">
 		<header class="major">
-			<h2>ReturnCycle Join</h2>
+			<h2>학생 회원가입</h2>
 		</header>
 		<div class="container">
 
@@ -30,7 +30,7 @@
 							<div class="col-6 col-12-small" style="margin:0 auto;">
 								<label>아이디</label>
 									<input type="text" maxlength="12" id="sid" name="sid" value="" required>
-									<p id="idCheck_text">여기</p>
+									<p id="idCheck_text"></p>
 									
 							<br>
 								<label>비밀번호</label>

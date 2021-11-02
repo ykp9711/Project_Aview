@@ -81,7 +81,9 @@
                         <ul class="actions">
                         <li style="margin:0 auto;">
                             <a href="javascript:acainfo.submit()" class="button"style="width: 150px;">수정하기</a>
-                        
+                        </li>
+                        <li>
+                        <a href="" id="leave" style="float: right;">회원탈퇴</a>
                         </li>
                      </ul>
                   </div>
@@ -99,6 +101,18 @@
 <script>var contextPath = "${pageContext.request.contextPath}";</script>
 <script src="${pageContext.request.contextPath}/app/member/join.js"></script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script>
+	$("#leave").on("click",function(e){
+		e.preventDefault();
+		 if (confirm("회원탈퇴를 하시겠습니까?")) {
+             // 확인 버튼 클릭 시 동작
+             location.href="/member/acaLeave?aid=${id.aid}"
+         } else {
+             // 취소 버튼 클릭 시 동작
+             alert("회원탈퇴가 취소되었습니다.");
+         }
+	})
+</script>
 <%@ include file = "joinFormJS.jsp" %>
 <!-- Footer -->
 <%@ include file = "../../footer.jsp" %>

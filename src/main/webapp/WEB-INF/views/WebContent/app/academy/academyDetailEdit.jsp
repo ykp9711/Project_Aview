@@ -164,7 +164,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 												style="resize: none;" placeholder="학원 상세 설명"></textarea>
 											<br> <label>학원 태그(검색어로 사용됩니다.)</label> <input
 												type="text" maxlength="12" name="academyTag" id="academyTag"
-												value="" required>
+												value="" >
 										</div>
 										<br>
 										<hr>
@@ -173,18 +173,18 @@ table{border:1px solid #f2f2f2;width:100%;} */
 											<label for ="postal_code">우편번호</label>
 														<div class="row gtr-uniform">
 															<div class="col-6 col-12-small">
-																<input type="text" name="AcaZipcode" id="AcaZipcode" value=""  required>
+																<input type="text" name="acaZipcode" id="acaZipcode" value="" readonly="readonly" required>
 															</div>	
 					 										 <div class="col-6 col-12-small">	
-																<input type="button" name="findZipcode" id="findZipcode" value="우편번호 찾기" style="display: inline;">
+																<input type="button" name="findZipcode" id="findZipcode" value="우편번호 찾기" readonly="readonly" style="display: inline;">
 														</div>
 													</div>		
 											<br>		
 												<label for ="address">주소</label>
-													<input type="text" name="AcaAddress" id="AcaAddress" value=""  required>
+													<input type="text" name="acaAddress" id="acaAddress" value="" readonly="readonly" required>
 											<br>
 												<label for ="detail_address">상세주소</label>
-													<input type="text" name="AcaAddressDetail" id="AcaAddressDetail" value=""required placeholder="자세하게 작성해주세요.">
+													<input type="text" name="acaAddressDetail" id="acaAddressDetail" value=""required placeholder="자세하게 작성해주세요.">
 													<br>
 											
 											</article>
@@ -193,14 +193,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 							</div>
 						</div>
 					</div>
-					<ul class="actions">
-						<li style="margin: 0 auto;"><input type="submit" value="등록하기"
-							class="primary" /> <!-- <a href="javascript:formSubmit()" id="joinSubmit">회원가입</a>&nbsp;&nbsp; -->
-							<input type="reset" value="다시작성" class="button" id="joinbutton"
-							onClick="location.href='javascript:joinForm.button()'" /> <!-- <a href="javascript:joinForm.button()">다시작성</a>&nbsp;&nbsp; -->
-							<%-- <a href="${pageContext.request.contextPath}/member/MemberLogin.me">로그인</a> --%>
-						</li>
-					</ul>
+					
 				</div>
 			</div>
 		</div>
@@ -217,14 +210,12 @@ table{border:1px solid #f2f2f2;width:100%;} */
 					<br> <input multiple="multiple" type="file" name="acaPhoto" />&nbsp;
 					<br> <br> <br>
 					<ul class="actions">
-						<li style="margin: 0 auto;"><input type="submit" value="가입하기"
-							class="primary" /><br></li>
+						<li style="margin: 0 auto;"><button id="formSubmit" 
+							class="button primary" style="background:#62BD83; color: white;">게시글 등록</button><br></li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<input type="submit" value="글 등록" class="primary" /><br>
-		</li>
 		
 		<!-- 강사등록   -->
 	<div id="tab2" class="tabcontent">
@@ -239,9 +230,9 @@ table{border:1px solid #f2f2f2;width:100%;} */
 							<div class="row">
 								<div style="width: 70%;">
 									<article class="post" style="margin-left: -30%;">
-										<label>강사 이름</label> <input type="text" maxlength="12"	name="name">
+										<label>강사 이름</label> <input type="text" maxlength="12"	name="name1">
 										 <br>
-										 <label for="hint">성별</label> <select name="gender">
+										 <label for="hint">성별</label> <select name="gender1">
 											<option value="성별" style="color: black">성별</option>
 											<option value="남성" style="color: black">남성</option>
 											<option value="여성" style="color: black">여성</option>
@@ -254,7 +245,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 										</div>
 										<br>
 										 <label>강사 소개</label>
-										<textarea name='intro' rows='5' style='resize: none;'placeholder='선생님 소개 입력'></textarea>
+										<textarea name='intro1' rows='5' style='resize: none;'placeholder='선생님 소개 입력'></textarea>
 										<hr>
 										<p>
 											✔ 강사는 최대 8명까지 등록 가능합니다.<br>
@@ -287,7 +278,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<ul class="actions">
 								<li style="margin: 0 auto;">
 								<input type="button" value="강사 추가" class="primary" onClick="t_block2()" />&nbsp;&nbsp;
-								<input type="reset" value="삭제하기" class="button" onclick="t_none1()"/> 
+								<input type="button" value="삭제하기" class="button" onclick="t_none1()"/> 
 								</li>
 							</ul>
 							</article>
@@ -316,7 +307,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<ul class="actions">
 								<li style="margin: 0 auto;">
 								<input type="button" value="강사 추가" class="primary" onClick="t_block3()" />&nbsp;&nbsp;
-								<input type="reset" value="삭제하기" class="button" onclick="t_none2()"/> 
+								<input type="button" value="삭제하기" class="button" onclick="t_none2()"/> 
 								</li>
 							</ul>
 							</article>
@@ -344,7 +335,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<ul class="actions">
 								<li style="margin: 0 auto;">
 								<input type="button" class="primary" value="강사 추가" onClick="t_block4()" />&nbsp;&nbsp;
-								<input type="reset" value="삭제하기" class="button" onclick="t_none3()"/> 
+								<input type="button" value="삭제하기" class="button" onclick="t_none3()"/> 
 								</li>
 							</ul>
 							</article>
@@ -372,7 +363,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<ul class="actions">
 								<li style="margin: 0 auto;">
 								<input type="button" class="primary"  value="강사 추가" onClick="t_block5()" />&nbsp;&nbsp;
-								<input type="reset" value="삭제하기" class="button" onclick="t_none4()"/> 
+								<input type="button" value="삭제하기" class="button" onclick="t_none4()"/> 
 								</li>
 							</ul>
 							</article>
@@ -401,7 +392,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<ul class="actions">
 								<li style="margin: 0 auto;">
 								<input type="button" class="primary" value="강사 추가" onClick="t_block6()" />&nbsp;&nbsp;
-								<input type="reset" value="삭제하기" class="button" onclick="t_none5()"/> 
+								<input type="button" value="삭제하기" class="button" onclick="t_none5()"/> 
 								</li>
 							</ul>
 							</article>
@@ -429,7 +420,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<ul class="actions">
 								<li style="margin: 0 auto;">
 								<input type="button" class="primary" value="강사 추가" onClick="t_block7()" />&nbsp;&nbsp;
-								<input type="reset" value="삭제하기" class="button" onclick="t_none6()"/> 
+								<input type="button" value="삭제하기" class="button" onclick="t_none6()"/> 
 								</li>
 							</ul>
 							</article>
@@ -440,6 +431,8 @@ table{border:1px solid #f2f2f2;width:100%;} */
 							<article class="post" style="margin-left: -30%;">
 							<h3>8번 강사</h3><hr>
 									<label>강사 이름</label> <input type="text" name="name8" >
+									
+									<label for="hint">성별</label> 
 							 <select name="gender8">
 							 	<option value="성별" style="color: black">성별</option>
 							 	<option value="남성" style="color: black">남성</option>
@@ -456,7 +449,7 @@ table{border:1px solid #f2f2f2;width:100%;} */
 														<ul class="actions">
 								<li style="margin: 0 auto;">
 								
-								<input type="reset" value="삭제하기" class="button" onclick="t_none7()"/> 
+								<input type="button" value="삭제하기" class="button" onclick="t_none7()"/> 
 								</li>
 							</ul>
 							</article>
@@ -711,18 +704,15 @@ table{border:1px solid #f2f2f2;width:100%;} */
 	</script>
 
 	<script>
-		$(".test").on("click", function(e) {
+		$("#formSubmit").on("click", function(e) {
 			e.preventDefault();
-			var name = $("#name2");
-			var age = $("#age2");
-			var file = $("#file2");
-			var gender = $("#gender2");
-			var intro = $("#intro2");
-			var form = $("#teacherForm");
-			var ano = $("#ano");
+			var youtube = $("#academyYoutube").val();
+				if(youtube =="" || youtube==null){
+					$("#academyYoutube").val("null");
+				}
 			
 
-			form.submit();
+			joinForm.submit();
 			
 		})
 	</script>
@@ -732,9 +722,9 @@ table{border:1px solid #f2f2f2;width:100%;} */
 			 $("#findZipcode").click(function(){
 		         new daum.Postcode({
 		            oncomplete:function(data) {
-		               jQuery("#AcaZipcode").val(data.zonecode);
-		               jQuery("#AcaAddress").val(data.address);
-		               jQuery("#AcaAddressDetail").focus();
+		               jQuery("#acaZipcode").val(data.zonecode);
+		               jQuery("#acaAddress").val(data.address);
+		               jQuery("#acaAddressDetail").focus();
 		            }
 		         }).open();
 		      });

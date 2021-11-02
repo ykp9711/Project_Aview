@@ -35,6 +35,11 @@ public interface BoardMapper {
 	
 	public List<AcademyTeacherVO> getAcademyTeacher(int ano);
 	
+	public String getAcaPhotoName(int ano); // 학원게시글 썸네일 이름 가져오기
+	
+	public void deleteTeacher(int ano);
+	
+	public int getTeacherCount(int ano); // 등록된 선생님 수 가져오기
 	
 
 
