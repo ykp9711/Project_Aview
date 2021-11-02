@@ -395,6 +395,19 @@ public class MemberController {
 			out.println("</script>");
 			
 		}
+		@GetMapping("/userLeave")
+		public void userLeave(@RequestParam("sid") String sid, HttpServletResponse resp,HttpSession sessionid) throws Exception {
+			mapper.userLeave(sid);
+			sessionid.invalidate();
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("text/html;charset=utf-8");
+			out.println("<script>");
+			out.println("alert('탈퇴되었습니다')");
+			out.println("location.href='/main/index'");
+			out.println("</script>");
+			
+		}
 //		// 인증성공 시 비밀번호 보여줌
 //		@GetMapping("pwInfo")
 //		public String pwInfoAca(@Param("phone") String phone, Model mo) {

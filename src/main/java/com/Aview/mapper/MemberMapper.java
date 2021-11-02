@@ -48,4 +48,6 @@ public interface MemberMapper {
 	
 	public void acaLeave(String aid); //학원 회원탈퇴
 	
+	public void userLeave(String sid); //학원 회원탈퇴
+	
 }
