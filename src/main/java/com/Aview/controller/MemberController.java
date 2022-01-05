@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -381,6 +382,32 @@ public class MemberController {
 				return null;
 		}
 		
+		@GetMapping("/acaLeave")
+		public void acaLeave(@RequestParam("aid") String aid, HttpServletResponse resp,HttpSession sessionid) throws Exception {
+			mapper.acaLeave(aid);
+			sessionid.invalidate();
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("text/html;charset=utf-8");
+			out.println("<script>");
+			out.println("alert('탈퇴되었습니다')");
+			out.println("location.href='/main/index'");
+			out.println("</script>");
+			
+		}
+		@GetMapping("/userLeave")
+		public void userLeave(@RequestParam("sid") String sid, HttpServletResponse resp,HttpSession sessionid) throws Exception {
+			mapper.userLeave(sid);
+			sessionid.invalidate();
+			resp.setCharacterEncoding("UTF-8");
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("text/html;charset=utf-8");
+			out.println("<script>");
+			out.println("alert('탈퇴되었습니다')");
+			out.println("location.href='/main/index'");
+			out.println("</script>");
+			
+		}
 //		// 인증성공 시 비밀번호 보여줌
 //		@GetMapping("pwInfo")
 //		public String pwInfoAca(@Param("phone") String phone, Model mo) {

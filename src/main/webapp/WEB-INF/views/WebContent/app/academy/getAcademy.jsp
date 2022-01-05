@@ -71,16 +71,17 @@
                      <ul class="actions">
                         <li><a href="/board/Teacher?ano=${board.ano}" class="button large">강사 소개</a></li>
                         <li><a href="/board/getFacility?ano=${board.ano}" class="button large">시설 소개</a></li>
-                        <li><a href="facility.jsp" class="button large">학원 리뷰</a></li>
+                        <li><a href="/board/getGo?ano=${board.ano}" class="button large">학원 리뷰</a></li>
                       </ul>
                       </div>
                     </div>
                   </footer>
                </article>
                <hr>
+               <c:if test="${null ne board.acaAddress}">
                <h4>상세 지도</h4>
-				 <input type="hidden" value="${board.acaAddressDetail}">
 				 <div id="map" style="width:100%;height:350px;"></div>
+            </c:if>
             </div>
          </div>
       </div>
@@ -115,59 +116,46 @@
 			location.href="/board/modifyBoard?ano=" +${board.ano};
 	})
 	</script>
-	<script>
-	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    }; 
 	
-	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
 
-	// 장소 검색 객체를 생성합니다
-	var ps = new kakao.maps.services.Places(); 
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-	// 키워드로 장소를 검색합니다
-	ps.keywordSearch('${board.acaAddressDetail}', placesSearchCB);
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
 
-	// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-	function placesSearchCB (data, status, pagination) {
-	    if (status === kakao.maps.services.Status.OK) {
+// 주소로 좌표를 검색합니다
 
-	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-	        // LatLngBounds 객체에 좌표를 추가합니다
-	        var bounds = new kakao.maps.LatLngBounds();
+geocoder.addressSearch('${board.acaAddress}'+' ${board.acaAddressDetail}', function(result, status) {
 
-	        for (var i=0; i<data.length; i++) {
-	            displayMarker(data[i]);    
-	            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-	        }       
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
 
-	        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-	        map.setBounds(bounds);
-	    } 
-	}
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-	// 지도에 마커를 표시하는 함수입니다
-	function displayMarker(place) {
-	    
-	    // 마커를 생성하고 지도에 표시합니다
-	    var marker = new kakao.maps.Marker({
-	        map: map,
-	        position: new kakao.maps.LatLng(place.y, place.x) 
-	    });
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
 
-	    // 마커에 클릭이벤트를 등록합니다
-	    kakao.maps.event.addListener(marker, 'click', function() {
-	        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-	        infowindow.open(map, marker);
-	    });
-	}
-	</script>
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">${board.acaAddress} ${board.acaAddressDetail}</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
 
 	<script>
 	$(".remove").on("click",function(e){

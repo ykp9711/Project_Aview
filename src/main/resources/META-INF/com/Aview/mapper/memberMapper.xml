@@ -83,8 +83,15 @@ SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID = #{aid} AND APWD = #{apwd}
 	<select id="stufindId" resultType="_int">
 		SELECT COUNT(*) FROM TBL_STUDENT WHERE SEMAIL = #{semail} AND SPHONE = #{sphone}
 	</select>
+	
+	<delete id="acaLeave">
+		DELETE FROM TBL_ACADEMY WHERE AID =#{aid}
+	</delete>
+	
+		<delete id="userLeave">
+		DELETE FROM TBL_STUDENT WHERE SID =#{sid}
+	</delete>
 </mapper>
-
 
 
 

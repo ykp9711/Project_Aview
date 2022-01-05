@@ -1,10 +1,8 @@
 package com.Aview.mapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
+import com.Aview.domain.AcademyBoardReviewVO;
 import com.Aview.domain.AcademyBoardVO;
 import com.Aview.domain.AcademyFacilityVO;
 import com.Aview.domain.AcademyTeacherVO;
@@ -31,11 +29,19 @@ public interface BoardMapper {
 	
 	public List<AcademyFacilityVO> getFacility(int ano); // 시설물 정보 가져옴
 	
+	
 	public void academyTeacher(AcademyTeacherVO vo); // 강사 소개
 	
 	public List<AcademyTeacherVO> getAcademyTeacher(int ano);
 	
+	public String getAcaPhotoName(int ano); // 학원게시글 썸네일 이름 가져오기
 	
-
+	public void deleteTeacher(int ano);
+	
+	public int getTeacherCount(int ano); // 등록된 선생님 수 가져오기
+	
+	public List<AcademyBoardReviewVO> getReview(int ano); // 학원 리뷰 보여줄때 가져옴
+	
+	public int insertReview(AcademyBoardReviewVO ar); // 학원 리뷰 등록
 
 }

@@ -127,7 +127,7 @@ a {
 	<!-- Main -->
 	<section id="three" class="wrapper style1">
 		<header class="major">
-			<h2>학원 시설</h2>
+			<h2>학원 시설</h2><br>
 		</header>
 		<div id="main" class="container">
 									<div class="row">
@@ -139,15 +139,24 @@ a {
 				<div class="col-4 col-6-medium col-12-small">
 					<article class="box post" style="width : 80%;">
 					
+
+
 	<div class="slider-1">
     <div class="slides">
     <c:forEach var="board" items="${board}">
+    <c:choose>
+    <c:when test="${board.photo ne 'noPhoto.jpg'}">
         <div class="active" style="background-image:url(/resources/FileImage/${board.photo});"></div>
+        </c:when>
+        <c:otherwise>
+        	등록된 시설 사진이 없습니다.
+        </c:otherwise>
+        </c:choose>
        </c:forEach>
         </div>
     <div class="page-btns">
     <c:forEach var="board" items="${board}">
-        <div></div>
+        <div></div>        
 	</c:forEach>
 
     </div>
@@ -160,6 +169,8 @@ a {
         </div>
     </div>
 </div>
+
+
 				
 				</article>
 				</div>

@@ -45,4 +45,9 @@ public interface MemberMapper {
 	public StudentVO getPw(String number);
 	
 	public AcademyVO getPwAca(String number);
+	
+	public void acaLeave(String aid); //학원 회원탈퇴
+	
+	public void userLeave(String sid); //학원 회원탈퇴
+	
 }
