@@ -2,30 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Aview.mapper.BoardMapper">
 
-	<sql id="criteria">
-		<if test="type != null and keyword != null">
-			<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-			<!-- 전달받은 객체(Criteria)에서 collection에 적당한 typeArr의 getter()를 mapping한다. -->
-			<!-- 즉, Criteria 필드에 getTypeArr()을 사용하여 반복횟수와 값을 결정한다. -->
-				<foreach item="type" collection="typeArr">
-					<trim prefix="OR">
-						<choose>
-							<when test="type == 'T'.toString()">
-								(ACADEMYTITLE LIKE '%' || #{keyword} || '%')
-							</when>
-							<when test="type == 'C'.toString()">
-								(ACADEMYKIND LIKE '%' || #{keyword} || '%')
-							</when>
-							<when test="type == 'W'.toString()">
-								(ACADEMYAREA LIKE '%' || #{keyword} || '%')
-							</when>
-						</choose>
-					</trim>
-				</foreach>
-			</trim> 
-		</if>
-	</sql>
-	
+   <sql id="criteria">
+      <if test="type != null and keyword != null">
+         <trim prefix="(" suffix=") AND" prefixOverrides="OR">
+         <!-- 전달받은 객체(Criteria)에서 collection에 적당한 typeArr의 getter()를 mapping한다. -->
+         <!-- 즉, Criteria 필드에 getTypeArr()을 사용하여 반복횟수와 값을 결정한다. -->
+            <foreach item="type" collection="typeArr">
+               <trim prefix="OR">
+                  <choose>
+                     <when test="type == 'T'.toString()">
+                        (ACADEMYTITLE LIKE '%' || #{keyword} || '%')
+                     </when>
+                     <when test="type == 'C'.toString()">
+                        (ACADEMYKIND LIKE '%' || #{keyword} || '%')
+                     </when>
+                     <when test="type == 'W'.toString()">
+                        (ACADEMYAREA LIKE '%' || #{keyword} || '%')
+                     </when>
+                  </choose>
+               </trim>
+            </foreach>
+         </trim> 
+      </if>
+   </sql>
+   
       <insert id="register">
       INSERT INTO TBL_ACADEMY_BOARD
       (ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG, ACADEMYMAPPHOTO, ACAZIPCODE, ACAADDRESS, ACAADDRESSDETAIL) VALUES
@@ -37,80 +37,90 @@
       (TNO,TNAME1, TAGE1, TSEX1, TEACHERPHOTO1, TEACHERINTRO1) VALUES
       (SEQ_TEACHER.NEXTVAL, #{tname1}, #{tage1}, #{tsex1}, #{teacherPhoto1}, #{teacherIntro1})
    </insert>
-	
+   
 <select id="getList" resultType="com.Aview.domain.AcademyBoardVO">
 SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
-	FROM
-		(SELECT /*+ INDEX_DESC(TBL_ACADEMY_BOARD PK_ACADEMY_BOARD) */ ROWNUM RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
-		FROM TBL_ACADEMY_BOARD WHERE
-		<include refid="criteria"></include>
-		<![CDATA[
-		ROWNUM <= #{amount} * #{pageNum})
-		WHERE RN >= (#{pageNum} * #{amount}) - 9 
-		]]> 
-	</select>
-	
-	<select id="getTotal" resultType="_int">
-		SELECT COUNT(*) FROM TBL_ACADEMY_BOARD WHERE
-		<include refid="criteria"></include>
-		<![CDATA[
-		ANO > 0
-		]]>
-		<!-- 뒤에 AND가 오니깐 무조건 TRUE인 조건을 하나 붙혀서 오류를 해결한다. -->
-	</select>
-	<select id="getAcademy" resultType="com.Aview.domain.AcademyBoardVO">
-	SELECT * FROM TBL_ACADEMY_BOARD WHERE ANO=#{ano}
-	 </select>
-	 
-	 	<select id="getTeacher" resultType="com.Aview.domain.AcademyTeacherVO">
-	SELECT * FROM TBL_ACADEMY_BOARD WHERE ANO=#{tno}
-	 </select>
+   FROM
+      (SELECT /*+ INDEX_DESC(TBL_ACADEMY_BOARD PK_ACADEMY_BOARD) */ ROWNUM RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID, ACADEMYCONTENT, ACADEMYNAME, ACADEMYINTRO, ACADEMYYOUTUBE, ACADEMYTAG
+      FROM TBL_ACADEMY_BOARD WHERE
+      <include refid="criteria"></include>
+      <![CDATA[
+      ROWNUM <= #{amount} * #{pageNum})
+      WHERE RN >= (#{pageNum} * #{amount}) - 9 
+      ]]> 
+   </select>
+   
+   <select id="getTotal" resultType="_int">
+      SELECT COUNT(*) FROM TBL_ACADEMY_BOARD WHERE
+      <include refid="criteria"></include>
+      <![CDATA[
+      ANO > 0
+      ]]>
+      <!-- 뒤에 AND가 오니깐 무조건 TRUE인 조건을 하나 붙혀서 오류를 해결한다. -->
+   </select>
+   <select id="getAcademy" resultType="com.Aview.domain.AcademyBoardVO">
+   SELECT * FROM TBL_ACADEMY_BOARD WHERE ANO=#{ano}
+    </select>
+    
+       <select id="getTeacher" resultType="com.Aview.domain.AcademyTeacherVO">
+   SELECT * FROM TBL_ACADEMY_BOARD WHERE ANO=#{tno}
+    </select>
 
-	<select id="acaId" resultType="_int">
-	SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID =#{id}
- 	</select>
- 	
- 	<update id="modifyBoard">
- 		UPDATE TBL_ACADEMY_BOARD
-		SET ACADEMYAREA=#{academyArea}, ACADEMYKIND=#{academyKind}, ACADEMYPHOTO=#{academyPhoto}, ACADEMYTITLE=#{academyTitle}, ACADEMYNAME=#{academyName}, ACADEMYCONTENT=#{academyContent},  ACADEMYYOUTUBE=#{academyYoutube}, ACADEMYTAG=#{academyTag},
-		ACADEMYMAPPHOTO = #{academyMapPhoto}, ACAZIPCODE=#{acaZipcode}, ACAADDRESS=#{acaAddress}, ACAADDRESSDETAIL=#{acaAddressDetail}
-		WHERE ANO = #{ano}
- 	</update>
- 	
- 	<delete id="removeBoard">
- 		DELETE FROM TBL_ACADEMY_BOARD WHERE ANO = #{ano}
- 	</delete>
- 	
- 		<insert id="academyPhoto">
-		INSERT INTO TBL_ACADEMY_PHOTO(ANO, PHOTO) VALUES(#{ano},#{photo})
-	</insert>
- 	
- 	<select id="getBoardSeq" resultType="_int">
- 		SELECT SEQ_ACADEMY_BOARD.NEXTVAL FROM DUAL
- 	</select>
- 	
- 	<select id="getFacility" resultType="com.Aview.domain.AcademyFacilityVO">
- 		SELECT PHOTO FROM TBL_ACADEMY_PHOTO WHERE ANO = #{ano}
- 	</select>
- 	
- 	<insert id="academyTeacher">
- 		INSERT INTO TBL_TEACHER(ANO, NAME, GENDER, PHOTO, INTRO)VALUES(#{ano, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR},#{photo, jdbcType=VARCHAR}, #{intro, jdbcType=VARCHAR})
- 		
- 	</insert>
- 	
- 	<select id="getAcademyTeacher" resultType="com.Aview.domain.AcademyTeacherVO">
- 		SELECT * FROM TBL_TEACHER WHERE ANO = #{ano} 
- 	</select>
- 	
- 	<select id="getAcaPhotoName" resultType="string">
- 		SELECT ACADEMYPHOTO FROM TBL_ACADEMY_BOARD WHERE ANO = #{ano}
- 	</select>
- 	
- 	<delete id="deleteTeacher">
- 		DELETE FROM TBL_TEACHER WHERE ANO=#{ano}
- 	</delete>
- 	
- 	<select id="getTeacherCount" resultType="_int">
- 		SELECT COUNT(*) FROM TBL_TEACHER WHERE ANO=#{ano}
- 	</select>
+   <select id="acaId" resultType="_int">
+   SELECT COUNT(*) FROM TBL_ACADEMY WHERE AID =#{id}
+    </select>
+    
+    <update id="modifyBoard">
+       UPDATE TBL_ACADEMY_BOARD
+      SET ACADEMYAREA=#{academyArea}, ACADEMYKIND=#{academyKind}, ACADEMYPHOTO=#{academyPhoto}, ACADEMYTITLE=#{academyTitle}, ACADEMYNAME=#{academyName}, ACADEMYCONTENT=#{academyContent},  ACADEMYYOUTUBE=#{academyYoutube}, ACADEMYTAG=#{academyTag},
+      ACADEMYMAPPHOTO = #{academyMapPhoto}, ACAZIPCODE=#{acaZipcode}, ACAADDRESS=#{acaAddress}, ACAADDRESSDETAIL=#{acaAddressDetail}
+      WHERE ANO = #{ano}
+    </update>
+    
+    <delete id="removeBoard">
+       DELETE FROM TBL_ACADEMY_BOARD WHERE ANO = #{ano}
+    </delete>
+    
+       <insert id="academyPhoto">
+      INSERT INTO TBL_ACADEMY_PHOTO(ANO, PHOTO) VALUES(#{ano},#{photo})
+   </insert>
+    
+    <select id="getBoardSeq" resultType="_int">
+       SELECT SEQ_ACADEMY_BOARD.NEXTVAL FROM DUAL
+    </select>
+    
+    <select id="getFacility" resultType="com.Aview.domain.AcademyFacilityVO">
+       SELECT PHOTO FROM TBL_ACADEMY_PHOTO WHERE ANO = #{ano}
+    </select>
+    
+    <insert id="academyTeacher">
+       INSERT INTO TBL_TEACHER(ANO, NAME, GENDER, PHOTO, INTRO)VALUES(#{ano, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{gender, jdbcType=VARCHAR},#{photo, jdbcType=VARCHAR}, #{intro, jdbcType=VARCHAR})
+       
+    </insert>
+    
+    <select id="getAcademyTeacher" resultType="com.Aview.domain.AcademyTeacherVO">
+       SELECT * FROM TBL_TEACHER WHERE ANO = #{ano} 
+    </select>
+    
+    <select id="getAcaPhotoName" resultType="string">
+       SELECT ACADEMYPHOTO FROM TBL_ACADEMY_BOARD WHERE ANO = #{ano}
+    </select>
+    
+    <delete id="deleteTeacher">
+       DELETE FROM TBL_TEACHER WHERE ANO=#{ano}
+    </delete>
+    
+    <select id="getTeacherCount" resultType="_int">
+       SELECT COUNT(*) FROM TBL_TEACHER WHERE ANO=#{ano}
+    </select>
+    
+    <select id="getReview" resultType="com.Aview.domain.AcademyBoardReviewVO">
+       SELECT * FROM TBL_ACADEMY_REVIEW WHERE ANO=#{ano}
+    </select>
+    
+    <insert id="insertReview">
+        <!-- INSERT INTO TBL_ACADEMY_REVIEW(WRITER,CONTENT) VALUES( #{writer}, #{content}) --> 
+       INSERT INTO TBL_ACADEMY_REVIEW(ANO, RNO, WRITER,CONTENT) VALUES(#{ano}, SEQ_ACADEMY_REVIEW.NEXTVAL, #{writer}, #{content})
+
+    </insert>
 </mapper>

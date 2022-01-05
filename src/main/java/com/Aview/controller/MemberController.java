@@ -37,7 +37,6 @@ import com.Aview.domain.StudentVO;
 import com.Aview.mapper.MemberMapper;
 import com.Aview.service.MemberService;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.extern.log4j.Log4j;
 
 @Controller
@@ -66,13 +65,13 @@ public class MemberController {
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html;charset=utf-8");
 		out.println("<script>");
-		out.println("alert('회원가입 실패. 잠시 후 다시 시도해주세요.')");
+		out.println("alert('�쉶�썝媛��엯 �떎�뙣. �옞�떆 �썑 �떎�떆 �떆�룄�빐二쇱꽭�슂.')");
 		out.println("</script>");
 		out.close();
 		return "/join/stujoin";
 	}
 
-	// 아이디 중복 검사
+	// �븘�씠�뵒 以묐났 寃��궗
 	@GetMapping(value = "/check")
 	@ResponseBody
 	public String memberIdChkPOST(String memberId) throws Exception {
@@ -81,23 +80,23 @@ public class MemberController {
 		int result2 = service.checkIdAca(memberId);
 		if (result != 0 || result2 !=0) {
 			return "fail";
-		} // 중복 아이디가 존재
+		} // 以묐났 �븘�씠�뵒媛� 議댁옱
 		else {
-			return "success"; // 중복 아이디 x }
+			return "success"; // 以묐났 �븘�씠�뵒 x }
 		}
 	}
-	// 아이디 중복 검사 학원 
+	// �븘�씠�뵒 以묐났 寃��궗 �븰�썝 
 //	@GetMapping(value = "/checkAca") 
 //	@ResponseBody public String memberIdChkPOST2(String memberId) throws Exception{ 
 //	 
 //		 int result = service.checkIdAca(memberId);
 //		if(result != 0) {
-//			return "fail";} // 중복 아이디가 존재  
+//			return "fail";} // 以묐났 �븘�씠�뵒媛� 議댁옱  
 //			else { 
-//				return "success"; // 중복 아이디 x }
+//				return "success"; // 以묐났 �븘�씠�뵒 x }
 //			}
 //			}
-	//학원 회원가입
+	//�븰�썝 �쉶�썝媛��엯
 	@PostMapping("/acajoin")
 	public String joinAca(AcademyVO aca, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(service.acaJoin(aca)==1) {
@@ -106,12 +105,12 @@ public class MemberController {
 		 PrintWriter out = resp.getWriter();
 		 resp.setContentType("text/html;charset=utf-8");
 		 out.println("<script>");
-		 out.println("alert('회원가입 실패. 잠시 후 다시 시도해주세요.')");
+		 out.println("alert('�쉶�썝媛��엯 �떎�뙣. �옞�떆 �썑 �떎�떆 �떆�룄�빐二쇱꽭�슂.')");
 		 out.println("</script>");
 		 out.close();
 		 return "/join/acajoin";
 	}
-	// 학생 로그인
+	// �븰�깮 濡쒓렇�씤
 	@PostMapping("/stulogin")
 	public String stuLogin(StudentVO stu,Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(service.stuLogin(stu)==1) {
@@ -123,12 +122,12 @@ public class MemberController {
 			PrintWriter out = resp.getWriter();
 			 resp.setContentType("text/html;charset=utf-8");
 			 out.println("<script>");
-			 out.println("alert('아이디 혹은 패스워드를 확인해주세요.')");
+			 out.println("alert('�븘�씠�뵒 �샊�� �뙣�뒪�썙�뱶瑜� �솗�씤�빐二쇱꽭�슂.')");
 			 out.println("location.href='/main/loginForm'");
 			 out.println("</script>");
 		return null;
 	}
-	//학원 로그인
+	//�븰�썝 濡쒓렇�씤
 	@PostMapping("/acaLogin")
 	public String acaLogin(AcademyVO aca,Model model, HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		if(service.acaLogin(aca)==1) {
@@ -140,20 +139,20 @@ public class MemberController {
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("text/html;charset=utf-8");
 			out.println("<script>");
-			out.println("alert('아이디 혹은 패스워드를 확인해주세요.')");
+			out.println("alert('�븘�씠�뵒 �샊�� �뙣�뒪�썙�뱶瑜� �솗�씤�빐二쇱꽭�슂.')");
 			out.println("location.href='/main/loginForm'");
 			out.println("</script>");
 			return null;
 	}
 	
-	// 로그아웃
+	// 濡쒓렇�븘�썐
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		return "redirect:/main/index";
 	}
-	//마이페이지 페이지 이동
+	//留덉씠�럹�씠吏� �럹�씠吏� �씠�룞
 	@GetMapping("/userinfo")
 	public String userInfo(HttpSession session, Model model) {
 		String id = (String)session.getAttribute("session_id");
@@ -161,13 +160,13 @@ public class MemberController {
 		
 		log.info(mapper.checkSessionIdStudent(id));
 		try {
-		if(mapper.checkSessionIdStudent(id) == 0){ // 세션 id의 CHECKACADEMY가 0이면 현재 로그인 된 아이디는 학생 아이디임
+		if(mapper.checkSessionIdStudent(id) == 0){ // �꽭�뀡 id�쓽 CHECKACADEMY媛� 0�씠硫� �쁽�옱 濡쒓렇�씤 �맂 �븘�씠�뵒�뒗 �븰�깮 �븘�씠�뵒�엫
 			stu = mapper.stuInfo(id);
 			model.addAttribute("id", stu);
 			return "/WebContent/app/member/userinfo";
 		}
 		}catch(NullPointerException e) {
-		 // 세션 id CHECKACADEMY가 0이 아님으로 현재 세션 ID는 학원 ID임
+		 // �꽭�뀡 id CHECKACADEMY媛� 0�씠 �븘�떂�쑝濡� �쁽�옱 �꽭�뀡 ID�뒗 �븰�썝 ID�엫
 			aca = mapper.acaInfo(id);
 			model.addAttribute("id",aca);
 			return "/WebContent/app/member/acainfo";
@@ -175,7 +174,7 @@ public class MemberController {
 		return null;
 	}
 	
-	//마이페이지 학생 수정
+	//留덉씠�럹�씠吏� �븰�깮 �닔�젙
 //	@PostMapping("/infoModifystu")
 //	public String edit_user_apply(UserInfo userinfo, ModelMap modelMap) throws Exception { 
 //		int updateCount = service.updatetUser(userinfo);
@@ -188,7 +187,7 @@ public class MemberController {
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("text/html;charset=utf-8");
 				out.println("<script>");
-				out.println("alert('회원 정보 수정이 완료 되었습니다.')");
+				out.println("alert('�쉶�썝 �젙蹂� �닔�젙�씠 �셿猷� �릺�뿀�뒿�땲�떎.')");
 				out.println("location.href='/member/userinfo'");
 				out.println("</script>");
 				
@@ -197,7 +196,7 @@ public class MemberController {
 			 PrintWriter out = resp.getWriter();
 			 resp.setContentType("text/html;charset=utf-8");
 			 out.println("<script>");
-			 out.println("alert('다시 입력해 주세요')");
+			 out.println("alert('�떎�떆 �엯�젰�빐 二쇱꽭�슂')");
 			 out.println("location.href='/member/userinfo'");
 			 out.println("</script>");
 			 return null;
@@ -211,7 +210,7 @@ public class MemberController {
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("text/html;charset=utf-8");
 				out.println("<script>");
-				out.println("alert('회원 정보 수정이 완료 되었습니다.')");
+				out.println("alert('�쉶�썝 �젙蹂� �닔�젙�씠 �셿猷� �릺�뿀�뒿�땲�떎.')");
 				out.println("location.href='/member/userinfo'");
 				out.println("</script>");
 				out.close();
@@ -220,20 +219,20 @@ public class MemberController {
 			 PrintWriter out = resp.getWriter();
 			 resp.setContentType("text/html;charset=utf-8");
 			 out.println("<script>");
-			 out.println("alert('다시 입력해 주세요')");
+			 out.println("alert('�떎�떆 �엯�젰�빐 二쇱꽭�슂')");
 			 out.println("location.href='/member/userinfo'");
 			 out.println("</script>");
 			 out.close();
 			 return null;
 			}
 		}
-		// 학생 ID찾기
+		// �븰�깮 ID李얘린
 		@GetMapping("/stuFindId")
 		public String StuFindId() {
 			return "/WebContent/app/member/findId";
 		}
 		
-		// 학생 PW찾기
+		// �븰�깮 PW李얘린
 		@GetMapping("/stuFindPw")
 		public String StuFindPw() {
 			 return "/WebContent/app/member/findPw";
@@ -242,7 +241,7 @@ public class MemberController {
 		@GetMapping("/sms")
 		@ResponseBody
 		public String ExampleSend(String phone) {
-			log.info("들어옴");
+			log.info("�뱾�뼱�샂");
 			    String api_key = "";
 			    String api_secret = "";
 			    String ramdom[] = {"a","b","c","d","e","f","g","h","i","j","k","l","n","m","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"};
@@ -259,10 +258,10 @@ public class MemberController {
 
 			   
 			    HashMap<String, String> params = new HashMap<String, String>();
-			    params.put("to", phone.replace("-", "")); // 수신번호 010-1234-5678 01012345678
-			    params.put("from", "01085631665"); // 발신번호
+			    params.put("to", phone.replace("-", "")); // �닔�떊踰덊샇 010-1234-5678 01012345678
+			    params.put("from", "01085631665"); // 諛쒖떊踰덊샇
 			    params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
-			    params.put("text", code); // 문자내용    
+			    params.put("text", code); // 臾몄옄�궡�슜    
 			    params.put("app_version", "JAVA SDK v2.2"); // application name and version
 
 
@@ -275,7 +274,7 @@ public class MemberController {
 			    }
 			    return code;
 			  }
-		// 인증성공 시 비밀번호 보여줌
+		// �씤利앹꽦怨� �떆 鍮꾨�踰덊샇 蹂댁뿬以�
 		@GetMapping("pwInfo")
 		public String pwInfo(@Param("phone") String phone, Model mo) {
 			String number = phone.replace("-","");
@@ -318,7 +317,7 @@ public class MemberController {
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("text/html;charset=utf-8");
 				out.println("<script>");
-				out.println("alert('없는 아이디입니다.')");
+				out.println("alert('�뾾�뒗 �븘�씠�뵒�엯�땲�떎.')");
 				out.println("location.href='/member/acaCheckId'");
 				out.println("</script>");
 				return null;
@@ -356,7 +355,7 @@ public class MemberController {
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("text/html;charset=utf-8");
 				out.println("<script>");
-				out.println("alert('모든 항목을 작성해주세요.')");
+				out.println("alert('紐⑤뱺 �빆紐⑹쓣 �옉�꽦�빐二쇱꽭�슂.')");
 				out.println("location.href='/member/findIDaca'");
 				out.println("</script>");
 				return null;
@@ -376,7 +375,7 @@ public class MemberController {
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("text/html;charset=utf-8");
 				out.println("<script>");
-				out.println("alert('모든 항목을 작성해주세요.')");
+				out.println("alert('紐⑤뱺 �빆紐⑹쓣 �옉�꽦�빐二쇱꽭�슂.')");
 				out.println("location.href='/member/stuFindId'");
 				out.println("</script>");
 				return null;
@@ -390,7 +389,7 @@ public class MemberController {
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("text/html;charset=utf-8");
 			out.println("<script>");
-			out.println("alert('탈퇴되었습니다')");
+			out.println("alert('�깉�눜�릺�뿀�뒿�땲�떎')");
 			out.println("location.href='/main/index'");
 			out.println("</script>");
 			
@@ -403,12 +402,12 @@ public class MemberController {
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("text/html;charset=utf-8");
 			out.println("<script>");
-			out.println("alert('탈퇴되었습니다')");
+			out.println("alert('�깉�눜�릺�뿀�뒿�땲�떎')");
 			out.println("location.href='/main/index'");
 			out.println("</script>");
 			
 		}
-//		// 인증성공 시 비밀번호 보여줌
+//		// �씤利앹꽦怨� �떆 鍮꾨�踰덊샇 蹂댁뿬以�
 //		@GetMapping("pwInfo")
 //		public String pwInfoAca(@Param("phone") String phone, Model mo) {
 //			String number = phone.replace("-","");

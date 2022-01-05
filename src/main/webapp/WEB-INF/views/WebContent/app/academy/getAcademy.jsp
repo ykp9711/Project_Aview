@@ -71,7 +71,7 @@
                      <ul class="actions">
                         <li><a href="/board/Teacher?ano=${board.ano}" class="button large">강사 소개</a></li>
                         <li><a href="/board/getFacility?ano=${board.ano}" class="button large">시설 소개</a></li>
-                        <li><a href="facility.jsp" class="button large">학원 리뷰</a></li>
+                        <li><a href="/board/getGo?ano=${board.ano}" class="button large">학원 리뷰</a></li>
                       </ul>
                       </div>
                     </div>
@@ -80,7 +80,7 @@
                <hr>
                <c:if test="${null ne board.acaAddress}">
                <h4>상세 지도</h4>
-				 <div id="map" style="width:100%;height:350px;"></div>
+             <div id="map" style="width:100%;height:350px;"></div>
             </c:if>
             </div>
          </div>
@@ -98,26 +98,26 @@
    <script src="/resources/assets/js/util.js"></script>
    <script src="/resources/assets/js/main.js"></script>
    
-   	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f818e5b6f4164025b1222bdedc3d0ac7&libraries=services"></script> 
-	<!-- 자신 지도 java API -->
-	<script>
-	$(".remove").on("click",function(e){
-		e.preventDefault();
-		 if (confirm("게시글을 삭제하시겠습니까?")) {
-			location.href="/board/removeBoard?ano=" +${board.ano};
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f818e5b6f4164025b1222bdedc3d0ac7&libraries=services"></script> 
+   <!-- 자신 지도 java API -->
+   <script>
+   $(".remove").on("click",function(e){
+      e.preventDefault();
+       if (confirm("게시글을 삭제하시겠습니까?")) {
+         location.href="/board/removeBoard?ano=" +${board.ano};
          } else {
              // 취소 버튼 클릭 시 동작
              alert("취소되었습니다.");
          }
-	})
-	
-	$(".modify").on("click",function(e){
-		e.preventDefault();
-			location.href="/board/modifyBoard?ano=" +${board.ano};
-	})
-	</script>
-	
-	<script>
+   })
+   
+   $(".modify").on("click",function(e){
+      e.preventDefault();
+         location.href="/board/modifyBoard?ano=" +${board.ano};
+   })
+   </script>
+   
+   <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -157,22 +157,22 @@ geocoder.addressSearch('${board.acaAddress}'+' ${board.acaAddressDetail}', funct
 });    
 </script>
 
-	<script>
-	$(".remove").on("click",function(e){
-		e.preventDefault();
-		 if (confirm("게시글을 삭제하시겠습니까?")) {
-			location.href="/board/removeBoard?ano=" +${board.ano};
+   <script>
+   $(".remove").on("click",function(e){
+      e.preventDefault();
+       if (confirm("게시글을 삭제하시겠습니까?")) {
+         location.href="/board/removeBoard?ano=" +${board.ano};
          } else {
              // 취소 버튼 클릭 시 동작
              alert("취소되었습니다.");
          }
-	})
-	
-	$(".modify").on("click",function(e){
-		e.preventDefault();
-			location.href="/board/modifyBoard?ano=" +${board.ano};
-	})
-	</script>
+   })
+   
+   $(".modify").on("click",function(e){
+      e.preventDefault();
+         location.href="/board/modifyBoard?ano=" +${board.ano};
+   })
+   </script>
 </body>
 </html>
 <%@ include file = "../../footer.jsp" %>

@@ -78,9 +78,8 @@ table{border:1px solid #f2f2f2;width:100%;} */
 		<li class="current" data-tab="tab1"><a href="#">학원소개등록</a></li>
 		<li data-tab="tab2"><a href="#">메인강사등록</a></li>
 		<li data-tab="tab3"><a href="#">교육 시설 안내</a></li>
-		<li data-tab="tab4"><a href="#">Travel</a></li>
 	</ul>
-	<form name="joinForm" action="/board/register" method="post"
+	<form name="joinForm" action="/board/register" method="post" 
 		enctype="multipart/form-data">
 		<div id="tab1" class="tabcontent current">
 			<div class="row gtr-uniform" style="color: black;">
@@ -465,22 +464,6 @@ table{border:1px solid #f2f2f2;width:100%;} */
 
 	</div>
 	</form>
-
-
-
-	<div id="tab4" class="tabcontent">
-		<h3>Travel</h3>
-		<p>Lorem Ipsum is simply dummy text of the printing and
-			typesetting industry. Lorem Ipsum has been the industry's standard
-			dummy text ever since the 1500s, when an unknown printer took a
-			galley of type and scrambled it to make a type specimen book. It has
-			survived not only five centuries, but also the leap into electronic
-			typesetting, remaining essentially unchanged. It was popularised in
-			the 1960s with the release of Letraset sheets containing Lorem Ipsum
-			passages, and more recently with desktop publishing software like
-			Aldus PageMaker including versions of Lorem Ipsum.</p>
-	</div>
-
 
 
 
