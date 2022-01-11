@@ -66,12 +66,18 @@ a {
                               <input type="hidden" name="ano" value="${ano}">
                               <label>작성자</label>
                                        <input type="text" maxlength="12" id= "writer"
-                                       name="writer" value="" required>
+                                       name="writer" value="" placeholder=""required>
                               </div><br>
                               <div class="field">
                                  <label>학원 리뷰</label>
                                        <textarea name="content"  id = "content" rows="6"
-                                    style="resize: none;"></textarea>
+                                    style="resize: none; "placeholder=""></textarea>
+                              </div><br>
+                              <div class="field">
+                              <input type="hidden" name="ano" value="${ano}">
+                              <label>비밀번호</label>
+                                       <input type="text" maxlength="12" id= "writer"
+                                       name="writer" value="" placeholder="글을 수정할 때 사용할 비밀번호"required>
                               </div><br>
                               <ul class="actions">
                                     <li style="margin:0 auto;">
@@ -91,19 +97,22 @@ a {
 <article style="width: 70%; height:1200px; margin: 0 auto;">
 
   <c:forEach var="review" items="${review}">
-<div style="float: left; margin: 2px;">
-<table class="tg">
+
+<table style="text-align: center;"  >
 <tbody>
   <tr>
-
-    <td style="text-align: center;" class="tg-0lax">${review.writer}</td>
+    <td style="text-align: center;" >${review.writer}</td>
   </tr>
   <tr>
-    <td style="height: 200px;" class="tg-0lax" colspan="2">${review.content}</td>
+    <td style="resize:none"  colspan="2">${review.content}</td>
+    
+  </tr>
+  <tr>
+  <td style="resize:none; vertical-align : bottom; text-align:right;" ><a href="/board/ModifyReview">리뷰 수정/삭제</a></td>
   </tr>
 </tbody>
 </table>
-</div>
+
 &nbsp;
 </c:forEach>
 
