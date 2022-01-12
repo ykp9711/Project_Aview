@@ -113,7 +113,6 @@ a {
 </tbody>
 </table>
 
-&nbsp;
 </c:forEach>
 
 </article>               

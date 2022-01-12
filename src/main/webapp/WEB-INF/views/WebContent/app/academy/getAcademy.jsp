@@ -71,11 +71,31 @@
                      <ul class="actions">
                         <li><a href="/board/Teacher?ano=${board.ano}" class="button large">강사 소개</a></li>
                         <li><a href="/board/getFacility?ano=${board.ano}" class="button large">시설 소개</a></li>
-                        <li><a href="/board/getGo?ano=${board.ano}" class="button large">학원 리뷰</a></li>
+                        <li><a href="javascript:void(0)" class="button large review">학원 리뷰</a></li>
                       </ul>
                       </div>
                     </div>
                   </footer>
+               <div id="reviewBoard" style="display: none;">
+               <hr>
+               <table>
+               <tr>
+               	<td style="width:90%; ">
+               	작성자 db 넣기
+               	<textarea></textarea></td>
+               	<td style="margin: auto;">등록버튼</td>
+               </tr>
+               </table>
+               <c:forEach var="review" items="${review}">
+<ul style="list-style: none;">
+<li style="width: 100%;">  ${review.writer}   <span style="float:right;">${review.regDate}</span></li> 
+<li><span style="color: black;">${review.content} </span></li>    
+<li style="resize:none; vertical-align : bottom; text-align:right;" ><a href="/board/ModifyReview">리뷰 수정/삭제</a></li>
+</ul>
+<hr>
+</c:forEach>
+               
+               </div>
                </article>
                <hr>
                <c:if test="${null ne board.acaAddress}">
@@ -172,6 +192,15 @@ geocoder.addressSearch('${board.acaAddress}'+' ${board.acaAddressDetail}', funct
       e.preventDefault();
          location.href="/board/modifyBoard?ano=" +${board.ano};
    })
+   </script>
+   
+   <script>
+  
+   $(".review").on("click", function(e){
+	   e.preventDefault();
+	   $("#reviewBoard").css('display','block');
+   })
+   
    </script>
 </body>
 </html>

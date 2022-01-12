@@ -270,7 +270,12 @@ public class BoardController {
    //게시판 상세보기
    @GetMapping("/getBoard")
    public String getBoard(@Param("ano") int ano, Model mo) {
+	   
+	  mo.addAttribute("review", mapper.getReview(ano));
       AcademyBoardVO vo = mapper.getAcademy(ano);
+      
+      mo.addAttribute("review", mapper.getReview(ano));
+      mo.addAttribute("ano", ano);
       
          if(vo.getAcademyYoutube().length() >=32) {
             String youtube = vo.getAcademyYoutube().substring(32);
@@ -290,14 +295,7 @@ public class BoardController {
    }
    
 
-   //리뷰 상세보기
-
-   @GetMapping("/getGo") 
-   public String getGo(@Param("ano") int ano, Model mo) {
-      mo.addAttribute("review", mapper.getReview(ano));
-      mo.addAttribute("ano", ano);
-      return "/WebContent/app/academy/getReview"; 
-   }
+ 
    
    //리뷰 작성하기
    

@@ -16,8 +16,8 @@ import lombok.extern.log4j.Log4j;
 public class Upload {
 
 	public List<String> FileUpload(MultipartFile[] file) throws IOException {
-		  //String uploadPath = "C:\\Users\\ykp\\git\\Project_Aview\\src\\main\\webapp\\resources\\FileImage"; // 경필 저장 경로
-		   String uploadPath = "C:\\Users\\YJG\\git\\Project_Aview\\src\\main\\webapp\\resources\\FileImage"; //정근 저장 주소
+		  String uploadPath = "C:\\Users\\ykp\\git\\Project_Aview\\src\\main\\webapp\\resources\\FileImage"; // 경필 저장 경로
+		  // String uploadPath = "C:\\Users\\YJG\\git\\Project_Aview\\src\\main\\webapp\\resources\\FileImage"; //정근 저장 주소
 		 
 		  ArrayList<String> fileName = new ArrayList<>(); // 파일 이름들을 저장할 리스트 생성
 		  

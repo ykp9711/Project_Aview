@@ -1,6 +1,5 @@
 package com.Aview.domain;
 
-import java.util.Date;
 
 import lombok.Data;
 
@@ -10,5 +9,5 @@ public class AcademyBoardReviewVO {
    private int rno;
    private String writer;
    private String content;
-   private Date redate;
+   private String regDate;
 }
