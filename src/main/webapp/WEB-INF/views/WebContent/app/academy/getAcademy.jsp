@@ -78,19 +78,24 @@
                   </footer>
                <div id="reviewBoard" style="display: none;">
                <hr>
+				<form name="insertReivew" action="/board/insertReview" method="post">
                <table>
                <tr>
                	<td style="width:90%; ">
-               	작성자 db 넣기
-               	<textarea></textarea></td>
-               	<td style="margin: auto;">등록버튼</td>
+               	<input type="hidden" name="ano" value="${ano}">
+               	<input type="text" maxlength="12" id= "writer" name="writer" value="" placeholder="작성자"required><br>
+                <textarea id="content" name="content" placeholder="리뷰"></textarea></td>
+               	<td style="margin: auto;"><input type="submit" value="등록" class="primary"/></td>
                </tr>
                </table>
+               </form>
+
                <c:forEach var="review" items="${review}">
 <ul style="list-style: none;">
 <li style="width: 100%;">  ${review.writer}   <span style="float:right;">${review.regDate}</span></li> 
 <li><span style="color: black;">${review.content} </span></li>    
-<li style="resize:none; vertical-align : bottom; text-align:right;" ><a href="/board/ModifyReview">리뷰 수정/삭제</a></li>
+<li style="resize:none; vertical-align : bottom; text-align:right;" ><a href="/"  >[수정]</a> / <a href="javascript:void(0)" class="delete">삭제</a></li>
+
 </ul>
 <hr>
 </c:forEach>
@@ -201,7 +206,15 @@ geocoder.addressSearch('${board.acaAddress}'+' ${board.acaAddressDetail}', funct
 	   $("#reviewBoard").css('display','block');
    })
    
+   
    </script>
+   <script>
+
+   </script>
+   
+   
+
+   
 </body>
 </html>
 <%@ include file = "../../footer.jsp" %>

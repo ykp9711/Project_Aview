@@ -51,7 +51,8 @@ public class BoardController {
    @Autowired
    BoardMapper mapper;
    
-
+   
+   
    @GetMapping("/academyDetailEdit")
    public String academyEditGo() {
       return "/WebContent/app/academy/academyDetailEdit";
@@ -293,10 +294,6 @@ public class BoardController {
       mo.addAttribute("board", mapper.getFacility(ano));
       return "/WebContent/app/academy/getFacility";
    }
-   
-
- 
-   
    //리뷰 작성하기
    
    @PostMapping("/insertReview") 
