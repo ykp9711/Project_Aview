@@ -334,6 +334,14 @@ public class BoardController {
    return "redirect:"+ referer; // 이전 페이지로 리다이렉트
    }
    
+   //리뷰 삭제하기
+   
+   @GetMapping("/removeReview")
+   public String removeReview(int rno, HttpServletRequest req) {
+	   mapper.removeReview(rno);
+	   String referer = req.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+	   return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+   }
    
    //강사 상세보기
    @GetMapping("/Teacher")

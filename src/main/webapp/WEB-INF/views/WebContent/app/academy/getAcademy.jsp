@@ -99,9 +99,11 @@
                <c:forEach var="review" items="${review}">
 <ul style="list-style: none;">
 <li style="width: 100%;">  ${review.writer}   <span style="float:right;">${review.regDate}</span></li> 
-<li><span style="color: black;">${review.content} </span></li>    
-<li style="resize:none; vertical-align : bottom; text-align:right;" ><a href="/"  >[수정]</a> / <a href="javascript:void(0)" class="delete">삭제</a></li>
+<li><span style="color: black;">${review.content} </span></li>  
 
+<c:if test="${review.writer eq session_id}">  
+<li style="resize:none; vertical-align : bottom; text-align:right;" ><a href="/"  >[수정]</a> / <a href="/board/removeReview?rno=${review.rno}" class="delete">삭제</a></li>
+</c:if>
 </ul>
 <hr>
 </c:forEach>

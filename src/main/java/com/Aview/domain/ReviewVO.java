@@ -13,5 +13,5 @@ public class ReviewVO {
 	private String writer;
 	private String regDate;
 	private String updateDate;
-	private int rn;
+	private int rno;
 }
