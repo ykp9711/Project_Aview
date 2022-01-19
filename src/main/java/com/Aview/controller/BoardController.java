@@ -36,6 +36,7 @@ import com.Aview.domain.Criteria;
 import com.Aview.domain.PageDTO;
 import com.Aview.domain.Upload;
 import com.Aview.mapper.BoardMapper;
+import com.Aview.mapper.MemberMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -50,6 +51,9 @@ public class BoardController {
    
    @Autowired
    BoardMapper mapper;
+   
+   @Autowired
+   MemberMapper memberMapper;
    
    
    
@@ -270,8 +274,18 @@ public class BoardController {
    }
    //게시판 상세보기
    @GetMapping("/getBoard")
-   public String getBoard(@Param("ano") int ano, Model mo) {
+   public String getBoard(@Param("ano") int ano, Model mo, HttpSession session) {
 	   
+	   try {
+	   if(!session.getAttribute("session_id").equals("") || !session.getAttribute("session_id").equals(" ") || !session.getAttribute("session_id").equals(null)) {
+		   String id = (String)session.getAttribute("session_id");
+		   int checkStudent = memberMapper.checkSessionIdStudent(id);
+		   mo.addAttribute("session_id", session.getAttribute("session_id"));
+		   if(checkStudent == 0) {
+			   mo.addAttribute("student", "student");
+		   }
+	   }
+	   }catch(NullPointerException e) {
 	  mo.addAttribute("review", mapper.getReview(ano));
       AcademyBoardVO vo = mapper.getAcademy(ano);
       
@@ -286,6 +300,22 @@ public class BoardController {
        
          mo.addAttribute("board", vo);
       return "/WebContent/app/academy/getAcademy";
+	   }finally {
+		   mo.addAttribute("review", mapper.getReview(ano));
+		      AcademyBoardVO vo = mapper.getAcademy(ano);
+		      
+		      mo.addAttribute("review", mapper.getReview(ano));
+		      mo.addAttribute("ano", ano);
+		      
+		         if(vo.getAcademyYoutube().length() >=32) {
+		            String youtube = vo.getAcademyYoutube().substring(32);
+		            String realYoutube = "https://www.youtube.com/embed/"+youtube;
+		      vo.setAcademyYoutube(realYoutube);
+		         }
+		       
+		         mo.addAttribute("board", vo);
+		      return "/WebContent/app/academy/getAcademy";
+	   }
 }
    
    //시설 상세보기
