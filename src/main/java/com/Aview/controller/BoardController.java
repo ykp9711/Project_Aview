@@ -324,8 +324,8 @@ public class BoardController {
       mo.addAttribute("board", mapper.getFacility(ano));
       return "/WebContent/app/academy/getFacility";
    }
-   //리뷰 작성하기
    
+   //리뷰 작성하기
    @PostMapping("/insertReview") 
    public String insertReivew(AcademyBoardReviewVO ar, HttpServletRequest req, HttpServletResponse resp) throws Exception {
    log.info(ar);
@@ -335,7 +335,6 @@ public class BoardController {
    }
    
    //리뷰 삭제하기
-   
    @GetMapping("/removeReview")
    public String removeReview(int rno, HttpServletRequest req) {
 	   mapper.removeReview(rno);

@@ -94,7 +94,6 @@ select {
 					<th class="title">제목</th>
 					<th class="writer">작성자</th>
 					<th class="regDate">작성일</th>
-					<th class="react">답변 여부</th>
 
 				</tr>
 				<c:forEach var="list" items="${list}">
@@ -103,7 +102,6 @@ select {
 						<td class="title"><a class="goGet" href="${list.bno}">${list.title}</a></td>
 						<td class="writer">${list.writer}</td>
 						<td class="regDate">${list.regDate}</td>
-						<td class="react">${list.react}</td>
 					</tr>
 				</c:forEach>
 

@@ -2,8 +2,8 @@ package com.Aview.controller;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.Aview.domain.AcademyCustomerReviewVO;
 import com.Aview.domain.Criteria;
 import com.Aview.domain.PageDTO;
 import com.Aview.domain.ServiceVO;
@@ -134,5 +135,22 @@ public class ServiceListController {
 			mapper.delete(bno);
 			return "redirect:/serviceList/service"; 
 		}
+		
+		//리뷰 작성하기
+		   @PostMapping("/insertReview") 
+		   public String insertReivew(AcademyCustomerReviewVO ar, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		   log.info(ar);
+		   mapper.insertReview(ar);
+		   String referer = req.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+		   return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+		   }
+		   
+		 //리뷰 삭제하기
+		   @GetMapping("/removeReview")
+		   public String removeReview(int rno, HttpServletRequest req) {
+			   mapper.removeReview(rno);
+			   String referer = req.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+			   return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+		   }
 
 }

@@ -25,7 +25,6 @@
 	             <li><p>${session_id}님 </p></li>    
 	             <li><a href="/member/logout">로그아웃</a></li>
 	             <li><a href="/member/userinfo">마이페이지</a></li>
-	             <li><a href="/list/review">리뷰</a></li>
                  <li><a href="/serviceList/service">고객센터</a></li>
                  <li><a href="/board/academyBoard">학원 알아보기</a></li>
 				</c:if>

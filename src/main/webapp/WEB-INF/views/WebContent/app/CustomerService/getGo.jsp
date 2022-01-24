@@ -53,51 +53,34 @@
 			                              	<h3>
 			                              	
 			                              	<!--  <input type="submit" value="수정하기" class="primary"/>&nbsp&nbsp-->
-			                              	<input type="button" class="button" value="다시작성" id="joinbutton" onClick="location.href='javascript:joinForm.button()'"/>&nbsp;
-			                              	<button class="button small" onclick="window.open('/serviceList/checkPw?pw=${list.password}&bno=${list.bno}', 'width=300, height=300')">수정하기</button>
+			                              	<button class="button small" onclick="modifyOpen()">수정하기</button>
 			                              	
 			                              	</h3>
 			                              </li>
 			                           </ul>
-			                           <ul class="icons">
-										<li>
-											<h2>답변</h2>
-										</li>
-									</ul>
-									<a style="width:100%" href="javascript:void(0)" class="button primary small register">답변 등록</a>
-									<div class="fields register-form" style="display:none">
-										<div class="field">
-											<h4>작성자</h4>
-											<input name="replyer" placeholder="Replyer" type="text">
-										</div><br>
-										<div class="field">
-											<h4>댓글</h4>
-											<textarea name="reply" placeholder="Reply" style="resize:none"></textarea>
-										</div><br>
-										<div class="field">
-											<a href="javascript:void(0)" class="button primary small finish">등록</a>
-											<a href="javascript:void(0)" class="button primary small cancle">취소</a>
-										</div>
-									</div>
-									<ul class="replies">
-									</ul>
-			                        </form>
-			                        <div class="big-width" style="text-align:center"></div>
-			                        </section>
-			                     </div>
-			                              </div>
-			                        </div>
-			                     </div>
+			                           
 
       <!-- Scripts -->
 		<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script>var contextPath = "${pageContext.request.contextPath}";</script>
 		<script>
+		var popupX = (document.body.offsetWidth / 2) - (200 / 2);
+		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+		var popupY= (window.screen.height / 2) - (300 / 2);
+		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 		$("#delete").on("click", function(e){
-		      location.href="/serviceList/delete?bno="+${list.bno};
+			window.open("/serviceList/checkPw?pw=${list.password}&bno=${list.bno}","게시글 수정","height=500, width=500, left=500, top=150, toolbar=no, location=no, scrollbar=no");
+		      /* location.href="/serviceList/delete?bno="+${list.bno}; */
 		   })
 		</script>
 		<script src="/resources/assets/js/reply.js"></script>
+		
+		<script>
+			function modifyOpen(){
+				window.open("/serviceList/checkPw?pw=${list.password}&bno=${list.bno}","게시글 수정","height=500ps, width=500px, left=500, top=150");
+			}
+		</script>
 		<script>
 			$(document).ready(function(){
 				var bnoValue = "${list.bno}";

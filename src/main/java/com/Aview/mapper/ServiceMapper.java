@@ -2,8 +2,8 @@ package com.Aview.mapper;
 
 import java.util.List;
 
+import com.Aview.domain.AcademyCustomerReviewVO;
 import com.Aview.domain.Criteria;
-import com.Aview.domain.ReviewVO;
 import com.Aview.domain.ServiceVO;
 
 public interface ServiceMapper {
@@ -23,6 +23,10 @@ public interface ServiceMapper {
 	public void delete(int bno);
 	
 	public ServiceVO modifyGo(String password);
+	
+	public int insertReview(AcademyCustomerReviewVO ar); // 학원 리뷰 등록
+	
+	public void removeReview(int rno); // 학원 리뷰 삭제
 
 	
 }

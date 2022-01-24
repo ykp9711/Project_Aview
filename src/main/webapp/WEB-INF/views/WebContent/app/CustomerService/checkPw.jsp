@@ -70,11 +70,11 @@
             	alert("비밀번호가 틀렸습니다.");
             
             }else{
-            	alert("비밀번호가 맞습니다.");
-            	location.href="/serviceList/modifyGo?bno="+bno;
+            	alert("비밀번호가 맞습니다. 게시글이 삭제됩니다.");
+            	location.href="/serviceList/delete?bno="+bno;
+            	window.close();
             }
          } )
 		</script>
-        <%@ include file = "../../footer.jsp" %>
    </body>
 </html>

@@ -78,4 +78,13 @@
 	<delete id="delete">
 		DELETE FROM TBL_CUSTOMER WHERE BNO = #{bno}
 	</delete>
+	
+	<insert id="insertReview">
+        <!-- INSERT INTO TBL_ACADEMY_REVIEW(WRITER,CONTENT) VALUES( #{writer}, #{content}) --> 
+       INSERT INTO TBL_CUSTOMER_REVIEW(BNO, RNO, WRITER,CONTENT) VALUES(#{bno}, SEQ_CUSTOMER_REVIEW.NEXTVAL, #{writer}, #{content})
+    </insert>
+    
+    <delete id="removeReview">
+    	DELETE FROM TBL_CUSTOMER_REVIEW WHERE RNO = #{RNO}
+    </delete>
 </mapper>
