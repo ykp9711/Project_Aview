@@ -127,4 +127,14 @@ SELECT  RN, ANO, ACADEMYAREA, ACADEMYKIND, ACADEMYPHOTO, ACADEMYTITLE, ACADEMYID
     <delete id="removeReview">
     	DELETE FROM TBL_ACADEMY_REVIEW WHERE RNO = #{RNO}
     </delete>
+    
+    <select id="getOneReview" resultType="com.Aview.domain.AcademyBoardReviewVO">
+    SELECT * FROM TBL_ACADEMY_REVIEW WHERE RNO = #{RNO}
+    </select>
+
+	<update id="updateReview">
+	UPDATE TBL_ACADEMY_REVIEW
+	SET CONTENT = #{content}
+	WHERE RNO = #{rno} 
+</update>
 </mapper>

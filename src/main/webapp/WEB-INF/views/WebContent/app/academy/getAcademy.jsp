@@ -97,14 +97,16 @@
 			</c:otherwise>
 			</c:choose>
                <c:forEach var="review" items="${review}">
-<ul style="list-style: none;">
+               <div id ="reviewReply"> 
+<ul  style="list-style: none;">
 <li style="width: 100%;">  ${review.writer}   <span style="float:right;">${review.regDate}</span></li> 
 <li><span style="color: black;">${review.content} </span></li>  
 
 <c:if test="${review.writer eq session_id}">  
-<li style="resize:none; vertical-align : bottom; text-align:right;" ><a href="/"  >[수정]</a> / <a href="/board/removeReview?rno=${review.rno}" class="delete">삭제</a></li>
+<li style="resize:none; vertical-align : bottom; text-align:right;" ><a href="javascript:void(0)" onclick="modify(this)" data-rno="${review.rno}"  >[수정]</a> / <a href="/board/removeReview?rno=${review.rno}" class="delete">삭제</a></li>
 </c:if>
 </ul>
+</div>
 <hr>
 </c:forEach>
                
@@ -144,10 +146,31 @@
          }
    })
    
-   $(".modify").on("click",function(e){
-      e.preventDefault();
-         location.href="/board/modifyBoard?ano=" +${board.ano};
-   })
+   function modify(obj){
+	   console.log($(obj).attr("data-rno"));
+	   
+		var data = {rno : $(obj).attr("data-rno")} 
+
+		$.ajax({ type : "POST",
+			url : "/board/modifyReview",
+			data : data,
+			async:false,
+			success : function(data){ 
+				
+				console.log(data.writer)
+				var writer = data.writer
+
+				 $(obj).parent().parent().parent().append("<form name='updateReivew' action='/board/updateReview' method='post'><table><tr><td style='width:90%; ''> <input type='hidden' name='ano' value='${ano}''><input type='hidden' name='rno' value='"+$(obj).attr("data-rno")+"'><input type='text' maxlength='12' id= 'writer' name='writer' value='${session_id}' readonly='readonly' placeholder='작성자'required><br><textarea id='content2' name='content2'></textarea></td><td style='margin: auto;'><input type='submit' value='수정' class='primary'/></td></tr></table></form>");
+			$("#content2").val(data.content)
+			}// success 종료
+
+		}); // ajax 종료
+	   $(obj).parent().parent().hide(); // ul까지 
+	   
+	   const html = '<br/>연락처 : <input type="text" value="" name="tel" />';
+       
+      
+   }
    </script>
    
    <script>

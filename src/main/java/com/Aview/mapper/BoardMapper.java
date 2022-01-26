@@ -45,5 +45,9 @@ public interface BoardMapper {
    public int insertReview(AcademyBoardReviewVO ar); // 학원 리뷰 등록
    
    public void removeReview(int rno); // 학원 리뷰 삭제
+   
+   public AcademyBoardReviewVO getOneReview(int rno); // 리뷰 번호 받아서 그 리뷰 가져오기 1개
+   
+   public void updateReview(AcademyBoardReviewVO vo); // 리뷰 수정 
 
 }

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.Aview.domain.AcademyBoardReviewVO;
@@ -326,6 +330,7 @@ public class BoardController {
    }
    
    //리뷰 작성하기
+   
    @PostMapping("/insertReview") 
    public String insertReivew(AcademyBoardReviewVO ar, HttpServletRequest req, HttpServletResponse resp) throws Exception {
    log.info(ar);
@@ -335,11 +340,30 @@ public class BoardController {
    }
    
    //리뷰 삭제하기
+   
    @GetMapping("/removeReview")
    public String removeReview(int rno, HttpServletRequest req) {
 	   mapper.removeReview(rno);
 	   String referer = req.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
 	   return "redirect:"+ referer; // 이전 페이지로 리다이렉트
+   }
+   
+   //리뷰 수정 ajax
+   @PostMapping(value ="/modifyReview", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE , MediaType.APPLICATION_XML_VALUE})
+   @ResponseBody
+   public ResponseEntity<AcademyBoardReviewVO> reviewModify(int rno) {
+	   AcademyBoardReviewVO vo = mapper.getOneReview(rno);
+
+	   return new ResponseEntity<AcademyBoardReviewVO>(vo,org.springframework.http.HttpStatus.OK);
+   }
+   //리뷰 수정
+   @PostMapping("/updateReview")
+   public String updateReivew(@RequestParam int rno,@RequestParam int ano, @RequestParam String content2) {
+	   AcademyBoardReviewVO vo = new AcademyBoardReviewVO();
+	   vo.setRno(rno);
+	   vo.setContent(content2);
+	   mapper.updateReview(vo);
+	   return "redirect:/board/getBoard?ano="+ano;
    }
    
    //강사 상세보기

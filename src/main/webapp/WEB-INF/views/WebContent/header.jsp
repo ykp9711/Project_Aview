@@ -30,7 +30,7 @@
 				</c:if>
 	             <c:if test="${empty session_id}">
 	             <li><a href="/main/loginForm">로그인</a></li>
-                 <li><a href="/list/review">리뷰</a></li>
+                 <li><a href="/serviceList/service">고객센터</a></li>
                  <li><a href="/board/academyBoard">학원 알아보기</a></li>
 	      		</c:if>
                </ul>
